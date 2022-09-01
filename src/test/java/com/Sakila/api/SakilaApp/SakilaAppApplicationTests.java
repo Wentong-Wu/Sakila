@@ -7,13 +7,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 class SakilaAppApplicationTests {
-    @Test
-    public void test_actor_initalise(){
-        Actor a = new Actor();
-    }
-
-    @Test
-    public void test_actor_full_init(){
-        Actor a = new Actor("Who","Wu");
-    }
+//    @Test
+//    public void test_actor_initalise(){
+//        Actor a = new Actor();
+//    }
+//
+//    @Test
+//    public void test_actor_full_init(){
+//        Actor a = new Actor("Who","Wu");
+//    }
 }
