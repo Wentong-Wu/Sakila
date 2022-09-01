@@ -25,7 +25,8 @@ public class SakilaAppApplication {
 	}
 
 	@GetMapping("/allActors")
-	public @ResponseBody
+	@ResponseBody
+	public
 	Iterable<Actor> getAllActors(){
 		return actorRepository.findAll();
 	}
@@ -35,4 +36,17 @@ public class SakilaAppApplication {
 		return actorRepository.findById(id);
 	}
 
+	@PostMapping("/Actor/add")
+	@ResponseBody
+	public String addActor(@RequestBody Actor actor){
+		actorRepository.save(actor);
+		return "Actor has been added!";
+	}
+
+	@DeleteMapping("/Actor/delete/{id}")
+	@ResponseBody
+	public String deleteActor(@PathVariable Integer id){
+		actorRepository.deleteById(id);
+		return "actor ID "+id+" has been deleted";
+	}
 }
