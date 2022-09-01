@@ -27,5 +27,4 @@ public class SakilaAppApplication {
 	Iterable<Actor> getAllActors(){
 		return actorRepository.findAll();
 	}
-
 }
