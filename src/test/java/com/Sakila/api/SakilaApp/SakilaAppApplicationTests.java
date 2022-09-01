@@ -7,10 +7,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 class SakilaAppApplicationTests {
-
-//	@Test
-//	void contextLoads() {
-//	}
     @Test
     public void test_actor_initalise(){
         Actor a = new Actor();
