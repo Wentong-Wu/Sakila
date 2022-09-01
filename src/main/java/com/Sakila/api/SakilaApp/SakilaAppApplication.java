@@ -31,7 +31,8 @@ public class SakilaAppApplication {
 	}
 	@GetMapping("/Actor/{id}")
 	@ResponseBody
-	public Optional<Actor> getActor(@PathVariable Integer id){
+	public Optional<Actor> getActorByID(@PathVariable Integer id){
 		return actorRepository.findById(id);
 	}
+
 }
