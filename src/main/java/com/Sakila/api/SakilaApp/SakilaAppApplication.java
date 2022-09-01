@@ -49,4 +49,12 @@ public class SakilaAppApplication {
 		actorRepository.deleteById(id);
 		return "actor ID "+id+" has been deleted";
 	}
+
+	@PostMapping("/Actor/update/{id}")
+	@ResponseBody
+	public String updateActor(@PathVariable Integer id, @RequestBody Actor actor){
+		actorRepository.deleteById(id);
+		actorRepository.save(actor);
+		return "Actor has been updated";
+	}
 }
