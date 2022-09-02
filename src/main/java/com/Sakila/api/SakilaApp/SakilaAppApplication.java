@@ -12,7 +12,6 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/Home")
 @CrossOrigin
-
 public class SakilaAppApplication {
 	@Autowired
 	private ActorRepository actorRepository;
@@ -52,9 +51,11 @@ public class SakilaAppApplication {
 
 	@PostMapping("/Actor/update/{id}")
 	@ResponseBody
-	public String updateActor(@PathVariable Integer id, @RequestBody Actor actor){
-		actorRepository.deleteById(id);
+	public String updateActor(@PathVariable Integer id, @RequestParam String first_name, @RequestParam String last_name){
+		Actor actor = actorRepository.findById(id).get();
+		actor.first_name = first_name;
+		actor.last_name = last_name;
 		actorRepository.save(actor);
-		return "Actor has been updated";
+		return "Updated!!!";
 	}
 }
