@@ -20,6 +20,9 @@ public class SakilaAppApplication {
 	public SakilaAppApplication(ActorRepository actorRepository){
 		this.actorRepository = actorRepository;
 	}
+	public SakilaAppApplication(FilmRepository filmRepository) {
+		this.filmRepository = filmRepository;
+	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(SakilaAppApplication.class, args);
@@ -62,9 +65,18 @@ public class SakilaAppApplication {
 		return "Updated!!!";
 	}
 
+	@GetMapping("allFiims")
+	@ResponseBody
+	public Iterable<Film> getAllFilms(){return filmRepository.findAll();}
 	@PostMapping("/Film/{id}")
 	@ResponseBody
 	public Optional<Film> getFilmByID(@PathVariable Integer id){
 		return filmRepository.findById(id);
+	}
+
+	@PostMapping("RandomEnemyPokeFilm")
+	@ResponseBody
+	public String generateEnemy(){
+		return "String";
 	}
 }
