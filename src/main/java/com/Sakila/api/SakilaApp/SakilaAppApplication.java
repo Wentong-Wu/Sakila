@@ -7,7 +7,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.*;
 
 import javax.swing.text.html.Option;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 @SpringBootApplication
 @RestController
@@ -68,7 +71,7 @@ public class SakilaAppApplication {
 	@GetMapping("allFiims")
 	@ResponseBody
 	public Iterable<Film> getAllFilms(){return filmRepository.findAll();}
-	@PostMapping("/Film/{id}")
+	@GetMapping("/Film/{id}")
 	@ResponseBody
 	public Optional<Film> getFilmByID(@PathVariable Integer id){
 		return filmRepository.findById(id);
@@ -77,6 +80,12 @@ public class SakilaAppApplication {
 	@PostMapping("RandomEnemyPokeFilm")
 	@ResponseBody
 	public String generateEnemy(){
-		return "String";
+		Random rand = new Random();
+		ArrayList<Integer> FilmIDGenerate = new ArrayList<Integer>();
+
+		FilmIDGenerate.add(rand.nextInt(1,1000));
+		PokeFilm pokeFilm = new PokeFilm(FilmIDGenerate.get(0));
+
+		return pokeFilm.filmStatus();
 	}
 }
