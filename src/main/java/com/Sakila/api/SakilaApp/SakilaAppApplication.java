@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.*;
 
+import javax.swing.text.html.Option;
 import java.util.Optional;
 
 @SpringBootApplication
@@ -15,6 +16,7 @@ import java.util.Optional;
 public class SakilaAppApplication {
 	@Autowired
 	private ActorRepository actorRepository;
+	private FilmRepository filmRepository;
 	public SakilaAppApplication(ActorRepository actorRepository){
 		this.actorRepository = actorRepository;
 	}
@@ -29,6 +31,7 @@ public class SakilaAppApplication {
 	Iterable<Actor> getAllActors(){
 		return actorRepository.findAll();
 	}
+
 	@GetMapping("/Actor/{id}")
 	@ResponseBody
 	public Optional<Actor> getActorByID(@PathVariable Integer id){
@@ -57,5 +60,11 @@ public class SakilaAppApplication {
 		actor.last_name = last_name;
 		actorRepository.save(actor);
 		return "Updated!!!";
+	}
+
+	@PostMapping("/Film/{id}")
+	@ResponseBody
+	public Optional<Film> getFilmByID(@PathVariable Integer id){
+		return filmRepository.findById(id);
 	}
 }
