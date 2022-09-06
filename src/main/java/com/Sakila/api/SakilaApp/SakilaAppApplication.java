@@ -1,5 +1,8 @@
 package com.Sakila.api.SakilaApp;
 
+import com.google.gson.JsonObject;
+import org.json.JSONObject;
+import org.openqa.selenium.json.Json;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,14 +20,16 @@ import java.util.Random;
 @RequestMapping("/Home")
 @CrossOrigin
 public class SakilaAppApplication {
+	Random rand = new Random();
 	@Autowired
 	private ActorRepository actorRepository;
 	private FilmRepository filmRepository;
-	public SakilaAppApplication(ActorRepository actorRepository){
-		this.actorRepository = actorRepository;
-	}
-	public SakilaAppApplication(FilmRepository filmRepository) {
+
+
+
+	public SakilaAppApplication(FilmRepository filmRepository, ActorRepository actorRepository){
 		this.filmRepository = filmRepository;
+		this.actorRepository = actorRepository;
 	}
 
 	public static void main(String[] args) {
@@ -68,24 +73,39 @@ public class SakilaAppApplication {
 		return "Updated!!!";
 	}
 
-	@GetMapping("allFiims")
+	@GetMapping("allFilms")
 	@ResponseBody
 	public Iterable<Film> getAllFilms(){return filmRepository.findAll();}
-	@GetMapping("/Film/{id}")
+
+	@GetMapping("/ChooseFilm/{id}")
 	@ResponseBody
 	public Optional<Film> getFilmByID(@PathVariable Integer id){
 		return filmRepository.findById(id);
 	}
 
+	@GetMapping("/AiPokeFilms")
+	@ResponseBody
+	public Iterable<Film> getAiPokeFilms(){
+		return filmRepository.findAll();
+	}
+
 	@PostMapping("RandomEnemyPokeFilm")
 	@ResponseBody
-	public String generateEnemy(){
-		Random rand = new Random();
+	public ArrayList<JSONObject> generateEnemy(){
 		ArrayList<Integer> FilmIDGenerate = new ArrayList<Integer>();
-
-		FilmIDGenerate.add(rand.nextInt(1,1000));
-		PokeFilm pokeFilm = new PokeFilm(FilmIDGenerate.get(0));
-
-		return pokeFilm.filmStatus();
+		ArrayList<JSONObject> pokeFilms = new ArrayList<JSONObject>();
+		for(int i=0;i<6;i++) {
+			FilmIDGenerate.add(rand.nextInt(1, 1000));
+			String title = filmRepository.getFilmTitle(FilmIDGenerate.get(i)).get();
+			String description = filmRepository.getFilmDescription(FilmIDGenerate.get(i)).get();
+			int rental_duration = filmRepository.getFilmRentalDuration(FilmIDGenerate.get(i)).get();
+			double rental_rate = filmRepository.getFilmRentalRate(FilmIDGenerate.get(i)).get();
+			int length = filmRepository.getFilmLength(FilmIDGenerate.get(i)).get();
+			double replacement_cost = filmRepository.getFilmReplacementCost(FilmIDGenerate.get(i)).get();
+			Film pokeFilm = new Film(FilmIDGenerate.get(i),title,description,rental_duration,rental_rate,length,replacement_cost);
+			pokeFilms.add(pokeFilm.toJson());
+		}
+		return pokeFilms;
 	}
+
 }

@@ -1,5 +1,10 @@
 package com.Sakila.api.SakilaApp;
 
+import com.fasterxml.jackson.databind.util.JSONPObject;
+import com.google.gson.JsonObject;
+import org.json.JSONObject;
+import org.openqa.selenium.json.Json;
+
 import javax.persistence.*;
 
 @Entity
@@ -21,7 +26,8 @@ public class Film {
 
     //Constructor
 
-    public Film(String title, String description, int rental_duration, double rental_rate, int length, double replacement_cost){
+    public Film(int id, String title, String description, int rental_duration, double rental_rate, int length, double replacement_cost){
+        this.film_id = id;
         this.title = title;
         this.description = description;
         this.rental_duration = rental_duration;
@@ -31,8 +37,18 @@ public class Film {
     }
     public Film(){}
 
-    //Methods
+    public JSONObject toJson(){
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("ID",this.film_id);
+        jsonObject.put("Name",this.title);
+        jsonObject.put("Attack1",this.rental_duration);
+        jsonObject.put("Attack2",this.rental_rate);
+        jsonObject.put("Attack3",this.length);
+        jsonObject.put("Attack4",this.replacement_cost);
+        return jsonObject;
+    }
 
+    //Methods
     public int getFilm_id() {
         return film_id;
     }
