@@ -89,11 +89,12 @@ public class SakilaAppApplication {
 		return filmRepository.findAll();
 	}
 
-	@PostMapping("RandomEnemyPokeFilm")
+	@GetMapping("RandomEnemyPokeFilm")
 	@ResponseBody
-	public ArrayList<JSONObject> generateEnemy(){
+	public String generateEnemy(){
 		ArrayList<Integer> FilmIDGenerate = new ArrayList<Integer>();
 		ArrayList<JSONObject> pokeFilms = new ArrayList<JSONObject>();
+		Film pokeFilm = null;
 		for(int i=0;i<6;i++) {
 			FilmIDGenerate.add(rand.nextInt(1, 1000));
 			String title = filmRepository.getFilmTitle(FilmIDGenerate.get(i)).get();
@@ -102,10 +103,15 @@ public class SakilaAppApplication {
 			double rental_rate = filmRepository.getFilmRentalRate(FilmIDGenerate.get(i)).get();
 			int length = filmRepository.getFilmLength(FilmIDGenerate.get(i)).get();
 			double replacement_cost = filmRepository.getFilmReplacementCost(FilmIDGenerate.get(i)).get();
-			Film pokeFilm = new Film(FilmIDGenerate.get(i),title,description,rental_duration,rental_rate,length,replacement_cost);
+			pokeFilm = new Film(FilmIDGenerate.get(i),title,description,rental_duration,rental_rate,length,replacement_cost);
 			pokeFilms.add(pokeFilm.toJson());
 		}
-		return pokeFilms;
+		return pokeFilms.toString();
 	}
 
+	@GetMapping("/GetPokeFilm/{id}")
+	@ResponseBody
+	public Optional<Film> getPokeFilm(@PathVariable Integer id){
+		return filmRepository.getAllPokeData(id);
+	}
 }

@@ -40,11 +40,12 @@ public class Film {
     public JSONObject toJson(){
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("ID",this.film_id);
+        jsonObject.put("Description", this.description);
         jsonObject.put("Name",this.title);
-        jsonObject.put("Attack1",this.rental_duration);
-        jsonObject.put("Attack2",this.rental_rate);
-        jsonObject.put("Attack3",this.length);
-        jsonObject.put("Attack4",this.replacement_cost);
+        jsonObject.put("Rental_Duration",this.rental_duration);
+        jsonObject.put("Rental_Rate",this.rental_rate);
+        jsonObject.put("Length",this.length);
+        jsonObject.put("Replacement_Cost",this.replacement_cost);
         return jsonObject;
     }
 
