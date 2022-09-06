@@ -14,771 +14,994 @@ import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 
 public class ImageScraper {
     public static void main(String[] args) throws InterruptedException, IOException {
-        ArrayList<String> titles = new ArrayList<String>(Arrays.asList(
-                "DOUBTFIRE LABYRINTH",
-                "DOWNHILL ENOUGH",
-                "DOZEN LION",
-                "DRACULA CRYSTAL",
-                "DRAGON SQUAD",
-                "DRAGONFLY STRANGERS",
-                "DREAM PICKUP",
-                "DRIFTER COMMANDMENTS",
-                "DRIVER ANNIE",
-                "DRIVING POLISH",
-                "DROP WATERFRONT",
-                "DRUMLINE CYCLONE",
-                "DRUMS DYNAMITE",
-                "DUCK RACER",
-                "DUDE BLINDNESS",
-                "DUFFEL APOCALYPSE",
-                "DUMBO LUST",
-                "DURHAM PANKY",
-                "DWARFS ALTER",
-                "DYING MAKER",
-                "DYNAMITE TARZAN",
-                "EAGLES PANKY",
-                "EARLY HOME",
-                "EARRING INSTINCT",
-                "EARTH VISION",
-                "EASY GLADIATOR",
-                "EDGE KISSING",
-                "EFFECT GLADIATOR",
-                "EGG IGBY",
-                "EGYPT TENENBAUMS",
-                "ELEMENT FREDDY",
-                "ELEPHANT TROJAN",
-                "ELF MURDER",
-                "ELIZABETH SHANE",
-                "EMPIRE MALKOVICH",
-                "ENCINO ELF",
-                "ENCOUNTERS CURTAIN",
-                "ENDING CROWDS",
-                "ENEMY ODDS",
-                "ENGLISH BULWORTH",
-                "ENOUGH RAGING",
-                "ENTRAPMENT SATISFACTION",
-                "ESCAPE METROPOLIS",
-                "EVE RESURRECTION",
-                "EVERYONE CRAFT",
-                "EVOLUTION ALTER",
-                "EXCITEMENT EVE",
-                "EXORCIST STING",
-                "EXPECATIONS NATURAL",
-                "EXPENDABLE STALLION",
-                "EXPRESS LONELY",
-                "EXTRAORDINARY CONQUERER",
-                "EYES DRIVING",
-                "FACTORY DRAGON",
-                "FALCON VOLUME",
-                "FAMILY SWEET",
-                "FANTASIA PARK",
-                "FANTASY TROOPERS",
-                "FARGO GANDHI",
-                "FATAL HAUNTED",
-                "FEATHERS METAL",
-                "FELLOWSHIP AUTUMN",
-                "FERRIS MOTHER",
-                "FEUD FROGMEN",
-                "FEVER EMPIRE",
-                "FICTION CHRISTMAS",
-                "FIDDLER LOST",
-                "FIDELITY DEVIL",
-                "FIGHT JAWBREAKER",
-                "FINDING ANACONDA",
-                "FIRE WOLVES",
-                "FIREBALL PHILADELPHIA",
-                "FIREHOUSE VIETNAM",
-                "FISH OPUS",
-                "FLAMINGOS CONNECTICUT",
-                "FLASH WARS",
-                "FLATLINERS KILLER",
-                "FLIGHT LIES",
-                "FLINTSTONES HAPPINESS",
-                "FLOATS GARDEN",
-                "FLYING HOOK",
-                "FOOL MOCKINGBIRD",
-                "FOREVER CANDIDATE",
-                "FORREST SONS",
-                "FORRESTER COMANCHEROS",
-                "FORWARD TEMPLE",
-                "FRANKENSTEIN STRANGER",
-                "FREAKY POCUS",
-                "FREDDY STORM",
-                "FREEDOM CLEOPATRA",
-                "FRENCH HOLIDAY",
-                "FRIDA SLIPPER",
-                "FRISCO FORREST",
-                "FROGMEN BREAKING",
-                "FRONTIER CABIN",
-                "FROST HEAD",
-                "FUGITIVE MAGUIRE",
-                "FULL FLATLINERS",
-                "FURY MURDER",
-                "GABLES METROPOLIS",
-                "GALAXY SWEETHEARTS",
-                "GAMES BOWFINGER",
-                "GANDHI KWAI",
-                "GANGS PRIDE",
-                "GARDEN ISLAND",
-                "GASLIGHT CRUSADE",
-                "GATHERING CALENDAR",
-                "GENTLEMEN STAGE",
-                "GHOST GROUNDHOG",
-                "GHOSTBUSTERS ELF",
-                "GIANT TROOPERS",
-                "GILBERT PELICAN",
-                "GILMORE BOILED",
-                "GLADIATOR WESTWARD",
-                "GLASS DYING",
-                "GLEAMING JAWBREAKER",
-                "GLORY TRACY",
-                "GO PURPLE",
-                "GODFATHER DIARY",
-                "GOLD RIVER",
-                "GOLDFINGER SENSIBILITY",
-                "GOLDMINE TYCOON",
-                "GONE TROUBLE",
-                "GOODFELLAS SALUTE",
-                "GORGEOUS BINGO",
-                "GOSFORD DONNIE",
-                "GRACELAND DYNAMITE",
-                "GRADUATE LORD",
-                "GRAFFITI LOVE",
-                "GRAIL FRANKENSTEIN",
-                "GRAPES FURY",
-                "GREASE YOUTH",
-                "GREATEST NORTH",
-                "GREEDY ROOTS",
-                "GREEK EVERYONE",
-                "GRINCH MASSAGE",
-                "GRIT CLOCKWORK",
-                "GROOVE FICTION",
-                "GROSSE WONDERFUL",
-                "GROUNDHOG UNCUT",
-                "GUMP DATE",
-                "GUN BONNIE",
-                "GUNFIGHT MOON",
-                "GUNFIGHTER MUSSOLINI",
-                "GUYS FALCON",
-                "HALF OUTFIELD",
-                "HALL CASSIDY",
-                "HALLOWEEN NUTS",
-                "HAMLET WISDOM",
-                "HANDICAP BOONDOCK",
-                "HANGING DEEP",
-                "HANKY OCTOBER",
-                "HANOVER GALAXY",
-                "HAPPINESS UNITED",
-                "HARDLY ROBBERS",
-                "HAROLD FRENCH",
-                "HARPER DYING",
-                "HARRY IDAHO",
-                "HATE HANDICAP",
-                "HAUNTED ANTITRUST",
-                "HAUNTING PIANIST",
-                "HAWK CHILL",
-                "HEAD STRANGER",
-                "HEARTBREAKERS BRIGHT",
-                "HEAVEN FREEDOM",
-                "HEAVENLY GUN",
-                "HEAVYWEIGHTS BEAST",
-                "HEDWIG ALTER",
-                "HELLFIGHTERS SIERRA",
-                "HIGH ENCINO",
-                "HIGHBALL POTTER",
-                "HILLS NEIGHBORS",
-                "HOBBIT ALIEN",
-                "HOCUS FRIDA",
-                "HOLES BRANNIGAN",
-                "HOLIDAY GAMES",
-                "HOLLOW JEOPARDY",
-                "HOLLYWOOD ANONYMOUS",
-                "HOLOCAUST HIGHBALL",
-                "HOLY TADPOLE",
-                "HOME PITY",
-                "HOMEWARD CIDER",
-                "HOMICIDE PEACH",
-                "HONEY TIES",
-                "HOOK CHARIOTS",
-                "HOOSIERS BIRDCAGE",
-                "HOPE TOOTSIE",
-                "HORN WORKING",
-                "HORROR REIGN",
-                "HOTEL HAPPINESS",
-                "HOURS RAGE",
-                "HOUSE DYNAMITE",
-                "HUMAN GRAFFITI",
-                "HUNCHBACK IMPOSSIBLE",
-                "HUNGER ROOF",
-                "HUNTER ALTER",
-                "HUNTING MUSKETEERS",
-                "HURRICANE AFFAIR",
-                "HUSTLER PARTY",
-                "HYDE DOCTOR",
-                "HYSTERICAL GRAIL",
-                "ICE CROSSING",
-                "IDAHO LOVE",
-                "IDENTITY LOVER",
-                "IDOLS SNATCHERS",
-                "IGBY MAKER",
-                "ILLUSION AMELIE",
-                "IMAGE PRINCESS",
-                "IMPACT ALADDIN",
-                "IMPOSSIBLE PREJUDICE",
-                "INCH JET",
-                "INDEPENDENCE HOTEL",
-                "INDIAN LOVE",
-                "INFORMER DOUBLE",
-                "INNOCENT USUAL",
-                "INSECTS STONE",
-                "INSIDER ARIZONA",
-                "INSTINCT AIRPORT",
-                "INTENTIONS EMPIRE",
-                "INTERVIEW LIAISONS",
-                "INTOLERABLE INTENTIONS",
-                "INTRIGUE WORST",
-                "INVASION CYCLONE",
-                "IRON MOON",
-                "ISHTAR ROCKETEER",
-                "ISLAND EXORCIST",
-                "ITALIAN AFRICAN",
-                "JACKET FRISCO",
-                "JADE BUNCH",
-                "JAPANESE RUN",
-                "JASON TRAP",
-                "JAWBREAKER BROOKLYN",
-                "JAWS HARRY",
-                "JEDI BENEATH",
-                "JEEPERS WEDDING",
-                "JEKYLL FROGMEN",
-                "JEOPARDY ENCINO",
-                "JERICHO MULAN",
-                "JERK PAYCHECK",
-                "JERSEY SASSY",
-                "JET NEIGHBORS",
-                "JINGLE SAGEBRUSH",
-                "JOON NORTHWEST",
-                "JUGGLER HARDLY",
-                "JUMANJI BLADE",
-                "JUMPING WRATH",
-                "JUNGLE CLOSER",
-                "KANE EXORCIST",
-                "KARATE MOON",
-                "KENTUCKIAN GIANT",
-                "KICK SAVANNAH",
-                "KILL BROTHERHOOD",
-                "KILLER INNOCENT",
-                "KING EVOLUTION",
-                "KISS GLORY",
-                "KISSING DOLLS",
-                "KNOCK WARLOCK",
-                "KRAMER CHOCOLATE",
-                "KWAI HOMEWARD",
-                "LABYRINTH LEAGUE",
-                "LADY STAGE",
-                "LADYBUGS ARMAGEDDON",
-                "LAMBS CINCINATTI",
-                "LANGUAGE COWBOY",
-                "LAWLESS VISION",
-                "LAWRENCE LOVE",
-                "LEAGUE HELLFIGHTERS",
-                "LEATHERNECKS DWARFS",
-                "LEBOWSKI SOLDIERS",
-                "LEGALLY SECRETARY",
-                "LEGEND JEDI",
-                "LESSON CLEOPATRA",
-                "LIAISONS SWEET",
-                "LIBERTY MAGNIFICENT",
-                "LICENSE WEEKEND",
-                "LIES TREATMENT",
-                "LIFE TWISTED",
-                "LIGHTS DEER",
-                "LION UNCUT",
-                "LOATHING LEGALLY",
-                "LOCK REAR",
-                "LOLA AGENT",
-                "LOLITA WORLD",
-                "LONELY ELEPHANT",
-                "LORD ARIZONA",
-                "LOSE INCH",
-                "LOSER HUSTLER",
-                "LOST BIRD",
-                "LOUISIANA HARRY",
-                "LOVE SUICIDES",
-                "LOVELY JINGLE",
-                "LOVER TRUMAN",
-                "LOVERBOY ATTACKS",
-                "LUCK OPUS",
-                "LUCKY FLYING",
-                "LUKE MUMMY",
-                "LUST LOCK",
-                "MADIGAN DORADO",
-                "MADISON TRAP",
-                "MADNESS ATTACKS",
-                "MADRE GABLES",
-                "MAGIC MALLRATS",
-                "MAGNIFICENT CHITTY",
-                "MAGNOLIA FORRESTER",
-                "MAGUIRE APACHE",
-                "MAIDEN HOME",
-                "MAJESTIC FLOATS",
-                "MAKER GABLES",
-                "MALKOVICH PET",
-                "MALLRATS UNITED",
-                "MALTESE HOPE",
-                "MANCHURIAN CURTAIN",
-                "MANNEQUIN WORST",
-                "MARRIED GO",
-                "MARS ROMAN",
-                "MASK PEACH",
-                "MASKED BUBBLE",
-                "MASSACRE USUAL",
-                "MASSAGE IMAGE",
-                "MATRIX SNOWMAN",
-                "MAUDE MOD",
-                "MEET CHOCOLATE",
-                "MEMENTO ZOOLANDER",
-                "MENAGERIE RUSHMORE",
-                "MERMAID INSECTS",
-                "METAL ARMAGEDDON",
-                "METROPOLIS COMA",
-                "MICROCOSMOS PARADISE",
-                "MIDNIGHT WESTWARD",
-                "MIDSUMMER GROUNDHOG",
-                "MIGHTY LUCK",
-                "MILE MULAN",
-                "MILLION ACE",
-                "MINDS TRUMAN",
-                "MINE TITANS",
-                "MINORITY KISS",
-                "MIRACLE VIRTUAL",
-                "MISSION ZOOLANDER",
-                "MIXED DOORS",
-                "MOB DUFFEL",
-                "MOCKINGBIRD HOLLYWOOD",
-                "MOD SECRETARY",
-                "MODEL FISH",
-                "MODERN DORADO",
-                "MONEY HAROLD",
-                "MONSOON CAUSE",
-                "MONSTER SPARTACUS",
-                "MONTEREY LABYRINTH",
-                "MONTEZUMA COMMAND",
-                "MOON BUNCH",
-                "MOONSHINE CABIN",
-                "MOONWALKER FOOL",
-                "MOSQUITO ARMAGEDDON",
-                "MOTHER OLEANDER",
-                "MOTIONS DETAILS",
-                "MOULIN WAKE",
-                "MOURNING PURPLE",
-                "MOVIE SHAKESPEARE",
-                "MULAN MOON",
-                "MULHOLLAND BEAST",
-                "MUMMY CREATURES",
-                "MUPPET MILE",
-                "MURDER ANTITRUST",
-                "MUSCLE BRIGHT",
-                "MUSIC BOONDOCK",
-                "MUSKETEERS WAIT",
-                "MUSSOLINI SPOILERS",
-                "MYSTIC TRUMAN",
-                "NAME DETECTIVE",
-                "NASH CHOCOLAT",
-                "NATIONAL STORY",
-                "NATURAL STOCK",
-                "NECKLACE OUTBREAK",
-                "NEIGHBORS CHARADE",
-                "NEMO CAMPUS",
-                "NETWORK PEAK",
-                "NEWSIES STORY",
-                "NEWTON LABYRINTH",
-                "NIGHTMARE CHILL",
-                "NONE SPIKING",
-                "NOON PAPI",
-                "NORTH TEQUILA",
-                "NORTHWEST POLISH",
-                "NOTORIOUS REUNION",
-                "NOTTING SPEAKEASY",
-                "NOVOCAINE FLIGHT",
-                "NUTS TIES",
-                "OCTOBER SUBMARINE",
-                "ODDS BOOGIE",
-                "OKLAHOMA JUMANJI",
-                "OLEANDER CLUE",
-                "OPEN AFRICAN",
-                "OPERATION OPERATION",
-                "OPPOSITE NECKLACE",
-                "OPUS ICE",
-                "ORANGE GRAPES",
-                "ORDER BETRAYED",
-                "ORIENT CLOSER",
-                "OSCAR GOLD",
-                "OTHERS SOUP",
-                "OUTBREAK DIVINE",
-                "OUTFIELD MASSACRE",
-                "OUTLAW HANKY",
-                "OZ LIAISONS",
-                "PACIFIC AMISTAD",
-                "PACKER MADIGAN",
-                "PAJAMA JAWBREAKER",
-                "PANIC CLUB",
-                "PANKY SUBMARINE",
-                "PANTHER REDS",
-                "PAPI NECKLACE",
-                "PARADISE SABRINA",
-                "PARIS WEEKEND",
-                "PARK CITIZEN",
-                "PARTY KNOCK",
-                "PAST SUICIDES",
-                "PATHS CONTROL",
-                "PATIENT SISTER",
-                "PATRIOT ROMAN",
-                "PATTON INTERVIEW",
-                "PAYCHECK WAIT",
-                "PEACH INNOCENT",
-                "PEAK FOREVER",
-                "PEARL DESTINY",
-                "PELICAN COMFORTS",
-                "PERDITION FARGO",
-                "PERFECT GROOVE",
-                "PERSONAL LADYBUGS",
-                "PET HAUNTING",
-                "PHANTOM GLORY",
-                "PHILADELPHIA WIFE",
-                "PIANIST OUTFIELD",
-                "PICKUP DRIVING",
-                "PILOT HOOSIERS",
-                "PINOCCHIO SIMON",
-                "PIRATES ROXANNE",
-                "PITTSBURGH HUNCHBACK",
-                "PITY BOUND",
-                "PIZZA JUMANJI",
-                "PLATOON INSTINCT",
-                "PLUTO OLEANDER",
-                "POCUS PULP",
-                "POLISH BROOKLYN",
-                "POLLOCK DELIVERANCE",
-                "POND SEATTLE",
-                "POSEIDON FOREVER",
-                "POTLUCK MIXED",
-                "POTTER CONNECTICUT",
-                "PREJUDICE OLEANDER",
-                "PRESIDENT BANG",
-                "PRIDE ALAMO",
-                "PRIMARY GLASS",
-                "PRINCESS GIANT",
-                "PRIVATE DROP",
-                "PRIX UNDEFEATED",
-                "PSYCHO SHRUNK",
-                "PULP BEVERLY",
-                "PUNK DIVORCE",
-                "PURE RUNNER",
-                "PURPLE MOVIE",
-                "QUEEN LUKE",
-                "QUEST MUSSOLINI",
-                "QUILLS BULL",
-                "RACER EGG",
-                "RAGE GAMES",
-                "RAGING AIRPLANE",
-                "RAIDERS ANTITRUST",
-                "RAINBOW SHOCK",
-                "RANDOM GO",
-                "RANGE MOONWALKER",
-                "REAP UNFAITHFUL",
-                "REAR TRADING",
-                "REBEL AIRPORT",
-                "RECORDS ZORRO",
-                "REDEMPTION COMFORTS",
-                "REDS POCUS",
-                "REEF SALUTE",
-                "REIGN GENTLEMEN",
-                "REMEMBER DIARY",
-                "REQUIEM TYCOON",
-                "RESERVOIR ADAPTATION",
-                "RESURRECTION SILVERADO",
-                "REUNION WITCHES",
-                "RIDER CADDYSHACK",
-                "RIDGEMONT SUBMARINE",
-                "RIGHT CRANES",
-                "RINGS HEARTBREAKERS",
-                "RIVER OUTLAW",
-                "ROAD ROXANNE",
-                "ROBBERS JOON",
-                "ROBBERY BRIGHT",
-                "ROCK INSTINCT",
-                "ROCKETEER MOTHER",
-                "ROCKY WAR",
-                "ROLLERCOASTER BRINGING",
-                "ROMAN PUNK",
-                "ROOF CHAMPION",
-                "ROOM ROMAN",
-                "ROOTS REMEMBER",
-                "ROSES TREASURE",
-                "ROUGE SQUAD",
-                "ROXANNE REBEL",
-                "RUGRATS SHAKESPEARE",
-                "RULES HUMAN",
-                "RUN PACIFIC",
-                "RUNAWAY TENENBAUMS",
-                "RUNNER MADIGAN",
-                "RUSH GOODFELLAS",
-                "RUSHMORE MERMAID",
-                "SABRINA MIDNIGHT",
-                "SADDLE ANTITRUST",
-                "SAGEBRUSH CLUELESS",
-                "SAINTS BRIDE",
-                "SALUTE APOLLO",
-                "SAMURAI LION",
-                "SANTA PARIS",
-                "SASSY PACKER",
-                "SATISFACTION CONFIDENTIAL",
-                "SATURDAY LAMBS",
-                "SATURN NAME",
-                "SAVANNAH TOWN",
-                "SCALAWAG DUCK",
-                "SCARFACE BANG",
-                "SCHOOL JACKET",
-                "SCISSORHANDS SLUMS",
-                "SCORPION APOLLO",
-                "SEA VIRGIN",
-                "SEABISCUIT PUNK",
-                "SEARCHERS WAIT",
-                "SEATTLE EXPECATIONS",
-                "SECRET GROUNDHOG",
-                "SECRETARY ROUGE",
-                "SECRETS PARADISE",
-                "SENSE GREEK",
-                "SENSIBILITY REAR",
-                "SEVEN SWARM",
-                "SHAKESPEARE SADDLE",
-                "SHANE DARKNESS",
-                "SHANGHAI TYCOON",
-                "SHAWSHANK BUBBLE",
-                "SHEPHERD MIDSUMMER",
-                "SHINING ROSES",
-                "SHIP WONDERLAND",
-                "SHOCK CABIN",
-                "SHOOTIST SUPERFLY",
-                "SHOW LORD",
-                "SHREK LICENSE",
-                "SHRUNK DIVINE",
-                "SIDE ARK",
-                "SIEGE MADRE",
-                "SIERRA DIVIDE",
-                "SILENCE KANE",
-                "SILVERADO GOLDFINGER",
-                "SIMON NORTH",
-                "SINNERS ATLANTIS",
-                "SISTER FREDDY",
-                "SKY MIRACLE",
-                "SLACKER LIAISONS",
-                "SLEEPING SUSPECTS",
-                "SLEEPLESS MONSOON",
-                "SLEEPY JAPANESE",
-                "SLEUTH ORIENT",
-                "SLING LUKE",
-                "SLIPPER FIDELITY",
-                "SLUMS DUCK",
-                "SMILE EARRING",
-                "SMOKING BARBARELLA",
-                "SMOOCHY CONTROL",
-                "SNATCH SLIPPER",
-                "SNATCHERS MONTEZUMA",
-                "SNOWMAN ROLLERCOASTER",
-                "SOLDIERS EVOLUTION",
-                "SOMETHING DUCK",
-                "SONG HEDWIG",
-                "SONS INTERVIEW",
-                "SORORITY QUEEN",
-                "SOUP WISDOM",
-                "SOUTH WAIT",
-                "SPARTACUS CHEAPER",
-                "SPEAKEASY DATE",
-                "SPEED SUIT",
-                "SPICE SORORITY",
-                "SPIKING ELEMENT",
-                "SPINAL ROCKY",
-                "SPIRIT FLINTSTONES",
-                "SPIRITED CASUALTIES",
-                "SPLASH GUMP",
-                "SPLENDOR PATTON",
-                "SPOILERS HELLFIGHTERS",
-                "SPY MILE",
-                "SQUAD FISH",
-                "STAGE WORLD",
-                "STAGECOACH ARMAGEDDON",
-                "STALLION SUNDANCE",
-                "STAMPEDE DISTURBING",
-                "STAR OPERATION",
-                "STATE WASTELAND",
-                "STEEL SANTA",
-                "STEERS ARMAGEDDON",
-                "STEPMOM DREAM",
-                "STING PERSONAL",
-                "STOCK GLASS",
-                "STONE FIRE",
-                "STORM HAPPINESS",
-                "STORY SIDE",
-                "STRAIGHT HOURS",
-                "STRANGELOVE DESIRE",
-                "STRANGER STRANGERS",
-                "STRANGERS GRAFFITI",
-                "STREAK RIDGEMONT",
-                "STREETCAR INTENTIONS",
-                "STRICTLY SCARFACE",
-                "SUBMARINE BED",
-                "SUGAR WONKA",
-                "SUICIDES SILENCE",
-                "SUIT WALLS",
-                "SUMMER SCARFACE",
-                "SUN CONFESSIONS",
-                "SUNDANCE INVASION",
-                "SUNRISE LEAGUE",
-                "SUNSET RACER",
-                "SUPER WYOMING",
-                "SUPERFLY TRIP",
-                "SUSPECTS QUILLS",
-                "SWARM GOLD",
-                "SWEDEN SHINING",
-                "SWEET BROTHERHOOD",
-                "SWEETHEARTS SUSPECTS",
-                "TADPOLE PARK",
-                "TALENTED HOMICIDE",
-                "TARZAN VIDEOTAPE",
-                "TAXI KICK",
-                "TEEN APOLLO",
-                "TELEGRAPH VOYAGE",
-                "TELEMARK HEARTBREAKERS",
-                "TEMPLE ATTRACTION",
-                "TENENBAUMS COMMAND",
-                "TEQUILA PAST",
-                "TERMINATOR CLUB",
-                "TEXAS WATCH",
-                "THEORY MERMAID",
-                "THIEF PELICAN",
-                "THIN SAGEBRUSH",
-                "TIES HUNGER",
-                "TIGHTS DAWN",
-                "TIMBERLAND SKY",
-                "TITANIC BOONDOCK",
-                "TITANS JERK",
-                "TOMATOES HELLFIGHTERS",
-                "TOMORROW HUSTLER",
-                "TOOTSIE PILOT",
-                "TORQUE BOUND",
-                "TOURIST PELICAN",
-                "TOWERS HURRICANE",
-                "TOWN ARK",
-                "TRACY CIDER",
-                "TRADING PINOCCHIO",
-                "TRAFFIC HOBBIT",
-                "TRAIN BUNCH",
-                "TRAINSPOTTING STRANGERS",
-                "TRAMP OTHERS",
-                "TRANSLATION SUMMER",
-                "TRAP GUYS",
-                "TREASURE COMMAND",
-                "TREATMENT JEKYLL",
-                "TRIP NEWTON",
-                "TROJAN TOMORROW",
-                "TROOPERS METAL",
-                "TROUBLE DATE",
-                "TRUMAN CRAZY",
-                "TURN STAR",
-                "TUXEDO MILE",
-                "TWISTED PIRATES",
-                "TYCOON GATHERING",
-                "UNBREAKABLE KARATE",
-                "UNCUT SUICIDES",
-                "UNDEFEATED DALMATIONS",
-                "UNFAITHFUL KILL",
-                "UNFORGIVEN ZOOLANDER",
-                "UNITED PILOT",
-                "UNTOUCHABLES SUNRISE",
-                "UPRISING UPTOWN",
-                "UPTOWN YOUNG",
-                "USUAL UNTOUCHABLES",
-                "VACATION BOONDOCK",
-                "VALENTINE VANISHING",
-                "VALLEY PACKER",
-                "VAMPIRE WHALE",
-                "VANILLA DAY",
-                "VANISHED GARDEN",
-                "VANISHING ROCKY",
-                "VARSITY TRIP",
-                "VELVET TERMINATOR",
-                "VERTIGO NORTHWEST",
-                "VICTORY ACADEMY",
-                "VIDEOTAPE ARSENIC",
-                "VIETNAM SMOOCHY",
-                "VILLAIN DESPERATE",
-                "VIRGIN DAISY",
-                "VIRGINIAN PLUTO",
-                "VIRTUAL SPOILERS",
-                "VISION TORQUE",
-                "VOICE PEACH",
-                "VOLCANO TEXAS",
-                "VOLUME HOUSE",
-                "VOYAGE LEGALLY",
-                "WAGON JAWS",
-                "WAIT CIDER",
-                "WAKE JAWS",
-                "WALLS ARTIST",
-                "WANDA CHAMBER",
-                "WAR NOTTING",
-                "WARDROBE PHANTOM",
-                "WARLOCK WEREWOLF",
-                "WARS PLUTO",
-                "WASH HEAVENLY",
-                "WASTELAND DIVINE",
-                "WATCH TRACY",
-                "WATERFRONT DELIVERANCE",
-                "WATERSHIP FRONTIER",
-                "WEDDING APOLLO",
-                "WEEKEND PERSONAL",
-                "WEREWOLF LOLA",
-                "WEST LION",
-                "WESTWARD SEABISCUIT",
-                "WHALE BIKINI",
-                "WHISPERER GIANT",
-                "WIFE TURN",
-                "WILD APOLLO",
-                "WILLOW TRACY",
-                "WIND PHANTOM",
-                "WINDOW SIDE",
-                "WISDOM WORKER",
-                "WITCHES PANIC",
-                "WIZARD COLDBLOODED",
-                "WOLVES DESIRE",
-                "WOMEN DORADO",
-                "WON DARES",
-                "WONDERFUL DROP",
-                "WONDERLAND CHRISTMAS",
-                "WONKA SEA",
-                "WORDS HUNTER",
-                "WORKER TARZAN",
-                "WORKING MICROCOSMOS",
-                "WORLD LEATHERNECKS",
-                "WORST BANGER",
-                "WRATH MILE",
-                "WRONG BEHAVIOR",
-                "WYOMING STORM",
-                "YENTL IDAHO",
-                "YOUNG LANGUAGE",
-                "YOUTH KICK",
-                "ZHIVAGO CORE",
-                "ZOOLANDER FICTION",
-                "ZORRO ARK"
-        ));
+        Map<String, String> map = new HashMap<String,String>();
+        map.put("ACADEMY DINOSAUR","A Epic Drama of a Feminist And a Mad Scientist who must Battle a Teacher in The Canadian Rockies");
+        map.put("ACE GOLDFINGER","A Astounding Epistle of a Database Administrator And a Explorer who must Find a Car in Ancient China");
+        map.put("ADAPTATION HOLES","A Astounding Reflection of a Lumberjack And a Car who must Sink a Lumberjack in A Baloon Factory");
+        map.put("AFFAIR PREJUDICE","A Fanciful Documentary of a Frisbee And a Lumberjack who must Chase a Monkey in A Shark Tank");
+        map.put("AFRICAN EGG","A Fast-Paced Documentary of a Pastry Chef And a Dentist who must Pursue a Forensic Psychologist in The Gulf of Mexico");
+        map.put("AGENT TRUMAN","A Intrepid Panorama of a Robot And a Boy who must Escape a Sumo Wrestler in Ancient China");
+        map.put("AIRPLANE SIERRA","A Touching Saga of a Hunter And a Butler who must Discover a Butler in A Jet Boat");
+        map.put("AIRPORT POLLOCK","A Epic Tale of a Moose And a Girl who must Confront a Monkey in Ancient India");
+        map.put("ALABAMA DEVIL","A Thoughtful Panorama of a Database Administrator And a Mad Scientist who must Outgun a Mad Scientist in A Jet Boat");
+        map.put("ALADDIN CALENDAR","A Action-Packed Tale of a Man And a Lumberjack who must Reach a Feminist in Ancient China");
+        map.put("ALAMO VIDEOTAPE","A Boring Epistle of a Butler And a Cat who must Fight a Pastry Chef in A MySQL Convention");
+        map.put("ALASKA PHANTOM","A Fanciful Saga of a Hunter And a Pastry Chef who must Vanquish a Boy in Australia");
+        map.put("ALI FOREVER","A Action-Packed Drama of a Dentist And a Crocodile who must Battle a Feminist in The Canadian Rockies");
+        map.put("ALICE FANTASIA","A Emotional Drama of a A Shark And a Database Administrator who must Vanquish a Pioneer in Soviet Georgia");
+        map.put("ALIEN CENTER","A Brilliant Drama of a Cat And a Mad Scientist who must Battle a Feminist in A MySQL Convention");
+        map.put("ALLEY EVOLUTION","A Fast-Paced Drama of a Robot And a Composer who must Battle a Astronaut in New Orleans");
+        map.put("ALONE TRIP","A Fast-Paced Character Study of a Composer And a Dog who must Outgun a Boat in An Abandoned Fun House");
+        map.put("ALTER VICTORY","A Thoughtful Drama of a Composer And a Feminist who must Meet a Secret Agent in The Canadian Rockies");
+        map.put("AMADEUS HOLY","A Emotional Display of a Pioneer And a Technical Writer who must Battle a Man in A Baloon");
+        map.put("AMELIE HELLFIGHTERS","A Boring Drama of a Woman And a Squirrel who must Conquer a Student in A Baloon");
+        map.put("AMERICAN CIRCUS","A Insightful Drama of a Girl And a Astronaut who must Face a Database Administrator in A Shark Tank");
+        map.put("AMISTAD MIDSUMMER","A Emotional Character Study of a Dentist And a Crocodile who must Meet a Sumo Wrestler in California");
+        map.put("ANACONDA CONFESSIONS","A Lacklusture Display of a Dentist And a Dentist who must Fight a Girl in Australia");
+        map.put("ANALYZE HOOSIERS","A Thoughtful Display of a Explorer And a Pastry Chef who must Overcome a Feminist in The Sahara Desert");
+        map.put("ANGELS LIFE","A Thoughtful Display of a Woman And a Astronaut who must Battle a Robot in Berlin");
+        map.put("ANNIE IDENTITY","A Amazing Panorama of a Pastry Chef And a Boat who must Escape a Woman in An Abandoned Amusement Park");
+        map.put("ANONYMOUS HUMAN","A Amazing Reflection of a Database Administrator And a Astronaut who must Outrace a Database Administrator in A Shark Tank");
+        map.put("ANTHEM LUKE","A Touching Panorama of a Waitress And a Woman who must Outrace a Dog in An Abandoned Amusement Park");
+        map.put("ANTITRUST TOMATOES","A Fateful Yarn of a Womanizer And a Feminist who must Succumb a Database Administrator in Ancient India");
+        map.put("ANYTHING SAVANNAH","A Epic Story of a Pastry Chef And a Woman who must Chase a Feminist in An Abandoned Fun House");
+        map.put("APACHE DIVINE","A Awe-Inspiring Reflection of a Pastry Chef And a Teacher who must Overcome a Sumo Wrestler in A U-Boat");
+        map.put("APOCALYPSE FLAMINGOS","A Astounding Story of a Dog And a Squirrel who must Defeat a Woman in An Abandoned Amusement Park");
+        map.put("APOLLO TEEN","A Action-Packed Reflection of a Crocodile And a Explorer who must Find a Sumo Wrestler in An Abandoned Mine Shaft");
+        map.put("ARABIA DOGMA","A Touching Epistle of a Madman And a Mad Cow who must Defeat a Student in Nigeria");
+        map.put("ARACHNOPHOBIA ROLLERCOASTER","A Action-Packed Reflection of a Pastry Chef And a Composer who must Discover a Mad Scientist in The First Manned Space Station");
+        map.put("ARGONAUTS TOWN","A Emotional Epistle of a Forensic Psychologist And a Butler who must Challenge a Waitress in An Abandoned Mine Shaft");
+        map.put("ARIZONA BANG","A Brilliant Panorama of a Mad Scientist And a Mad Cow who must Meet a Pioneer in A Monastery");
+        map.put("ARK RIDGEMONT","A Beautiful Yarn of a Pioneer And a Monkey who must Pursue a Explorer in The Sahara Desert");
+        map.put("ARMY FLINTSTONES","A Boring Saga of a Database Administrator And a Womanizer who must Battle a Waitress in Nigeria");
+        map.put("ARSENIC INDEPENDENCE","A Fanciful Documentary of a Mad Cow And a Womanizer who must Find a Dentist in Berlin");
+        map.put("ARTIST COLDBLOODED","A Stunning Reflection of a Robot And a Moose who must Challenge a Woman in California");
+        map.put("ATLANTIS CAUSE","A Thrilling Yarn of a Feminist And a Hunter who must Fight a Technical Writer in A Shark Tank");
+        map.put("ATTACKS HATE","A Fast-Paced Panorama of a Technical Writer And a Mad Scientist who must Find a Feminist in An Abandoned Mine Shaft");
+        map.put("ATTRACTION NEWTON","A Astounding Panorama of a Composer And a Frisbee who must Reach a Husband in Ancient Japan");
+        map.put("AUTUMN CROW","A Beautiful Tale of a Dentist And a Mad Cow who must Battle a Moose in The Sahara Desert");
+        map.put("BABY HALL","A Boring Character Study of a A Shark And a Girl who must Outrace a Feminist in An Abandoned Mine Shaft");
+        map.put("BACKLASH UNDEFEATED","A Stunning Character Study of a Mad Scientist And a Mad Cow who must Kill a Car in A Monastery");
+        map.put("BADMAN DAWN","A Emotional Panorama of a Pioneer And a Composer who must Escape a Mad Scientist in A Jet Boat");
+        map.put("BAKED CLEOPATRA","A Stunning Drama of a Forensic Psychologist And a Husband who must Overcome a Waitress in A Monastery");
+        map.put("BALLOON HOMEWARD","A Insightful Panorama of a Forensic Psychologist And a Mad Cow who must Build a Mad Scientist in The First Manned Space Station");
+        map.put("BALLROOM MOCKINGBIRD","A Thrilling Documentary of a Composer And a Monkey who must Find a Feminist in California");
+        map.put("BANG KWAI","A Epic Drama of a Madman And a Cat who must Face a A Shark in An Abandoned Amusement Park");
+        map.put("BANGER PINOCCHIO","A Awe-Inspiring Drama of a Car And a Pastry Chef who must Chase a Crocodile in The First Manned Space Station");
+        map.put("BARBARELLA STREETCAR","A Awe-Inspiring Story of a Feminist And a Cat who must Conquer a Dog in A Monastery");
+        map.put("BAREFOOT MANCHURIAN","A Intrepid Story of a Cat And a Student who must Vanquish a Girl in An Abandoned Amusement Park");
+        map.put("BASIC EASY","A Stunning Epistle of a Man And a Husband who must Reach a Mad Scientist in A Jet Boat");
+        map.put("BEACH HEARTBREAKERS","A Fateful Display of a Womanizer And a Mad Scientist who must Outgun a A Shark in Soviet Georgia");
+        map.put("BEAR GRACELAND","A Astounding Saga of a Dog And a Boy who must Kill a Teacher in The First Manned Space Station");
+        map.put("BEAST HUNCHBACK","A Awe-Inspiring Epistle of a Student And a Squirrel who must Defeat a Boy in Ancient China");
+        map.put("BEAUTY GREASE","A Fast-Paced Display of a Composer And a Moose who must Sink a Robot in An Abandoned Mine Shaft");
+        map.put("BED HIGHBALL","A Astounding Panorama of a Lumberjack And a Dog who must Redeem a Woman in An Abandoned Fun House");
+        map.put("BEDAZZLED MARRIED","A Astounding Character Study of a Madman And a Robot who must Meet a Mad Scientist in An Abandoned Fun House");
+        map.put("BEETHOVEN EXORCIST","A Epic Display of a Pioneer And a Student who must Challenge a Butler in The Gulf of Mexico");
+        map.put("BEHAVIOR RUNAWAY","A Unbelieveable Drama of a Student And a Husband who must Outrace a Sumo Wrestler in Berlin");
+        map.put("BENEATH RUSH","A Astounding Panorama of a Man And a Monkey who must Discover a Man in The First Manned Space Station");
+        map.put("BERETS AGENT","A Taut Saga of a Crocodile And a Boy who must Overcome a Technical Writer in Ancient China");
+        map.put("BETRAYED REAR","A Emotional Character Study of a Boat And a Pioneer who must Find a Explorer in A Shark Tank");
+        map.put("BEVERLY OUTLAW","A Fanciful Documentary of a Womanizer And a Boat who must Defeat a Madman in The First Manned Space Station");
+        map.put("BIKINI BORROWERS","A Astounding Drama of a Astronaut And a Cat who must Discover a Woman in The First Manned Space Station");
+        map.put("BILKO ANONYMOUS","A Emotional Reflection of a Teacher And a Man who must Meet a Cat in The First Manned Space Station");
+        map.put("BILL OTHERS","A Stunning Saga of a Mad Scientist And a Forensic Psychologist who must Challenge a Squirrel in A MySQL Convention");
+        map.put("BINGO TALENTED","A Touching Tale of a Girl And a Crocodile who must Discover a Waitress in Nigeria");
+        map.put("BIRCH ANTITRUST","A Fanciful Panorama of a Husband And a Pioneer who must Outgun a Dog in A Baloon");
+        map.put("BIRD INDEPENDENCE","A Thrilling Documentary of a Car And a Student who must Sink a Hunter in The Canadian Rockies");
+        map.put("BIRDCAGE CASPER","A Fast-Paced Saga of a Frisbee And a Astronaut who must Overcome a Feminist in Ancient India");
+        map.put("BIRDS PERDITION","A Boring Story of a Womanizer And a Pioneer who must Face a Dog in California");
+        map.put("BLACKOUT PRIVATE","A Intrepid Yarn of a Pastry Chef And a Mad Scientist who must Challenge a Secret Agent in Ancient Japan");
+        map.put("BLADE POLISH","A Thoughtful Character Study of a Frisbee And a Pastry Chef who must Fight a Dentist in The First Manned Space Station");
+        map.put("BLANKET BEVERLY","A Emotional Documentary of a Student And a Girl who must Build a Boat in Nigeria");
+        map.put("BLINDNESS GUN","A Touching Drama of a Robot And a Dentist who must Meet a Hunter in A Jet Boat");
+        map.put("BLOOD ARGONAUTS","A Boring Drama of a Explorer And a Man who must Kill a Lumberjack in A Manhattan Penthouse");
+        map.put("BLUES INSTINCT","A Insightful Documentary of a Boat And a Composer who must Meet a Forensic Psychologist in An Abandoned Fun House");
+        map.put("BOILED DARES","A Awe-Inspiring Story of a Waitress And a Dog who must Discover a Dentist in Ancient Japan");
+        map.put("BONNIE HOLOCAUST","A Fast-Paced Story of a Crocodile And a Robot who must Find a Moose in Ancient Japan");
+        map.put("BOOGIE AMELIE","A Lacklusture Character Study of a Husband And a Sumo Wrestler who must Succumb a Technical Writer in The Gulf of Mexico");
+        map.put("BOONDOCK BALLROOM","A Fateful Panorama of a Crocodile And a Boy who must Defeat a Monkey in The Gulf of Mexico");
+        map.put("BORN SPINAL","A Touching Epistle of a Frisbee And a Husband who must Pursue a Student in Nigeria");
+        map.put("BORROWERS BEDAZZLED","A Brilliant Epistle of a Teacher And a Sumo Wrestler who must Defeat a Man in An Abandoned Fun House");
+        map.put("BOULEVARD MOB","A Fateful Epistle of a Moose And a Monkey who must Confront a Lumberjack in Ancient China");
+        map.put("BOUND CHEAPER","A Thrilling Panorama of a Database Administrator And a Astronaut who must Challenge a Lumberjack in A Baloon");
+        map.put("BOWFINGER GABLES","A Fast-Paced Yarn of a Waitress And a Composer who must Outgun a Dentist in California");
+        map.put("BRAVEHEART HUMAN","A Insightful Story of a Dog And a Pastry Chef who must Battle a Girl in Berlin");
+        map.put("BREAKFAST GOLDFINGER","A Beautiful Reflection of a Student And a Student who must Fight a Moose in Berlin");
+        map.put("BREAKING HOME","A Beautiful Display of a Secret Agent And a Monkey who must Battle a Sumo Wrestler in An Abandoned Mine Shaft");
+        map.put("BRIDE INTRIGUE","A Epic Tale of a Robot And a Monkey who must Vanquish a Man in New Orleans");
+        map.put("BRIGHT ENCOUNTERS","A Fateful Yarn of a Lumberjack And a Feminist who must Conquer a Student in A Jet Boat");
+        map.put("BRINGING HYSTERICAL","A Fateful Saga of a A Shark And a Technical Writer who must Find a Woman in A Jet Boat");
+        map.put("BROOKLYN DESERT","A Beautiful Drama of a Dentist And a Composer who must Battle a Sumo Wrestler in The First Manned Space Station");
+        map.put("BROTHERHOOD BLANKET","A Fateful Character Study of a Butler And a Technical Writer who must Sink a Astronaut in Ancient Japan");
+        map.put("BUBBLE GROSSE","A Awe-Inspiring Panorama of a Crocodile And a Moose who must Confront a Girl in A Baloon");
+        map.put("BUCKET BROTHERHOOD","A Amazing Display of a Girl And a Womanizer who must Succumb a Lumberjack in A Baloon Factory");
+        map.put("BUGSY SONG","A Awe-Inspiring Character Study of a Secret Agent And a Boat who must Find a Squirrel in The First Manned Space Station");
+        map.put("BULL SHAWSHANK","A Fanciful Drama of a Moose And a Squirrel who must Conquer a Pioneer in The Canadian Rockies");
+        map.put("BULWORTH COMMANDMENTS","A Amazing Display of a Mad Cow And a Pioneer who must Redeem a Sumo Wrestler in The Outback");
+        map.put("BUNCH MINDS","A Emotional Story of a Feminist And a Feminist who must Escape a Pastry Chef in A MySQL Convention");
+        map.put("BUTCH PANTHER","A Lacklusture Yarn of a Feminist And a Database Administrator who must Face a Hunter in New Orleans");
+        map.put("BUTTERFLY CHOCOLAT","A Fateful Story of a Girl And a Composer who must Conquer a Husband in A Shark Tank");
+        map.put("CABIN FLASH","A Stunning Epistle of a Boat And a Man who must Challenge a A Shark in A Baloon Factory");
+        map.put("CADDYSHACK JEDI","A Awe-Inspiring Epistle of a Woman And a Madman who must Fight a Robot in Soviet Georgia");
+        map.put("CALENDAR GUNFIGHT","A Thrilling Drama of a Frisbee And a Lumberjack who must Sink a Man in Nigeria");
+        map.put("CALIFORNIA BIRDS","A Thrilling Yarn of a Database Administrator And a Robot who must Battle a Database Administrator in Ancient India");
+        map.put("CAMELOT VACATION","A Touching Character Study of a Woman And a Waitress who must Battle a Pastry Chef in A MySQL Convention");
+        map.put("CAMPUS REMEMBER","A Astounding Drama of a Crocodile And a Mad Cow who must Build a Robot in A Jet Boat");
+        map.put("CANDIDATE PERDITION","A Brilliant Epistle of a Composer And a Database Administrator who must Vanquish a Mad Scientist in The First Manned Space Station");
+        map.put("CANDLES GRAPES","A Fanciful Character Study of a Monkey And a Explorer who must Build a Astronaut in An Abandoned Fun House");
+        map.put("CANYON STOCK","A Thoughtful Reflection of a Waitress And a Feminist who must Escape a Squirrel in A Manhattan Penthouse");
+        map.put("CAPER MOTIONS","A Fateful Saga of a Moose And a Car who must Pursue a Woman in A MySQL Convention");
+        map.put("CARIBBEAN LIBERTY","A Fanciful Tale of a Pioneer And a Technical Writer who must Outgun a Pioneer in A Shark Tank");
+        map.put("CAROL TEXAS","A Astounding Character Study of a Composer And a Student who must Overcome a Composer in A Monastery");
+        map.put("CARRIE BUNCH","A Amazing Epistle of a Student And a Astronaut who must Discover a Frisbee in The Canadian Rockies");
+        map.put("CASABLANCA SUPER","A Amazing Panorama of a Crocodile And a Forensic Psychologist who must Pursue a Secret Agent in The First Manned Space Station");
+        map.put("CASPER DRAGONFLY","A Intrepid Documentary of a Boat And a Crocodile who must Chase a Robot in The Sahara Desert");
+        map.put("CASSIDY WYOMING","A Intrepid Drama of a Frisbee And a Hunter who must Kill a Secret Agent in New Orleans");
+        map.put("CASUALTIES ENCINO","A Insightful Yarn of a A Shark And a Pastry Chef who must Face a Boy in A Monastery");
+        map.put("CAT CONEHEADS","A Fast-Paced Panorama of a Girl And a A Shark who must Confront a Boy in Ancient India");
+        map.put("CATCH AMISTAD","A Boring Reflection of a Lumberjack And a Feminist who must Discover a Woman in Nigeria");
+        map.put("CAUSE DATE","A Taut Tale of a Explorer And a Pastry Chef who must Conquer a Hunter in A MySQL Convention");
+        map.put("CELEBRITY HORN","A Amazing Documentary of a Secret Agent And a Astronaut who must Vanquish a Hunter in A Shark Tank");
+        map.put("CENTER DINOSAUR","A Beautiful Character Study of a Sumo Wrestler And a Dentist who must Find a Dog in California");
+        map.put("CHAINSAW UPTOWN","A Beautiful Documentary of a Boy And a Robot who must Discover a Squirrel in Australia");
+        map.put("CHAMBER ITALIAN","A Fateful Reflection of a Moose And a Husband who must Overcome a Monkey in Nigeria");
+        map.put("CHAMPION FLATLINERS","A Amazing Story of a Mad Cow And a Dog who must Kill a Husband in A Monastery");
+        map.put("CHANCE RESURRECTION","A Astounding Story of a Forensic Psychologist And a Forensic Psychologist who must Overcome a Moose in Ancient China");
+        map.put("CHAPLIN LICENSE","A Boring Drama of a Dog And a Forensic Psychologist who must Outrace a Explorer in Ancient India");
+        map.put("CHARADE DUFFEL","A Action-Packed Display of a Man And a Waitress who must Build a Dog in A MySQL Convention");
+        map.put("CHARIOTS CONSPIRACY","A Unbelieveable Epistle of a Robot And a Husband who must Chase a Robot in The First Manned Space Station");
+        map.put("CHASING FIGHT","A Astounding Saga of a Technical Writer And a Butler who must Battle a Butler in A Shark Tank");
+        map.put("CHEAPER CLYDE","A Emotional Character Study of a Pioneer And a Girl who must Discover a Dog in Ancient Japan");
+        map.put("CHICAGO NORTH","A Fateful Yarn of a Mad Cow And a Waitress who must Battle a Student in California");
+        map.put("CHICKEN HELLFIGHTERS","A Emotional Drama of a Dog And a Explorer who must Outrace a Technical Writer in Australia");
+        map.put("CHILL LUCK","A Lacklusture Epistle of a Boat And a Technical Writer who must Fight a A Shark in The Canadian Rockies");
+        map.put("CHINATOWN GLADIATOR","A Brilliant Panorama of a Technical Writer And a Lumberjack who must Escape a Butler in Ancient India");
+        map.put("CHISUM BEHAVIOR","A Epic Documentary of a Sumo Wrestler And a Butler who must Kill a Car in Ancient India");
+        map.put("CHITTY LOCK","A Boring Epistle of a Boat And a Database Administrator who must Kill a Sumo Wrestler in The First Manned Space Station");
+        map.put("CHOCOLATE DUCK","A Unbelieveable Story of a Mad Scientist And a Technical Writer who must Discover a Composer in Ancient China");
+        map.put("CHRISTMAS MOONSHINE","A Action-Packed Epistle of a Feminist And a Astronaut who must Conquer a Boat in A Manhattan Penthouse");
+        map.put("CIDER DESIRE","A Stunning Character Study of a Composer And a Mad Cow who must Succumb a Cat in Soviet Georgia");
+        map.put("CINCINATTI WHISPERER","A Brilliant Saga of a Pastry Chef And a Hunter who must Confront a Butler in Berlin");
+        map.put("CIRCUS YOUTH","A Thoughtful Drama of a Pastry Chef And a Dentist who must Pursue a Girl in A Baloon");
+        map.put("CLASH FREDDY","A Amazing Yarn of a Composer And a Squirrel who must Escape a Astronaut in Australia");
+        map.put("CLEOPATRA DEVIL","A Fanciful Documentary of a Crocodile And a Technical Writer who must Fight a A Shark in A Baloon");
+        map.put("CLERKS ANGELS","A Thrilling Display of a Sumo Wrestler And a Girl who must Confront a Man in A Baloon");
+        map.put("CLOCKWORK PARADISE","A Insightful Documentary of a Technical Writer And a Feminist who must Challenge a Cat in A Baloon");
+        map.put("CLONES PINOCCHIO","A Amazing Drama of a Car And a Robot who must Pursue a Dentist in New Orleans");
+        map.put("CLOSER BANG","A Unbelieveable Panorama of a Frisbee And a Hunter who must Vanquish a Monkey in Ancient India");
+        map.put("CLUB GRAFFITI","A Epic Tale of a Pioneer And a Hunter who must Escape a Girl in A U-Boat");
+        map.put("CLUE GRAIL","A Taut Tale of a Butler And a Mad Scientist who must Build a Crocodile in Ancient China");
+        map.put("CLUELESS BUCKET","A Taut Tale of a Car And a Pioneer who must Conquer a Sumo Wrestler in An Abandoned Fun House");
+        map.put("CLYDE THEORY","A Beautiful Yarn of a Astronaut And a Frisbee who must Overcome a Explorer in A Jet Boat");
+        map.put("COAST RAINBOW","A Astounding Documentary of a Mad Cow And a Pioneer who must Challenge a Butler in The Sahara Desert");
+        map.put("COLDBLOODED DARLING","A Brilliant Panorama of a Dentist And a Moose who must Find a Student in The Gulf of Mexico");
+        map.put("COLOR PHILADELPHIA","A Thoughtful Panorama of a Car And a Crocodile who must Sink a Monkey in The Sahara Desert");
+        map.put("COMA HEAD","A Awe-Inspiring Drama of a Boy And a Frisbee who must Escape a Pastry Chef in California");
+        map.put("COMANCHEROS ENEMY","A Boring Saga of a Lumberjack And a Monkey who must Find a Monkey in The Gulf of Mexico");
+        map.put("COMFORTS RUSH","A Unbelieveable Panorama of a Pioneer And a Husband who must Meet a Mad Cow in An Abandoned Mine Shaft");
+        map.put("COMMAND DARLING","A Awe-Inspiring Tale of a Forensic Psychologist And a Woman who must Challenge a Database Administrator in Ancient Japan");
+        map.put("COMMANDMENTS EXPRESS","A Fanciful Saga of a Student And a Mad Scientist who must Battle a Hunter in An Abandoned Mine Shaft");
+        map.put("CONEHEADS SMOOCHY","A Touching Story of a Womanizer And a Composer who must Pursue a Husband in Nigeria");
+        map.put("CONFESSIONS MAGUIRE","A Insightful Story of a Car And a Boy who must Battle a Technical Writer in A Baloon");
+        map.put("CONFIDENTIAL INTERVIEW","A Stunning Reflection of a Cat And a Woman who must Find a Astronaut in Ancient Japan");
+        map.put("CONFUSED CANDLES","A Stunning Epistle of a Cat And a Forensic Psychologist who must Confront a Pioneer in A Baloon");
+        map.put("CONGENIALITY QUEST","A Touching Documentary of a Cat And a Pastry Chef who must Find a Lumberjack in A Baloon");
+        map.put("CONNECTICUT TRAMP","A Unbelieveable Drama of a Crocodile And a Mad Cow who must Reach a Dentist in A Shark Tank");
+        map.put("CONNECTION MICROCOSMOS","A Fateful Documentary of a Crocodile And a Husband who must Face a Husband in The First Manned Space Station");
+        map.put("CONQUERER NUTS","A Taut Drama of a Mad Scientist And a Man who must Escape a Pioneer in An Abandoned Mine Shaft");
+        map.put("CONSPIRACY SPIRIT","A Awe-Inspiring Story of a Student And a Frisbee who must Conquer a Crocodile in An Abandoned Mine Shaft");
+        map.put("CONTACT ANONYMOUS","A Insightful Display of a A Shark And a Monkey who must Face a Database Administrator in Ancient India");
+        map.put("CONTROL ANTHEM","A Fateful Documentary of a Robot And a Student who must Battle a Cat in A Monastery");
+        map.put("CONVERSATION DOWNHILL","A Taut Character Study of a Husband And a Waitress who must Sink a Squirrel in A MySQL Convention");
+        map.put("CORE SUIT","A Unbelieveable Tale of a Car And a Explorer who must Confront a Boat in A Manhattan Penthouse");
+        map.put("COWBOY DOOM","A Astounding Drama of a Boy And a Lumberjack who must Fight a Butler in A Baloon");
+        map.put("CRAFT OUTFIELD","A Lacklusture Display of a Explorer And a Hunter who must Succumb a Database Administrator in A Baloon Factory");
+        map.put("CRANES RESERVOIR","A Fanciful Documentary of a Teacher And a Dog who must Outgun a Forensic Psychologist in A Baloon Factory");
+        map.put("CRAZY HOME","A Fanciful Panorama of a Boy And a Woman who must Vanquish a Database Administrator in The Outback");
+        map.put("CREATURES SHAKESPEARE","A Emotional Drama of a Womanizer And a Squirrel who must Vanquish a Crocodile in Ancient India");
+        map.put("CREEPERS KANE","A Awe-Inspiring Reflection of a Squirrel And a Boat who must Outrace a Car in A Jet Boat");
+        map.put("CROOKED FROGMEN","A Unbelieveable Drama of a Hunter And a Database Administrator who must Battle a Crocodile in An Abandoned Amusement Park");
+        map.put("CROSSING DIVORCE","A Beautiful Documentary of a Dog And a Robot who must Redeem a Womanizer in Berlin");
+        map.put("CROSSROADS CASUALTIES","A Intrepid Documentary of a Sumo Wrestler And a Astronaut who must Battle a Composer in The Outback");
+        map.put("CROW GREASE","A Awe-Inspiring Documentary of a Woman And a Husband who must Sink a Database Administrator in The First Manned Space Station");
+        map.put("CROWDS TELEMARK","A Intrepid Documentary of a Astronaut And a Forensic Psychologist who must Find a Frisbee in An Abandoned Fun House");
+        map.put("CRUELTY UNFORGIVEN","A Brilliant Tale of a Car And a Moose who must Battle a Dentist in Nigeria");
+        map.put("CRUSADE HONEY","A Fast-Paced Reflection of a Explorer And a Butler who must Battle a Madman in An Abandoned Amusement Park");
+        map.put("CRYSTAL BREAKING","A Fast-Paced Character Study of a Feminist And a Explorer who must Face a Pastry Chef in Ancient Japan");
+        map.put("CUPBOARD SINNERS","A Emotional Reflection of a Frisbee And a Boat who must Reach a Pastry Chef in An Abandoned Amusement Park");
+        map.put("CURTAIN VIDEOTAPE","A Boring Reflection of a Dentist And a Mad Cow who must Chase a Secret Agent in A Shark Tank");
+        map.put("CYCLONE FAMILY","A Lacklusture Drama of a Student And a Monkey who must Sink a Womanizer in A MySQL Convention");
+        map.put("DADDY PITTSBURGH","A Epic Story of a A Shark And a Student who must Confront a Explorer in The Gulf of Mexico");
+        map.put("DAISY MENAGERIE","A Fast-Paced Saga of a Pastry Chef And a Monkey who must Sink a Composer in Ancient India");
+        map.put("DALMATIONS SWEDEN","A Emotional Epistle of a Moose And a Hunter who must Overcome a Robot in A Manhattan Penthouse");
+        map.put("DANCES NONE","A Insightful Reflection of a A Shark And a Dog who must Kill a Butler in An Abandoned Amusement Park");
+        map.put("DANCING FEVER","A Stunning Story of a Explorer And a Forensic Psychologist who must Face a Crocodile in A Shark Tank");
+        map.put("DANGEROUS UPTOWN","A Unbelieveable Story of a Mad Scientist And a Woman who must Overcome a Dog in California");
+        map.put("DARES PLUTO","A Fateful Story of a Robot And a Dentist who must Defeat a Astronaut in New Orleans");
+        map.put("DARKNESS WAR","A Touching Documentary of a Husband And a Hunter who must Escape a Boy in The Sahara Desert");
+        map.put("DARKO DORADO","A Stunning Reflection of a Frisbee And a Husband who must Redeem a Dog in New Orleans");
+        map.put("DARLING BREAKING","A Brilliant Documentary of a Astronaut And a Squirrel who must Succumb a Student in The Gulf of Mexico");
+        map.put("DARN FORRESTER","A Fateful Story of a A Shark And a Explorer who must Succumb a Technical Writer in A Jet Boat");
+        map.put("DATE SPEED","A Touching Saga of a Composer And a Moose who must Discover a Dentist in A MySQL Convention");
+        map.put("DAUGHTER MADIGAN","A Beautiful Tale of a Hunter And a Mad Scientist who must Confront a Squirrel in The First Manned Space Station");
+        map.put("DAWN POND","A Thoughtful Documentary of a Dentist And a Forensic Psychologist who must Defeat a Waitress in Berlin");
+        map.put("DAY UNFAITHFUL","A Stunning Documentary of a Composer And a Mad Scientist who must Find a Technical Writer in A U-Boat");
+        map.put("DAZED PUNK","A Action-Packed Story of a Pioneer And a Technical Writer who must Discover a Forensic Psychologist in An Abandoned Amusement Park");
+        map.put("DECEIVER BETRAYED","A Taut Story of a Moose And a Squirrel who must Build a Husband in Ancient India");
+        map.put("DEEP CRUSADE","A Amazing Tale of a Crocodile And a Squirrel who must Discover a Composer in Australia");
+        map.put("DEER VIRGINIAN","A Thoughtful Story of a Mad Cow And a Womanizer who must Overcome a Mad Scientist in Soviet Georgia");
+        map.put("DELIVERANCE MULHOLLAND","A Astounding Saga of a Monkey And a Moose who must Conquer a Butler in A Shark Tank");
+        map.put("DESERT POSEIDON","A Brilliant Documentary of a Butler And a Frisbee who must Build a Astronaut in New Orleans");
+        map.put("DESIRE ALIEN","A Fast-Paced Tale of a Dog And a Forensic Psychologist who must Meet a Astronaut in The First Manned Space Station");
+        map.put("DESTINATION JERK","A Beautiful Yarn of a Teacher And a Cat who must Build a Car in A U-Boat");
+        map.put("DESTINY SATURDAY","A Touching Drama of a Crocodile And a Crocodile who must Conquer a Explorer in Soviet Georgia");
+        map.put("DETAILS PACKER","A Epic Saga of a Waitress And a Composer who must Face a Boat in A U-Boat");
+        map.put("DETECTIVE VISION","A Fanciful Documentary of a Pioneer And a Woman who must Redeem a Hunter in Ancient Japan");
+        map.put("DEVIL DESIRE","A Beautiful Reflection of a Monkey And a Dentist who must Face a Database Administrator in Ancient Japan");
+        map.put("DIARY PANIC","A Thoughtful Character Study of a Frisbee And a Mad Cow who must Outgun a Man in Ancient India");
+        map.put("DINOSAUR SECRETARY","A Action-Packed Drama of a Feminist And a Girl who must Reach a Robot in The Canadian Rockies");
+        map.put("DIRTY ACE","A Action-Packed Character Study of a Forensic Psychologist And a Girl who must Build a Dentist in The Outback");
+        map.put("DISCIPLE MOTHER","A Touching Reflection of a Mad Scientist And a Boat who must Face a Moose in A Shark Tank");
+        map.put("DISTURBING SCARFACE","A Lacklusture Display of a Crocodile And a Butler who must Overcome a Monkey in A U-Boat");
+        map.put("DIVIDE MONSTER","A Intrepid Saga of a Man And a Forensic Psychologist who must Reach a Squirrel in A Monastery");
+        map.put("DIVINE RESURRECTION","A Boring Character Study of a Man And a Womanizer who must Succumb a Teacher in An Abandoned Amusement Park");
+        map.put("DIVORCE SHINING","A Unbelieveable Saga of a Crocodile And a Student who must Discover a Cat in Ancient India");
+        map.put("DOCTOR GRAIL","A Insightful Drama of a Womanizer And a Waitress who must Reach a Forensic Psychologist in The Outback");
+        map.put("DOGMA FAMILY","A Brilliant Character Study of a Database Administrator And a Monkey who must Succumb a Astronaut in New Orleans");
+        map.put("DOLLS RAGE","A Thrilling Display of a Pioneer And a Frisbee who must Escape a Teacher in The Outback");
+        map.put("DONNIE ALLEY","A Awe-Inspiring Tale of a Butler And a Frisbee who must Vanquish a Teacher in Ancient Japan");
+        map.put("DOOM DANCING","A Astounding Panorama of a Car And a Mad Scientist who must Battle a Lumberjack in A MySQL Convention");
+        map.put("DOORS PRESIDENT","A Awe-Inspiring Display of a Squirrel And a Woman who must Overcome a Boy in The Gulf of Mexico");
+        map.put("DORADO NOTTING","A Action-Packed Tale of a Sumo Wrestler And a A Shark who must Meet a Frisbee in California");
+        map.put("DOUBLE WRATH","A Thoughtful Yarn of a Womanizer And a Dog who must Challenge a Madman in The Gulf of Mexico");
+        map.put("DOUBTFIRE LABYRINTH","A Intrepid Panorama of a Butler And a Composer who must Meet a Mad Cow in The Sahara Desert");
+        map.put("DOWNHILL ENOUGH","A Emotional Tale of a Pastry Chef And a Forensic Psychologist who must Succumb a Monkey in The Sahara Desert");
+        map.put("DOZEN LION","A Taut Drama of a Cat And a Girl who must Defeat a Frisbee in The Canadian Rockies");
+        map.put("DRACULA CRYSTAL","A Thrilling Reflection of a Feminist And a Cat who must Find a Frisbee in An Abandoned Fun House");
+        map.put("DRAGON SQUAD","A Taut Reflection of a Boy And a Waitress who must Outgun a Teacher in Ancient China");
+        map.put("DRAGONFLY STRANGERS","A Boring Documentary of a Pioneer And a Man who must Vanquish a Man in Nigeria");
+        map.put("DREAM PICKUP","A Epic Display of a Car And a Composer who must Overcome a Forensic Psychologist in The Gulf of Mexico");
+        map.put("DRIFTER COMMANDMENTS","A Epic Reflection of a Womanizer And a Squirrel who must Discover a Husband in A Jet Boat");
+        map.put("DRIVER ANNIE","A Lacklusture Character Study of a Butler And a Car who must Redeem a Boat in An Abandoned Fun House");
+        map.put("DRIVING POLISH","A Action-Packed Yarn of a Feminist And a Technical Writer who must Sink a Boat in An Abandoned Mine Shaft");
+        map.put("DROP WATERFRONT","A Fanciful Documentary of a Husband And a Explorer who must Reach a Madman in Ancient China");
+        map.put("DRUMLINE CYCLONE","A Insightful Panorama of a Monkey And a Sumo Wrestler who must Outrace a Mad Scientist in The Canadian Rockies");
+        map.put("DRUMS DYNAMITE","A Epic Display of a Crocodile And a Crocodile who must Confront a Dog in An Abandoned Amusement Park");
+        map.put("DUCK RACER","A Lacklusture Yarn of a Teacher And a Squirrel who must Overcome a Dog in A Shark Tank");
+        map.put("DUDE BLINDNESS","A Stunning Reflection of a Husband And a Lumberjack who must Face a Frisbee in An Abandoned Fun House");
+        map.put("DUFFEL APOCALYPSE","A Emotional Display of a Boat And a Explorer who must Challenge a Madman in A MySQL Convention");
+        map.put("DUMBO LUST","A Touching Display of a Feminist And a Dentist who must Conquer a Husband in The Gulf of Mexico");
+        map.put("DURHAM PANKY","A Brilliant Panorama of a Girl And a Boy who must Face a Mad Scientist in An Abandoned Mine Shaft");
+        map.put("DWARFS ALTER","A Emotional Yarn of a Girl And a Dog who must Challenge a Composer in Ancient Japan");
+        map.put("DYING MAKER","A Intrepid Tale of a Boat And a Monkey who must Kill a Cat in California");
+        map.put("DYNAMITE TARZAN","A Intrepid Documentary of a Forensic Psychologist And a Mad Scientist who must Face a Explorer in A U-Boat");
+        map.put("EAGLES PANKY","A Thoughtful Story of a Car And a Boy who must Find a A Shark in The Sahara Desert");
+        map.put("EARLY HOME","A Amazing Panorama of a Mad Scientist And a Husband who must Meet a Woman in The Outback");
+        map.put("EARRING INSTINCT","A Stunning Character Study of a Dentist And a Mad Cow who must Find a Teacher in Nigeria");
+        map.put("EARTH VISION","A Stunning Drama of a Butler And a Madman who must Outrace a Womanizer in Ancient India");
+        map.put("EASY GLADIATOR","A Fateful Story of a Monkey And a Girl who must Overcome a Pastry Chef in Ancient India");
+        map.put("EDGE KISSING","A Beautiful Yarn of a Composer And a Mad Cow who must Redeem a Mad Scientist in A Jet Boat");
+        map.put("EFFECT GLADIATOR","A Beautiful Display of a Pastry Chef And a Pastry Chef who must Outgun a Forensic Psychologist in A Manhattan Penthouse");
+        map.put("EGG IGBY","A Beautiful Documentary of a Boat And a Sumo Wrestler who must Succumb a Database Administrator in The First Manned Space Station");
+        map.put("EGYPT TENENBAUMS","A Intrepid Story of a Madman And a Secret Agent who must Outrace a Astronaut in An Abandoned Amusement Park");
+        map.put("ELEMENT FREDDY","A Awe-Inspiring Reflection of a Waitress And a Squirrel who must Kill a Mad Cow in A Jet Boat");
+        map.put("ELEPHANT TROJAN","A Beautiful Panorama of a Lumberjack And a Forensic Psychologist who must Overcome a Frisbee in A Baloon");
+        map.put("ELF MURDER","A Action-Packed Story of a Frisbee And a Woman who must Reach a Girl in An Abandoned Mine Shaft");
+        map.put("ELIZABETH SHANE","A Lacklusture Display of a Womanizer And a Dog who must Face a Sumo Wrestler in Ancient Japan");
+        map.put("EMPIRE MALKOVICH","A Amazing Story of a Feminist And a Cat who must Face a Car in An Abandoned Fun House");
+        map.put("ENCINO ELF","A Astounding Drama of a Feminist And a Teacher who must Confront a Husband in A Baloon");
+        map.put("ENCOUNTERS CURTAIN","A Insightful Epistle of a Pastry Chef And a Womanizer who must Build a Boat in New Orleans");
+        map.put("ENDING CROWDS","A Unbelieveable Display of a Dentist And a Madman who must Vanquish a Squirrel in Berlin");
+        map.put("ENEMY ODDS","A Fanciful Panorama of a Mad Scientist And a Woman who must Pursue a Astronaut in Ancient India");
+        map.put("ENGLISH BULWORTH","A Intrepid Epistle of a Pastry Chef And a Pastry Chef who must Pursue a Crocodile in Ancient China");
+        map.put("ENOUGH RAGING","A Astounding Character Study of a Boat And a Secret Agent who must Find a Mad Cow in The Sahara Desert");
+        map.put("ENTRAPMENT SATISFACTION","A Thoughtful Panorama of a Hunter And a Teacher who must Reach a Mad Cow in A U-Boat");
+        map.put("ESCAPE METROPOLIS","A Taut Yarn of a Astronaut And a Technical Writer who must Outgun a Boat in New Orleans");
+        map.put("EVE RESURRECTION","A Awe-Inspiring Yarn of a Pastry Chef And a Database Administrator who must Challenge a Teacher in A Baloon");
+        map.put("EVERYONE CRAFT","A Fateful Display of a Waitress And a Dentist who must Reach a Butler in Nigeria");
+        map.put("EVOLUTION ALTER","A Fanciful Character Study of a Feminist And a Madman who must Find a Explorer in A Baloon Factory");
+        map.put("EXCITEMENT EVE","A Brilliant Documentary of a Monkey And a Car who must Conquer a Crocodile in A Shark Tank");
+        map.put("EXORCIST STING","A Touching Drama of a Dog And a Sumo Wrestler who must Conquer a Mad Scientist in Berlin");
+        map.put("EXPECATIONS NATURAL","A Amazing Drama of a Butler And a Husband who must Reach a A Shark in A U-Boat");
+        map.put("EXPENDABLE STALLION","A Amazing Character Study of a Mad Cow And a Squirrel who must Discover a Hunter in A U-Boat");
+        map.put("EXPRESS LONELY","A Boring Drama of a Astronaut And a Boat who must Face a Boat in California");
+        map.put("EXTRAORDINARY CONQUERER","A Stunning Story of a Dog And a Feminist who must Face a Forensic Psychologist in Berlin");
+        map.put("EYES DRIVING","A Thrilling Story of a Cat And a Waitress who must Fight a Explorer in The Outback");
+        map.put("FACTORY DRAGON","A Action-Packed Saga of a Teacher And a Frisbee who must Escape a Lumberjack in The Sahara Desert");
+        map.put("FALCON VOLUME","A Fateful Saga of a Sumo Wrestler And a Hunter who must Redeem a A Shark in New Orleans");
+        map.put("FAMILY SWEET","A Epic Documentary of a Teacher And a Boy who must Escape a Woman in Berlin");
+        map.put("FANTASIA PARK","A Thoughtful Documentary of a Mad Scientist And a A Shark who must Outrace a Feminist in Australia");
+        map.put("FANTASY TROOPERS","A Touching Saga of a Teacher And a Monkey who must Overcome a Secret Agent in A MySQL Convention");
+        map.put("FARGO GANDHI","A Thrilling Reflection of a Pastry Chef And a Crocodile who must Reach a Teacher in The Outback");
+        map.put("FATAL HAUNTED","A Beautiful Drama of a Student And a Secret Agent who must Confront a Dentist in Ancient Japan");
+        map.put("FEATHERS METAL","A Thoughtful Yarn of a Monkey And a Teacher who must Find a Dog in Australia");
+        map.put("FELLOWSHIP AUTUMN","A Lacklusture Reflection of a Dentist And a Hunter who must Meet a Teacher in A Baloon");
+        map.put("FERRIS MOTHER","A Touching Display of a Frisbee And a Frisbee who must Kill a Girl in The Gulf of Mexico");
+        map.put("FEUD FROGMEN","A Brilliant Reflection of a Database Administrator And a Mad Cow who must Chase a Woman in The Canadian Rockies");
+        map.put("FEVER EMPIRE","A Insightful Panorama of a Cat And a Boat who must Defeat a Boat in The Gulf of Mexico");
+        map.put("FICTION CHRISTMAS","A Emotional Yarn of a A Shark And a Student who must Battle a Robot in An Abandoned Mine Shaft");
+        map.put("FIDDLER LOST","A Boring Tale of a Squirrel And a Dog who must Challenge a Madman in The Gulf of Mexico");
+        map.put("FIDELITY DEVIL","A Awe-Inspiring Drama of a Technical Writer And a Composer who must Reach a Pastry Chef in A U-Boat");
+        map.put("FIGHT JAWBREAKER","A Intrepid Panorama of a Womanizer And a Girl who must Escape a Girl in A Manhattan Penthouse");
+        map.put("FINDING ANACONDA","A Fateful Tale of a Database Administrator And a Girl who must Battle a Squirrel in New Orleans");
+        map.put("FIRE WOLVES","A Intrepid Documentary of a Frisbee And a Dog who must Outrace a Lumberjack in Nigeria");
+        map.put("FIREBALL PHILADELPHIA","A Amazing Yarn of a Dentist And a A Shark who must Vanquish a Madman in An Abandoned Mine Shaft");
+        map.put("FIREHOUSE VIETNAM","A Awe-Inspiring Character Study of a Boat And a Boy who must Kill a Pastry Chef in The Sahara Desert");
+        map.put("FISH OPUS","A Touching Display of a Feminist And a Girl who must Confront a Astronaut in Australia");
+        map.put("FLAMINGOS CONNECTICUT","A Fast-Paced Reflection of a Composer And a Composer who must Meet a Cat in The Sahara Desert");
+        map.put("FLASH WARS","A Astounding Saga of a Moose And a Pastry Chef who must Chase a Student in The Gulf of Mexico");
+        map.put("FLATLINERS KILLER","A Taut Display of a Secret Agent And a Waitress who must Sink a Robot in An Abandoned Mine Shaft");
+        map.put("FLIGHT LIES","A Stunning Character Study of a Crocodile And a Pioneer who must Pursue a Teacher in New Orleans");
+        map.put("FLINTSTONES HAPPINESS","A Fateful Story of a Husband And a Moose who must Vanquish a Boy in California");
+        map.put("FLOATS GARDEN","A Action-Packed Epistle of a Robot And a Car who must Chase a Boat in Ancient Japan");
+        map.put("FLYING HOOK","A Thrilling Display of a Mad Cow And a Dog who must Challenge a Frisbee in Nigeria");
+        map.put("FOOL MOCKINGBIRD","A Lacklusture Tale of a Crocodile And a Composer who must Defeat a Madman in A U-Boat");
+        map.put("FOREVER CANDIDATE","A Unbelieveable Panorama of a Technical Writer And a Man who must Pursue a Frisbee in A U-Boat");
+        map.put("FORREST SONS","A Thrilling Documentary of a Forensic Psychologist And a Butler who must Defeat a Explorer in A Jet Boat");
+        map.put("FORRESTER COMANCHEROS","A Fateful Tale of a Squirrel And a Forensic Psychologist who must Redeem a Man in Nigeria");
+        map.put("FORWARD TEMPLE","A Astounding Display of a Forensic Psychologist And a Mad Scientist who must Challenge a Girl in New Orleans");
+        map.put("FRANKENSTEIN STRANGER","A Insightful Character Study of a Feminist And a Pioneer who must Pursue a Pastry Chef in Nigeria");
+        map.put("FREAKY POCUS","A Fast-Paced Documentary of a Pastry Chef And a Crocodile who must Chase a Squirrel in The Gulf of Mexico");
+        map.put("FREEDOM CLEOPATRA","A Emotional Reflection of a Dentist And a Mad Cow who must Face a Squirrel in A Baloon");
+        map.put("FRIDA SLIPPER","A Fateful Story of a Lumberjack And a Car who must Escape a Boat in An Abandoned Mine Shaft");
+        map.put("FRISCO FORREST","A Beautiful Documentary of a Woman And a Pioneer who must Pursue a Mad Scientist in A Shark Tank");
+        map.put("FROGMEN BREAKING","A Unbelieveable Yarn of a Mad Scientist And a Cat who must Chase a Lumberjack in Australia");
+        map.put("FRONTIER CABIN","A Emotional Story of a Madman And a Waitress who must Battle a Teacher in An Abandoned Fun House");
+        map.put("FROST HEAD","A Amazing Reflection of a Lumberjack And a Cat who must Discover a Husband in A MySQL Convention");
+        map.put("FUGITIVE MAGUIRE","A Taut Epistle of a Feminist And a Sumo Wrestler who must Battle a Crocodile in Australia");
+        map.put("FULL FLATLINERS","A Beautiful Documentary of a Astronaut And a Moose who must Pursue a Monkey in A Shark Tank");
+        map.put("FURY MURDER","A Lacklusture Reflection of a Boat And a Forensic Psychologist who must Fight a Waitress in A Monastery");
+        map.put("GABLES METROPOLIS","A Fateful Display of a Cat And a Pioneer who must Challenge a Pastry Chef in A Baloon Factory");
+        map.put("GALAXY SWEETHEARTS","A Emotional Reflection of a Womanizer And a Pioneer who must Face a Squirrel in Berlin");
+        map.put("GANDHI KWAI","A Thoughtful Display of a Mad Scientist And a Secret Agent who must Chase a Boat in Berlin");
+        map.put("GANGS PRIDE","A Taut Character Study of a Woman And a A Shark who must Confront a Frisbee in Berlin");
+        map.put("GARDEN ISLAND","A Unbelieveable Character Study of a Womanizer And a Madman who must Reach a Man in The Outback");
+        map.put("GASLIGHT CRUSADE","A Amazing Epistle of a Boy And a Astronaut who must Redeem a Man in The Gulf of Mexico");
+        map.put("GATHERING CALENDAR","A Intrepid Tale of a Pioneer And a Moose who must Conquer a Frisbee in A MySQL Convention");
+        map.put("GENTLEMEN STAGE","A Awe-Inspiring Reflection of a Monkey And a Student who must Overcome a Dentist in The First Manned Space Station");
+        map.put("GHOST GROUNDHOG","A Brilliant Panorama of a Madman And a Composer who must Succumb a Car in Ancient India");
+        map.put("GHOSTBUSTERS ELF","A Thoughtful Epistle of a Dog And a Feminist who must Chase a Composer in Berlin");
+        map.put("GIANT TROOPERS","A Fateful Display of a Feminist And a Monkey who must Vanquish a Monkey in The Canadian Rockies");
+        map.put("GILBERT PELICAN","A Fateful Tale of a Man And a Feminist who must Conquer a Crocodile in A Manhattan Penthouse");
+        map.put("GILMORE BOILED","A Unbelieveable Documentary of a Boat And a Husband who must Succumb a Student in A U-Boat");
+        map.put("GLADIATOR WESTWARD","A Astounding Reflection of a Squirrel And a Sumo Wrestler who must Sink a Dentist in Ancient Japan");
+        map.put("GLASS DYING","A Astounding Drama of a Frisbee And a Astronaut who must Fight a Dog in Ancient Japan");
+        map.put("GLEAMING JAWBREAKER","A Amazing Display of a Composer And a Forensic Psychologist who must Discover a Car in The Canadian Rockies");
+        map.put("GLORY TRACY","A Amazing Saga of a Woman And a Womanizer who must Discover a Cat in The First Manned Space Station");
+        map.put("GO PURPLE","A Fast-Paced Display of a Car And a Database Administrator who must Battle a Woman in A Baloon");
+        map.put("GODFATHER DIARY","A Stunning Saga of a Lumberjack And a Squirrel who must Chase a Car in The Outback");
+        map.put("GOLD RIVER","A Taut Documentary of a Database Administrator And a Waitress who must Reach a Mad Scientist in A Baloon Factory");
+        map.put("GOLDFINGER SENSIBILITY","A Insightful Drama of a Mad Scientist And a Hunter who must Defeat a Pastry Chef in New Orleans");
+        map.put("GOLDMINE TYCOON","A Brilliant Epistle of a Composer And a Frisbee who must Conquer a Husband in The Outback");
+        map.put("GONE TROUBLE","A Insightful Character Study of a Mad Cow And a Forensic Psychologist who must Conquer a A Shark in A Manhattan Penthouse");
+        map.put("GOODFELLAS SALUTE","A Unbelieveable Tale of a Dog And a Explorer who must Sink a Mad Cow in A Baloon Factory");
+        map.put("GORGEOUS BINGO","A Action-Packed Display of a Sumo Wrestler And a Car who must Overcome a Waitress in A Baloon Factory");
+        map.put("GOSFORD DONNIE","A Epic Panorama of a Mad Scientist And a Monkey who must Redeem a Secret Agent in Berlin");
+        map.put("GRACELAND DYNAMITE","A Taut Display of a Cat And a Girl who must Overcome a Database Administrator in New Orleans");
+        map.put("GRADUATE LORD","A Lacklusture Epistle of a Girl And a A Shark who must Meet a Mad Scientist in Ancient China");
+        map.put("GRAFFITI LOVE","A Unbelieveable Epistle of a Sumo Wrestler And a Hunter who must Build a Composer in Berlin");
+        map.put("GRAIL FRANKENSTEIN","A Unbelieveable Saga of a Teacher And a Monkey who must Fight a Girl in An Abandoned Mine Shaft");
+        map.put("GRAPES FURY","A Boring Yarn of a Mad Cow And a Sumo Wrestler who must Meet a Robot in Australia");
+        map.put("GREASE YOUTH","A Emotional Panorama of a Secret Agent And a Waitress who must Escape a Composer in Soviet Georgia");
+        map.put("GREATEST NORTH","A Astounding Character Study of a Secret Agent And a Robot who must Build a A Shark in Berlin");
+        map.put("GREEDY ROOTS","A Amazing Reflection of a A Shark And a Butler who must Chase a Hunter in The Canadian Rockies");
+        map.put("GREEK EVERYONE","A Stunning Display of a Butler And a Teacher who must Confront a A Shark in The First Manned Space Station");
+        map.put("GRINCH MASSAGE","A Intrepid Display of a Madman And a Feminist who must Pursue a Pioneer in The First Manned Space Station");
+        map.put("GRIT CLOCKWORK","A Thoughtful Display of a Dentist And a Squirrel who must Confront a Lumberjack in A Shark Tank");
+        map.put("GROOVE FICTION","A Unbelieveable Reflection of a Moose And a A Shark who must Defeat a Lumberjack in An Abandoned Mine Shaft");
+        map.put("GROSSE WONDERFUL","A Epic Drama of a Cat And a Explorer who must Redeem a Moose in Australia");
+        map.put("GROUNDHOG UNCUT","A Brilliant Panorama of a Astronaut And a Technical Writer who must Discover a Butler in A Manhattan Penthouse");
+        map.put("GUMP DATE","A Intrepid Yarn of a Explorer And a Student who must Kill a Husband in An Abandoned Mine Shaft");
+        map.put("GUN BONNIE","A Boring Display of a Sumo Wrestler And a Husband who must Build a Waitress in The Gulf of Mexico");
+        map.put("GUNFIGHT MOON","A Epic Reflection of a Pastry Chef And a Explorer who must Reach a Dentist in The Sahara Desert");
+        map.put("GUNFIGHTER MUSSOLINI","A Touching Saga of a Robot And a Boy who must Kill a Man in Ancient Japan");
+        map.put("GUYS FALCON","A Boring Story of a Woman And a Feminist who must Redeem a Squirrel in A U-Boat");
+        map.put("HALL CASSIDY","A Beautiful Panorama of a Pastry Chef And a A Shark who must Battle a Pioneer in Soviet Georgia");
+        map.put("HALLOWEEN NUTS","A Amazing Panorama of a Forensic Psychologist And a Technical Writer who must Fight a Dentist in A U-Boat");
+        map.put("HAMLET WISDOM","A Touching Reflection of a Man And a Man who must Sink a Robot in The Outback");
+        map.put("HANDICAP BOONDOCK","A Beautiful Display of a Pioneer And a Squirrel who must Vanquish a Sumo Wrestler in Soviet Georgia");
+        map.put("HANGING DEEP","A Action-Packed Yarn of a Boat And a Crocodile who must Build a Monkey in Berlin");
+        map.put("HANKY OCTOBER","A Boring Epistle of a Database Administrator And a Explorer who must Pursue a Madman in Soviet Georgia");
+        map.put("HANOVER GALAXY","A Stunning Reflection of a Girl And a Secret Agent who must Succumb a Boy in A MySQL Convention");
+        map.put("HAPPINESS UNITED","A Action-Packed Panorama of a Husband And a Feminist who must Meet a Forensic Psychologist in Ancient Japan");
+        map.put("HARDLY ROBBERS","A Emotional Character Study of a Hunter And a Car who must Kill a Woman in Berlin");
+        map.put("HAROLD FRENCH","A Stunning Saga of a Sumo Wrestler And a Student who must Outrace a Moose in The Sahara Desert");
+        map.put("HARPER DYING","A Awe-Inspiring Reflection of a Woman And a Cat who must Confront a Feminist in The Sahara Desert");
+        map.put("HARRY IDAHO","A Taut Yarn of a Technical Writer And a Feminist who must Outrace a Dog in California");
+        map.put("HATE HANDICAP","A Intrepid Reflection of a Mad Scientist And a Pioneer who must Overcome a Hunter in The First Manned Space Station");
+        map.put("HAUNTED ANTITRUST","A Amazing Saga of a Man And a Dentist who must Reach a Technical Writer in Ancient India");
+        map.put("HAUNTING PIANIST","A Fast-Paced Story of a Database Administrator And a Composer who must Defeat a Squirrel in An Abandoned Amusement Park");
+        map.put("HAWK CHILL","A Action-Packed Drama of a Mad Scientist And a Composer who must Outgun a Car in Australia");
+        map.put("HEAD STRANGER","A Thoughtful Saga of a Hunter And a Crocodile who must Confront a Dog in The Gulf of Mexico");
+        map.put("HEARTBREAKERS BRIGHT","A Awe-Inspiring Documentary of a A Shark And a Dentist who must Outrace a Pastry Chef in The Canadian Rockies");
+        map.put("HEAVEN FREEDOM","A Intrepid Story of a Butler And a Car who must Vanquish a Man in New Orleans");
+        map.put("HEAVENLY GUN","A Beautiful Yarn of a Forensic Psychologist And a Frisbee who must Battle a Moose in A Jet Boat");
+        map.put("HEAVYWEIGHTS BEAST","A Unbelieveable Story of a Composer And a Dog who must Overcome a Womanizer in An Abandoned Amusement Park");
+        map.put("HEDWIG ALTER","A Action-Packed Yarn of a Womanizer And a Lumberjack who must Chase a Sumo Wrestler in A Monastery");
+        map.put("HELLFIGHTERS SIERRA","A Taut Reflection of a A Shark And a Dentist who must Battle a Boat in Soviet Georgia");
+        map.put("HIGH ENCINO","A Fateful Saga of a Waitress And a Hunter who must Outrace a Sumo Wrestler in Australia");
+        map.put("HIGHBALL POTTER","A Action-Packed Saga of a Husband And a Dog who must Redeem a Database Administrator in The Sahara Desert");
+        map.put("HILLS NEIGHBORS","A Epic Display of a Hunter And a Feminist who must Sink a Car in A U-Boat");
+        map.put("HOBBIT ALIEN","A Emotional Drama of a Husband And a Girl who must Outgun a Composer in The First Manned Space Station");
+        map.put("HOCUS FRIDA","A Awe-Inspiring Tale of a Girl And a Madman who must Outgun a Student in A Shark Tank");
+        map.put("HOLES BRANNIGAN","A Fast-Paced Reflection of a Technical Writer And a Student who must Fight a Boy in The Canadian Rockies");
+        map.put("HOLIDAY GAMES","A Insightful Reflection of a Waitress And a Madman who must Pursue a Boy in Ancient Japan");
+        map.put("HOLLOW JEOPARDY","A Beautiful Character Study of a Robot And a Astronaut who must Overcome a Boat in A Monastery");
+        map.put("HOLLYWOOD ANONYMOUS","A Fast-Paced Epistle of a Boy And a Explorer who must Escape a Dog in A U-Boat");
+        map.put("HOLOCAUST HIGHBALL","A Awe-Inspiring Yarn of a Composer And a Man who must Find a Robot in Soviet Georgia");
+        map.put("HOLY TADPOLE","A Action-Packed Display of a Feminist And a Pioneer who must Pursue a Dog in A Baloon Factory");
+        map.put("HOME PITY","A Touching Panorama of a Man And a Secret Agent who must Challenge a Teacher in A MySQL Convention");
+        map.put("HOMEWARD CIDER","A Taut Reflection of a Astronaut And a Squirrel who must Fight a Squirrel in A Manhattan Penthouse");
+        map.put("HOMICIDE PEACH","A Astounding Documentary of a Hunter And a Boy who must Confront a Boy in A MySQL Convention");
+        map.put("HONEY TIES","A Taut Story of a Waitress And a Crocodile who must Outrace a Lumberjack in A Shark Tank");
+        map.put("HOOK CHARIOTS","A Insightful Story of a Boy And a Dog who must Redeem a Boy in Australia");
+        map.put("HOOSIERS BIRDCAGE","A Astounding Display of a Explorer And a Boat who must Vanquish a Car in The First Manned Space Station");
+        map.put("HOPE TOOTSIE","A Amazing Documentary of a Student And a Sumo Wrestler who must Outgun a A Shark in A Shark Tank");
+        map.put("HORN WORKING","A Stunning Display of a Mad Scientist And a Technical Writer who must Succumb a Monkey in A Shark Tank");
+        map.put("HORROR REIGN","A Touching Documentary of a A Shark And a Car who must Build a Husband in Nigeria");
+        map.put("HOTEL HAPPINESS","A Thrilling Yarn of a Pastry Chef And a A Shark who must Challenge a Mad Scientist in The Outback");
+        map.put("HOURS RAGE","A Fateful Story of a Explorer And a Feminist who must Meet a Technical Writer in Soviet Georgia");
+        map.put("HOUSE DYNAMITE","A Taut Story of a Pioneer And a Squirrel who must Battle a Student in Soviet Georgia");
+        map.put("HUMAN GRAFFITI","A Beautiful Reflection of a Womanizer And a Sumo Wrestler who must Chase a Database Administrator in The Gulf of Mexico");
+        map.put("HUNCHBACK IMPOSSIBLE","A Touching Yarn of a Frisbee And a Dentist who must Fight a Composer in Ancient Japan");
+        map.put("HUNGER ROOF","A Unbelieveable Yarn of a Student And a Database Administrator who must Outgun a Husband in An Abandoned Mine Shaft");
+        map.put("HUNTER ALTER","A Emotional Drama of a Mad Cow And a Boat who must Redeem a Secret Agent in A Shark Tank");
+        map.put("HUNTING MUSKETEERS","A Thrilling Reflection of a Pioneer And a Dentist who must Outrace a Womanizer in An Abandoned Mine Shaft");
+        map.put("HURRICANE AFFAIR","A Lacklusture Epistle of a Database Administrator And a Woman who must Meet a Hunter in An Abandoned Mine Shaft");
+        map.put("HUSTLER PARTY","A Emotional Reflection of a Sumo Wrestler And a Monkey who must Conquer a Robot in The Sahara Desert");
+        map.put("HYDE DOCTOR","A Fanciful Documentary of a Boy And a Woman who must Redeem a Womanizer in A Jet Boat");
+        map.put("HYSTERICAL GRAIL","A Amazing Saga of a Madman And a Dentist who must Build a Car in A Manhattan Penthouse");
+        map.put("ICE CROSSING","A Fast-Paced Tale of a Butler And a Moose who must Overcome a Pioneer in A Manhattan Penthouse");
+        map.put("IDAHO LOVE","A Fast-Paced Drama of a Student And a Crocodile who must Meet a Database Administrator in The Outback");
+        map.put("IDENTITY LOVER","A Boring Tale of a Composer And a Mad Cow who must Defeat a Car in The Outback");
+        map.put("IDOLS SNATCHERS","A Insightful Drama of a Car And a Composer who must Fight a Man in A Monastery");
+        map.put("IGBY MAKER","A Epic Documentary of a Hunter And a Dog who must Outgun a Dog in A Baloon Factory");
+        map.put("ILLUSION AMELIE","A Emotional Epistle of a Boat And a Mad Scientist who must Outrace a Robot in An Abandoned Mine Shaft");
+        map.put("IMAGE PRINCESS","A Lacklusture Panorama of a Secret Agent And a Crocodile who must Discover a Madman in The Canadian Rockies");
+        map.put("IMPACT ALADDIN","A Epic Character Study of a Frisbee And a Moose who must Outgun a Technical Writer in A Shark Tank");
+        map.put("IMPOSSIBLE PREJUDICE","A Awe-Inspiring Yarn of a Monkey And a Hunter who must Chase a Teacher in Ancient China");
+        map.put("INCH JET","A Fateful Saga of a Womanizer And a Student who must Defeat a Butler in A Monastery");
+        map.put("INDEPENDENCE HOTEL","A Thrilling Tale of a Technical Writer And a Boy who must Face a Pioneer in A Monastery");
+        map.put("INDIAN LOVE","A Insightful Saga of a Mad Scientist And a Mad Scientist who must Kill a Astronaut in An Abandoned Fun House");
+        map.put("INFORMER DOUBLE","A Action-Packed Display of a Woman And a Dentist who must Redeem a Forensic Psychologist in The Canadian Rockies");
+        map.put("INNOCENT USUAL","A Beautiful Drama of a Pioneer And a Crocodile who must Challenge a Student in The Outback");
+        map.put("INSECTS STONE","A Epic Display of a Butler And a Dog who must Vanquish a Crocodile in A Manhattan Penthouse");
+        map.put("INSIDER ARIZONA","A Astounding Saga of a Mad Scientist And a Hunter who must Pursue a Robot in A Baloon Factory");
+        map.put("INSTINCT AIRPORT","A Touching Documentary of a Mad Cow And a Explorer who must Confront a Butler in A Manhattan Penthouse");
+        map.put("INTENTIONS EMPIRE","A Astounding Epistle of a Cat And a Cat who must Conquer a Mad Cow in A U-Boat");
+        map.put("INTERVIEW LIAISONS","A Action-Packed Reflection of a Student And a Butler who must Discover a Database Administrator in A Manhattan Penthouse");
+        map.put("INTOLERABLE INTENTIONS","A Awe-Inspiring Story of a Monkey And a Pastry Chef who must Succumb a Womanizer in A MySQL Convention");
+        map.put("INTRIGUE WORST","A Fanciful Character Study of a Explorer And a Mad Scientist who must Vanquish a Squirrel in A Jet Boat");
+        map.put("INVASION CYCLONE","A Lacklusture Character Study of a Mad Scientist And a Womanizer who must Outrace a Explorer in A Monastery");
+        map.put("IRON MOON","A Fast-Paced Documentary of a Mad Cow And a Boy who must Pursue a Dentist in A Baloon");
+        map.put("ISHTAR ROCKETEER","A Astounding Saga of a Dog And a Squirrel who must Conquer a Dog in An Abandoned Fun House");
+        map.put("ISLAND EXORCIST","A Fanciful Panorama of a Technical Writer And a Boy who must Find a Dentist in An Abandoned Fun House");
+        map.put("ITALIAN AFRICAN","A Astounding Character Study of a Monkey And a Moose who must Outgun a Cat in A U-Boat");
+        map.put("JACKET FRISCO","A Insightful Reflection of a Womanizer And a Husband who must Conquer a Pastry Chef in A Baloon");
+        map.put("JADE BUNCH","A Insightful Panorama of a Squirrel And a Mad Cow who must Confront a Student in The First Manned Space Station");
+        map.put("JAPANESE RUN","A Awe-Inspiring Epistle of a Feminist And a Girl who must Sink a Girl in The Outback");
+        map.put("JASON TRAP","A Thoughtful Tale of a Woman And a A Shark who must Conquer a Dog in A Monastery");
+        map.put("JAWBREAKER BROOKLYN","A Stunning Reflection of a Boat And a Pastry Chef who must Succumb a A Shark in A Jet Boat");
+        map.put("JAWS HARRY","A Thrilling Display of a Database Administrator And a Monkey who must Overcome a Dog in An Abandoned Fun House");
+        map.put("JEDI BENEATH","A Astounding Reflection of a Explorer And a Dentist who must Pursue a Student in Nigeria");
+        map.put("JEEPERS WEDDING","A Astounding Display of a Composer And a Dog who must Kill a Pastry Chef in Soviet Georgia");
+        map.put("JEOPARDY ENCINO","A Boring Panorama of a Man And a Mad Cow who must Face a Explorer in Ancient India");
+        map.put("JERICHO MULAN","A Amazing Yarn of a Hunter And a Butler who must Defeat a Boy in A Jet Boat");
+        map.put("JERK PAYCHECK","A Touching Character Study of a Pastry Chef And a Database Administrator who must Reach a A Shark in Ancient Japan");
+        map.put("JERSEY SASSY","A Lacklusture Documentary of a Madman And a Mad Cow who must Find a Feminist in Ancient Japan");
+        map.put("JET NEIGHBORS","A Amazing Display of a Lumberjack And a Teacher who must Outrace a Woman in A U-Boat");
+        map.put("JINGLE SAGEBRUSH","A Epic Character Study of a Feminist And a Student who must Meet a Woman in A Baloon");
+        map.put("JOON NORTHWEST","A Thrilling Panorama of a Technical Writer And a Car who must Discover a Forensic Psychologist in A Shark Tank");
+        map.put("JUGGLER HARDLY","A Epic Story of a Mad Cow And a Astronaut who must Challenge a Car in California");
+        map.put("JUMANJI BLADE","A Intrepid Yarn of a Husband And a Womanizer who must Pursue a Mad Scientist in New Orleans");
+        map.put("JUMPING WRATH","A Touching Epistle of a Monkey And a Feminist who must Discover a Boat in Berlin");
+        map.put("JUNGLE CLOSER","A Boring Character Study of a Boy And a Woman who must Battle a Astronaut in Australia");
+        map.put("KANE EXORCIST","A Epic Documentary of a Composer And a Robot who must Overcome a Car in Berlin");
+        map.put("KARATE MOON","A Astounding Yarn of a Womanizer And a Dog who must Reach a Waitress in A MySQL Convention");
+        map.put("KENTUCKIAN GIANT","A Stunning Yarn of a Woman And a Frisbee who must Escape a Waitress in A U-Boat");
+        map.put("KICK SAVANNAH","A Emotional Drama of a Monkey And a Robot who must Defeat a Monkey in New Orleans");
+        map.put("KILL BROTHERHOOD","A Touching Display of a Hunter And a Secret Agent who must Redeem a Husband in The Outback");
+        map.put("KILLER INNOCENT","A Fanciful Character Study of a Student And a Explorer who must Succumb a Composer in An Abandoned Mine Shaft");
+        map.put("KING EVOLUTION","A Action-Packed Tale of a Boy And a Lumberjack who must Chase a Madman in A Baloon");
+        map.put("KISS GLORY","A Lacklusture Reflection of a Girl And a Husband who must Find a Robot in The Canadian Rockies");
+        map.put("KISSING DOLLS","A Insightful Reflection of a Pioneer And a Teacher who must Build a Composer in The First Manned Space Station");
+        map.put("KNOCK WARLOCK","A Unbelieveable Story of a Teacher And a Boat who must Confront a Moose in A Baloon");
+        map.put("KRAMER CHOCOLATE","A Amazing Yarn of a Robot And a Pastry Chef who must Redeem a Mad Scientist in The Outback");
+        map.put("KWAI HOMEWARD","A Amazing Drama of a Car And a Squirrel who must Pursue a Car in Soviet Georgia");
+        map.put("LABYRINTH LEAGUE","A Awe-Inspiring Saga of a Composer And a Frisbee who must Succumb a Pioneer in The Sahara Desert");
+        map.put("LADY STAGE","A Beautiful Character Study of a Woman And a Man who must Pursue a Explorer in A U-Boat");
+        map.put("LADYBUGS ARMAGEDDON","A Fateful Reflection of a Dog And a Mad Scientist who must Meet a Mad Scientist in New Orleans");
+        map.put("LAMBS CINCINATTI","A Insightful Story of a Man And a Feminist who must Fight a Composer in Australia");
+        map.put("LANGUAGE COWBOY","A Epic Yarn of a Cat And a Madman who must Vanquish a Dentist in An Abandoned Amusement Park");
+        map.put("LAWLESS VISION","A Insightful Yarn of a Boy And a Sumo Wrestler who must Outgun a Car in The Outback");
+        map.put("LAWRENCE LOVE","A Fanciful Yarn of a Database Administrator And a Mad Cow who must Pursue a Womanizer in Berlin");
+        map.put("LEAGUE HELLFIGHTERS","A Thoughtful Saga of a A Shark And a Monkey who must Outgun a Student in Ancient China");
+        map.put("LEATHERNECKS DWARFS","A Fateful Reflection of a Dog And a Mad Cow who must Outrace a Teacher in An Abandoned Mine Shaft");
+        map.put("LEBOWSKI SOLDIERS","A Beautiful Epistle of a Secret Agent And a Pioneer who must Chase a Astronaut in Ancient China");
+        map.put("LEGALLY SECRETARY","A Astounding Tale of a A Shark And a Moose who must Meet a Womanizer in The Sahara Desert");
+        map.put("LEGEND JEDI","A Awe-Inspiring Epistle of a Pioneer And a Student who must Outgun a Crocodile in The Outback");
+        map.put("LESSON CLEOPATRA","A Emotional Display of a Man And a Explorer who must Build a Boy in A Manhattan Penthouse");
+        map.put("LIAISONS SWEET","A Boring Drama of a A Shark And a Explorer who must Redeem a Waitress in The Canadian Rockies");
+        map.put("LIBERTY MAGNIFICENT","A Boring Drama of a Student And a Cat who must Sink a Technical Writer in A Baloon");
+        map.put("LICENSE WEEKEND","A Insightful Story of a Man And a Husband who must Overcome a Madman in A Monastery");
+        map.put("LIES TREATMENT","A Fast-Paced Character Study of a Dentist And a Moose who must Defeat a Composer in The First Manned Space Station");
+        map.put("LIGHTS DEER","A Unbelieveable Epistle of a Dog And a Woman who must Confront a Moose in The Gulf of Mexico");
+        map.put("LION UNCUT","A Intrepid Display of a Pastry Chef And a Cat who must Kill a A Shark in Ancient China");
+        map.put("LOATHING LEGALLY","A Boring Epistle of a Pioneer And a Mad Scientist who must Escape a Frisbee in The Gulf of Mexico");
+        map.put("LOCK REAR","A Thoughtful Character Study of a Squirrel And a Technical Writer who must Outrace a Student in Ancient Japan");
+        map.put("LOLA AGENT","A Astounding Tale of a Mad Scientist And a Husband who must Redeem a Database Administrator in Ancient Japan");
+        map.put("LOLITA WORLD","A Thrilling Drama of a Girl And a Robot who must Redeem a Waitress in An Abandoned Mine Shaft");
+        map.put("LONELY ELEPHANT","A Intrepid Story of a Student And a Dog who must Challenge a Explorer in Soviet Georgia");
+        map.put("LORD ARIZONA","A Action-Packed Display of a Frisbee And a Pastry Chef who must Pursue a Crocodile in A Jet Boat");
+        map.put("LOSE INCH","A Stunning Reflection of a Student And a Technical Writer who must Battle a Butler in The First Manned Space Station");
+        map.put("LOSER HUSTLER","A Stunning Drama of a Robot And a Feminist who must Outgun a Butler in Nigeria");
+        map.put("LOST BIRD","A Emotional Character Study of a Robot And a A Shark who must Defeat a Technical Writer in A Manhattan Penthouse");
+        map.put("LOUISIANA HARRY","A Lacklusture Drama of a Girl And a Technical Writer who must Redeem a Monkey in A Shark Tank");
+        map.put("LOVE SUICIDES","A Brilliant Panorama of a Hunter And a Explorer who must Pursue a Dentist in An Abandoned Fun House");
+        map.put("LOVELY JINGLE","A Fanciful Yarn of a Crocodile And a Forensic Psychologist who must Discover a Crocodile in The Outback");
+        map.put("LOVER TRUMAN","A Emotional Yarn of a Robot And a Boy who must Outgun a Technical Writer in A U-Boat");
+        map.put("LOVERBOY ATTACKS","A Boring Story of a Car And a Butler who must Build a Girl in Soviet Georgia");
+        map.put("LUCK OPUS","A Boring Display of a Moose And a Squirrel who must Outrace a Teacher in A Shark Tank");
+        map.put("LUCKY FLYING","A Lacklusture Character Study of a A Shark And a Man who must Find a Forensic Psychologist in A U-Boat");
+        map.put("LUKE MUMMY","A Taut Character Study of a Boy And a Robot who must Redeem a Mad Scientist in Ancient India");
+        map.put("MADIGAN DORADO","A Astounding Character Study of a A Shark And a A Shark who must Discover a Crocodile in The Outback");
+        map.put("MADISON TRAP","A Awe-Inspiring Reflection of a Monkey And a Dentist who must Overcome a Pioneer in A U-Boat");
+        map.put("MADNESS ATTACKS","A Fanciful Tale of a Squirrel And a Boat who must Defeat a Crocodile in The Gulf of Mexico");
+        map.put("MADRE GABLES","A Intrepid Panorama of a Sumo Wrestler And a Forensic Psychologist who must Discover a Moose in The First Manned Space Station");
+        map.put("MAGIC MALLRATS","A Touching Documentary of a Pastry Chef And a Pastry Chef who must Build a Mad Scientist in California");
+        map.put("MAGNIFICENT CHITTY","A Insightful Story of a Teacher And a Hunter who must Face a Mad Cow in California");
+        map.put("MAGNOLIA FORRESTER","A Thoughtful Documentary of a Composer And a Explorer who must Conquer a Dentist in New Orleans");
+        map.put("MAGUIRE APACHE","A Fast-Paced Reflection of a Waitress And a Hunter who must Defeat a Forensic Psychologist in A Baloon");
+        map.put("MAIDEN HOME","A Lacklusture Saga of a Moose And a Teacher who must Kill a Forensic Psychologist in A MySQL Convention");
+        map.put("MAJESTIC FLOATS","A Thrilling Character Study of a Moose And a Student who must Escape a Butler in The First Manned Space Station");
+        map.put("MAKER GABLES","A Stunning Display of a Moose And a Database Administrator who must Pursue a Composer in A Jet Boat");
+        map.put("MALKOVICH PET","A Intrepid Reflection of a Waitress And a A Shark who must Kill a Squirrel in The Outback");
+        map.put("MALLRATS UNITED","A Thrilling Yarn of a Waitress And a Dentist who must Find a Hunter in A Monastery");
+        map.put("MALTESE HOPE","A Fast-Paced Documentary of a Crocodile And a Sumo Wrestler who must Conquer a Explorer in California");
+        map.put("MANCHURIAN CURTAIN","A Stunning Tale of a Mad Cow And a Boy who must Battle a Boy in Berlin");
+        map.put("MANNEQUIN WORST","A Astounding Saga of a Mad Cow And a Pastry Chef who must Discover a Husband in Ancient India");
+        map.put("MARRIED GO","A Fanciful Story of a Womanizer And a Dog who must Face a Forensic Psychologist in The Sahara Desert");
+        map.put("MARS ROMAN","A Boring Drama of a Car And a Dog who must Succumb a Madman in Soviet Georgia");
+        map.put("MASK PEACH","A Boring Character Study of a Student And a Robot who must Meet a Woman in California");
+        map.put("MASKED BUBBLE","A Fanciful Documentary of a Pioneer And a Boat who must Pursue a Pioneer in An Abandoned Mine Shaft");
+        map.put("MASSACRE USUAL","A Fateful Reflection of a Waitress And a Crocodile who must Challenge a Forensic Psychologist in California");
+        map.put("MASSAGE IMAGE","A Fateful Drama of a Frisbee And a Crocodile who must Vanquish a Dog in The First Manned Space Station");
+        map.put("MATRIX SNOWMAN","A Action-Packed Saga of a Womanizer And a Woman who must Overcome a Student in California");
+        map.put("MAUDE MOD","A Beautiful Documentary of a Forensic Psychologist And a Cat who must Reach a Astronaut in Nigeria");
+        map.put("MEET CHOCOLATE","A Boring Documentary of a Dentist And a Butler who must Confront a Monkey in A MySQL Convention");
+        map.put("MEMENTO ZOOLANDER","A Touching Epistle of a Squirrel And a Explorer who must Redeem a Pastry Chef in The Sahara Desert");
+        map.put("MENAGERIE RUSHMORE","A Unbelieveable Panorama of a Composer And a Butler who must Overcome a Database Administrator in The First Manned Space Station");
+        map.put("MERMAID INSECTS","A Lacklusture Drama of a Waitress And a Husband who must Fight a Husband in California");
+        map.put("METAL ARMAGEDDON","A Thrilling Display of a Lumberjack And a Crocodile who must Meet a Monkey in A Baloon Factory");
+        map.put("METROPOLIS COMA","A Emotional Saga of a Database Administrator And a Pastry Chef who must Confront a Teacher in A Baloon Factory");
+        map.put("MICROCOSMOS PARADISE","A Touching Character Study of a Boat And a Student who must Sink a A Shark in Nigeria");
+        map.put("MIDNIGHT WESTWARD","A Taut Reflection of a Husband And a A Shark who must Redeem a Pastry Chef in A Monastery");
+        map.put("MIDSUMMER GROUNDHOG","A Fateful Panorama of a Moose And a Dog who must Chase a Crocodile in Ancient Japan");
+        map.put("MIGHTY LUCK","A Astounding Epistle of a Mad Scientist And a Pioneer who must Escape a Database Administrator in A MySQL Convention");
+        map.put("MILE MULAN","A Lacklusture Epistle of a Cat And a Husband who must Confront a Boy in A MySQL Convention");
+        map.put("MILLION ACE","A Brilliant Documentary of a Womanizer And a Squirrel who must Find a Technical Writer in The Sahara Desert");
+        map.put("MINDS TRUMAN","A Taut Yarn of a Mad Scientist And a Crocodile who must Outgun a Database Administrator in A Monastery");
+        map.put("MINE TITANS","A Amazing Yarn of a Robot And a Womanizer who must Discover a Forensic Psychologist in Berlin");
+        map.put("MINORITY KISS","A Insightful Display of a Lumberjack And a Sumo Wrestler who must Meet a Man in The Outback");
+        map.put("MIRACLE VIRTUAL","A Touching Epistle of a Butler And a Boy who must Find a Mad Scientist in The Sahara Desert");
+        map.put("MISSION ZOOLANDER","A Intrepid Story of a Sumo Wrestler And a Teacher who must Meet a A Shark in An Abandoned Fun House");
+        map.put("MIXED DOORS","A Taut Drama of a Womanizer And a Lumberjack who must Succumb a Pioneer in Ancient India");
+        map.put("MOB DUFFEL","A Unbelieveable Documentary of a Frisbee And a Boat who must Meet a Boy in The Canadian Rockies");
+        map.put("MOCKINGBIRD HOLLYWOOD","A Thoughtful Panorama of a Man And a Car who must Sink a Composer in Berlin");
+        map.put("MOD SECRETARY","A Boring Documentary of a Mad Cow And a Cat who must Build a Lumberjack in New Orleans");
+        map.put("MODEL FISH","A Beautiful Panorama of a Boat And a Crocodile who must Outrace a Dog in Australia");
+        map.put("MODERN DORADO","A Awe-Inspiring Story of a Butler And a Sumo Wrestler who must Redeem a Boy in New Orleans");
+        map.put("MONSOON CAUSE","A Astounding Tale of a Crocodile And a Car who must Outrace a Squirrel in A U-Boat");
+        map.put("MONSTER SPARTACUS","A Fast-Paced Story of a Waitress And a Cat who must Fight a Girl in Australia");
+        map.put("MONTEREY LABYRINTH","A Awe-Inspiring Drama of a Monkey And a Composer who must Escape a Feminist in A U-Boat");
+        map.put("MONTEZUMA COMMAND","A Thrilling Reflection of a Waitress And a Butler who must Battle a Butler in A Jet Boat");
+        map.put("MOON BUNCH","A Beautiful Tale of a Astronaut And a Mad Cow who must Challenge a Cat in A Baloon Factory");
+        map.put("MOONSHINE CABIN","A Thoughtful Display of a Astronaut And a Feminist who must Chase a Frisbee in A Jet Boat");
+        map.put("MOONWALKER FOOL","A Epic Drama of a Feminist And a Pioneer who must Sink a Composer in New Orleans");
+        map.put("MOSQUITO ARMAGEDDON","A Thoughtful Character Study of a Waitress And a Feminist who must Build a Teacher in Ancient Japan");
+        map.put("MOTHER OLEANDER","A Boring Tale of a Husband And a Boy who must Fight a Squirrel in Ancient China");
+        map.put("MOTIONS DETAILS","A Awe-Inspiring Reflection of a Dog And a Student who must Kill a Car in An Abandoned Fun House");
+        map.put("MOULIN WAKE","A Astounding Story of a Forensic Psychologist And a Cat who must Battle a Teacher in An Abandoned Mine Shaft");
+        map.put("MOURNING PURPLE","A Lacklusture Display of a Waitress And a Lumberjack who must Chase a Pioneer in New Orleans");
+        map.put("MOVIE SHAKESPEARE","A Insightful Display of a Database Administrator And a Student who must Build a Hunter in Berlin");
+        map.put("MULAN MOON","A Emotional Saga of a Womanizer And a Pioneer who must Overcome a Dentist in A Baloon");
+        map.put("MULHOLLAND BEAST","A Awe-Inspiring Display of a Husband And a Squirrel who must Battle a Sumo Wrestler in A Jet Boat");
+        map.put("MUMMY CREATURES","A Fateful Character Study of a Crocodile And a Monkey who must Meet a Dentist in Australia");
+        map.put("MUPPET MILE","A Lacklusture Story of a Madman And a Teacher who must Kill a Frisbee in The Gulf of Mexico");
+        map.put("MURDER ANTITRUST","A Brilliant Yarn of a Car And a Database Administrator who must Escape a Boy in A MySQL Convention");
+        map.put("MUSCLE BRIGHT","A Stunning Panorama of a Sumo Wrestler And a Husband who must Redeem a Madman in Ancient India");
+        map.put("MUSIC BOONDOCK","A Thrilling Tale of a Butler And a Astronaut who must Battle a Explorer in The First Manned Space Station");
+        map.put("MUSKETEERS WAIT","A Touching Yarn of a Student And a Moose who must Fight a Mad Cow in Australia");
+        map.put("MUSSOLINI SPOILERS","A Thrilling Display of a Boat And a Monkey who must Meet a Composer in Ancient China");
+        map.put("MYSTIC TRUMAN","A Epic Yarn of a Teacher And a Hunter who must Outgun a Explorer in Soviet Georgia");
+        map.put("NAME DETECTIVE","A Touching Saga of a Sumo Wrestler And a Cat who must Pursue a Mad Scientist in Nigeria");
+        map.put("NASH CHOCOLAT","A Epic Reflection of a Monkey And a Mad Cow who must Kill a Forensic Psychologist in An Abandoned Mine Shaft");
+        map.put("NATIONAL STORY","A Taut Epistle of a Mad Scientist And a Girl who must Escape a Monkey in California");
+        map.put("NATURAL STOCK","A Fast-Paced Story of a Sumo Wrestler And a Girl who must Defeat a Car in A Baloon Factory");
+        map.put("NECKLACE OUTBREAK","A Astounding Epistle of a Database Administrator And a Mad Scientist who must Pursue a Cat in California");
+        map.put("NEIGHBORS CHARADE","A Fanciful Reflection of a Crocodile And a Astronaut who must Outrace a Feminist in An Abandoned Amusement Park");
+        map.put("NEMO CAMPUS","A Lacklusture Reflection of a Monkey And a Squirrel who must Outrace a Womanizer in A Manhattan Penthouse");
+        map.put("NETWORK PEAK","A Unbelieveable Reflection of a Butler And a Boat who must Outgun a Mad Scientist in California");
+        map.put("NEWSIES STORY","A Action-Packed Character Study of a Dog And a Lumberjack who must Outrace a Moose in The Gulf of Mexico");
+        map.put("NEWTON LABYRINTH","A Intrepid Character Study of a Moose And a Waitress who must Find a A Shark in Ancient India");
+        map.put("NIGHTMARE CHILL","A Brilliant Display of a Robot And a Butler who must Fight a Waitress in An Abandoned Mine Shaft");
+        map.put("NONE SPIKING","A Boring Reflection of a Secret Agent And a Astronaut who must Face a Composer in A Manhattan Penthouse");
+        map.put("NOON PAPI","A Unbelieveable Character Study of a Mad Scientist And a Astronaut who must Find a Pioneer in A Manhattan Penthouse");
+        map.put("NORTH TEQUILA","A Beautiful Character Study of a Mad Cow And a Robot who must Reach a Womanizer in New Orleans");
+        map.put("NORTHWEST POLISH","A Boring Character Study of a Boy And a A Shark who must Outrace a Womanizer in The Outback");
+        map.put("NOTORIOUS REUNION","A Amazing Epistle of a Woman And a Squirrel who must Fight a Hunter in A Baloon");
+        map.put("NOTTING SPEAKEASY","A Thoughtful Display of a Butler And a Womanizer who must Find a Waitress in The Canadian Rockies");
+        map.put("NOVOCAINE FLIGHT","A Fanciful Display of a Student And a Teacher who must Outgun a Crocodile in Nigeria");
+        map.put("NUTS TIES","A Thoughtful Drama of a Explorer And a Womanizer who must Meet a Teacher in California");
+        map.put("ODDS BOOGIE","A Thrilling Yarn of a Feminist And a Madman who must Battle a Hunter in Berlin");
+        map.put("OKLAHOMA JUMANJI","A Thoughtful Drama of a Dentist And a Womanizer who must Meet a Husband in The Sahara Desert");
+        map.put("OLEANDER CLUE","A Boring Story of a Teacher And a Monkey who must Succumb a Forensic Psychologist in A Jet Boat");
+        map.put("OPEN AFRICAN","A Lacklusture Drama of a Secret Agent And a Explorer who must Discover a Car in A U-Boat");
+        map.put("OPERATION OPERATION","A Intrepid Character Study of a Man And a Frisbee who must Overcome a Madman in Ancient China");
+        map.put("OPPOSITE NECKLACE","A Fateful Epistle of a Crocodile And a Moose who must Kill a Explorer in Nigeria");
+        map.put("OPUS ICE","A Fast-Paced Drama of a Hunter And a Boy who must Discover a Feminist in The Sahara Desert");
+        map.put("ORANGE GRAPES","A Astounding Documentary of a Butler And a Womanizer who must Face a Dog in A U-Boat");
+        map.put("ORDER BETRAYED","A Amazing Saga of a Dog And a A Shark who must Challenge a Cat in The Sahara Desert");
+        map.put("ORIENT CLOSER","A Astounding Epistle of a Technical Writer And a Teacher who must Fight a Squirrel in The Sahara Desert");
+        map.put("OSCAR GOLD","A Insightful Tale of a Database Administrator And a Dog who must Face a Madman in Soviet Georgia");
+        map.put("OTHERS SOUP","A Lacklusture Documentary of a Mad Cow And a Madman who must Sink a Moose in The Gulf of Mexico");
+        map.put("OUTBREAK DIVINE","A Unbelieveable Yarn of a Database Administrator And a Woman who must Succumb a A Shark in A U-Boat");
+        map.put("OUTFIELD MASSACRE","A Thoughtful Drama of a Husband And a Secret Agent who must Pursue a Database Administrator in Ancient India");
+        map.put("OUTLAW HANKY","A Thoughtful Story of a Astronaut And a Composer who must Conquer a Dog in The Sahara Desert");
+        map.put("OZ LIAISONS","A Epic Yarn of a Mad Scientist And a Cat who must Confront a Womanizer in A Baloon Factory");
+        map.put("PACIFIC AMISTAD","A Thrilling Yarn of a Dog And a Moose who must Kill a Pastry Chef in A Manhattan Penthouse");
+        map.put("PACKER MADIGAN","A Epic Display of a Sumo Wrestler And a Forensic Psychologist who must Build a Woman in An Abandoned Amusement Park");
+        map.put("PAJAMA JAWBREAKER","A Emotional Drama of a Boy And a Technical Writer who must Redeem a Sumo Wrestler in California");
+        map.put("PANIC CLUB","A Fanciful Display of a Teacher And a Crocodile who must Succumb a Girl in A Baloon");
+        map.put("PANKY SUBMARINE","A Touching Documentary of a Dentist And a Sumo Wrestler who must Overcome a Boy in The Gulf of Mexico");
+        map.put("PANTHER REDS","A Brilliant Panorama of a Moose And a Man who must Reach a Teacher in The Gulf of Mexico");
+        map.put("PAPI NECKLACE","A Fanciful Display of a Car And a Monkey who must Escape a Squirrel in Ancient Japan");
+        map.put("PARADISE SABRINA","A Intrepid Yarn of a Car And a Moose who must Outrace a Crocodile in A Manhattan Penthouse");
+        map.put("PARIS WEEKEND","A Intrepid Story of a Squirrel And a Crocodile who must Defeat a Monkey in The Outback");
+        map.put("PARK CITIZEN","A Taut Epistle of a Sumo Wrestler And a Girl who must Face a Husband in Ancient Japan");
+        map.put("PARTY KNOCK","A Fateful Display of a Technical Writer And a Butler who must Battle a Sumo Wrestler in An Abandoned Mine Shaft");
+        map.put("PAST SUICIDES","A Intrepid Tale of a Madman And a Astronaut who must Challenge a Hunter in A Monastery");
+        map.put("PATHS CONTROL","A Astounding Documentary of a Butler And a Cat who must Find a Frisbee in Ancient China");
+        map.put("PATIENT SISTER","A Emotional Epistle of a Squirrel And a Robot who must Confront a Lumberjack in Soviet Georgia");
+        map.put("PATRIOT ROMAN","A Taut Saga of a Robot And a Database Administrator who must Challenge a Astronaut in California");
+        map.put("PATTON INTERVIEW","A Thrilling Documentary of a Composer And a Secret Agent who must Succumb a Cat in Berlin");
+        map.put("PAYCHECK WAIT","A Awe-Inspiring Reflection of a Boy And a Man who must Discover a Moose in The Sahara Desert");
+        map.put("PEACH INNOCENT","A Action-Packed Drama of a Monkey And a Dentist who must Chase a Butler in Berlin");
+        map.put("PEAK FOREVER","A Insightful Reflection of a Boat And a Secret Agent who must Vanquish a Astronaut in An Abandoned Mine Shaft");
+        map.put("PEARL DESTINY","A Lacklusture Yarn of a Astronaut And a Pastry Chef who must Sink a Dog in A U-Boat");
+        map.put("PELICAN COMFORTS","A Epic Documentary of a Boy And a Monkey who must Pursue a Astronaut in Berlin");
+        map.put("PERDITION FARGO","A Fast-Paced Story of a Car And a Cat who must Outgun a Hunter in Berlin");
+        map.put("PERFECT GROOVE","A Thrilling Yarn of a Dog And a Dog who must Build a Husband in A Baloon");
+        map.put("PERSONAL LADYBUGS","A Epic Saga of a Hunter And a Technical Writer who must Conquer a Cat in Ancient Japan");
+        map.put("PET HAUNTING","A Unbelieveable Reflection of a Explorer And a Boat who must Conquer a Woman in California");
+        map.put("PHANTOM GLORY","A Beautiful Documentary of a Astronaut And a Crocodile who must Discover a Madman in A Monastery");
+        map.put("PHILADELPHIA WIFE","A Taut Yarn of a Hunter And a Astronaut who must Conquer a Database Administrator in The Sahara Desert");
+        map.put("PIANIST OUTFIELD","A Intrepid Story of a Boy And a Technical Writer who must Pursue a Lumberjack in A Monastery");
+        map.put("PICKUP DRIVING","A Touching Documentary of a Husband And a Boat who must Meet a Pastry Chef in A Baloon Factory");
+        map.put("PILOT HOOSIERS","A Awe-Inspiring Reflection of a Crocodile And a Sumo Wrestler who must Meet a Forensic Psychologist in An Abandoned Mine Shaft");
+        map.put("PINOCCHIO SIMON","A Action-Packed Reflection of a Mad Scientist And a A Shark who must Find a Feminist in California");
+        map.put("PIRATES ROXANNE","A Stunning Drama of a Woman And a Lumberjack who must Overcome a A Shark in The Canadian Rockies");
+        map.put("PITTSBURGH HUNCHBACK","A Thrilling Epistle of a Boy And a Boat who must Find a Student in Soviet Georgia");
+        map.put("PITY BOUND","A Boring Panorama of a Feminist And a Moose who must Defeat a Database Administrator in Nigeria");
+        map.put("PIZZA JUMANJI","A Epic Saga of a Cat And a Squirrel who must Outgun a Robot in A U-Boat");
+        map.put("PLATOON INSTINCT","A Thrilling Panorama of a Man And a Woman who must Reach a Woman in Australia");
+        map.put("PLUTO OLEANDER","A Action-Packed Reflection of a Car And a Moose who must Outgun a Car in A Shark Tank");
+        map.put("POLISH BROOKLYN","A Boring Character Study of a Database Administrator And a Lumberjack who must Reach a Madman in The Outback");
+        map.put("POLLOCK DELIVERANCE","A Intrepid Story of a Madman And a Frisbee who must Outgun a Boat in The Sahara Desert");
+        map.put("POND SEATTLE","A Stunning Drama of a Teacher And a Boat who must Battle a Feminist in Ancient China");
+        map.put("POSEIDON FOREVER","A Thoughtful Epistle of a Womanizer And a Monkey who must Vanquish a Dentist in A Monastery");
+        map.put("POTLUCK MIXED","A Beautiful Story of a Dog And a Technical Writer who must Outgun a Student in A Baloon");
+        map.put("POTTER CONNECTICUT","A Thrilling Epistle of a Frisbee And a Cat who must Fight a Technical Writer in Berlin");
+        map.put("PREJUDICE OLEANDER","A Epic Saga of a Boy And a Dentist who must Outrace a Madman in A U-Boat");
+        map.put("PRESIDENT BANG","A Fateful Panorama of a Technical Writer And a Moose who must Battle a Robot in Soviet Georgia");
+        map.put("PRIDE ALAMO","A Thoughtful Drama of a A Shark And a Forensic Psychologist who must Vanquish a Student in Ancient India");
+        map.put("PRIMARY GLASS","A Fateful Documentary of a Pastry Chef And a Butler who must Build a Dog in The Canadian Rockies");
+        map.put("PRINCESS GIANT","A Thrilling Yarn of a Pastry Chef And a Monkey who must Battle a Monkey in A Shark Tank");
+        map.put("PRIVATE DROP","A Stunning Story of a Technical Writer And a Hunter who must Succumb a Secret Agent in A Baloon");
+        map.put("PRIX UNDEFEATED","A Stunning Saga of a Mad Scientist And a Boat who must Overcome a Dentist in Ancient China");
+        map.put("PSYCHO SHRUNK","A Amazing Panorama of a Crocodile And a Explorer who must Fight a Husband in Nigeria");
+        map.put("PULP BEVERLY","A Unbelieveable Display of a Dog And a Crocodile who must Outrace a Man in Nigeria");
+        map.put("PUNK DIVORCE","A Fast-Paced Tale of a Pastry Chef And a Boat who must Face a Frisbee in The Canadian Rockies");
+        map.put("PURE RUNNER","A Thoughtful Documentary of a Student And a Madman who must Challenge a Squirrel in A Manhattan Penthouse");
+        map.put("PURPLE MOVIE","A Boring Display of a Pastry Chef And a Sumo Wrestler who must Discover a Frisbee in An Abandoned Amusement Park");
+        map.put("QUEEN LUKE","A Astounding Story of a Girl And a Boy who must Challenge a Composer in New Orleans");
+        map.put("QUEST MUSSOLINI","A Fateful Drama of a Husband And a Sumo Wrestler who must Battle a Pastry Chef in A Baloon Factory");
+        map.put("QUILLS BULL","A Thoughtful Story of a Pioneer And a Woman who must Reach a Moose in Australia");
+        map.put("RACER EGG","A Emotional Display of a Monkey And a Waitress who must Reach a Secret Agent in California");
+        map.put("RAGE GAMES","A Fast-Paced Saga of a Astronaut And a Secret Agent who must Escape a Hunter in An Abandoned Amusement Park");
+        map.put("RAGING AIRPLANE","A Astounding Display of a Secret Agent And a Technical Writer who must Escape a Mad Scientist in A Jet Boat");
+        map.put("RAIDERS ANTITRUST","A Amazing Drama of a Teacher And a Feminist who must Meet a Woman in The First Manned Space Station");
+        map.put("RAINBOW SHOCK","A Action-Packed Story of a Hunter And a Boy who must Discover a Lumberjack in Ancient India");
+        map.put("RANDOM GO","A Fateful Drama of a Frisbee And a Student who must Confront a Cat in A Shark Tank");
+        map.put("RANGE MOONWALKER","A Insightful Documentary of a Hunter And a Dentist who must Confront a Crocodile in A Baloon");
+        map.put("REAP UNFAITHFUL","A Thrilling Epistle of a Composer And a Sumo Wrestler who must Challenge a Mad Cow in A MySQL Convention");
+        map.put("REAR TRADING","A Awe-Inspiring Reflection of a Forensic Psychologist And a Secret Agent who must Succumb a Pastry Chef in Soviet Georgia");
+        map.put("REBEL AIRPORT","A Intrepid Yarn of a Database Administrator And a Boat who must Outrace a Husband in Ancient India");
+        map.put("RECORDS ZORRO","A Amazing Drama of a Mad Scientist And a Composer who must Build a Husband in The Outback");
+        map.put("REDEMPTION COMFORTS","A Emotional Documentary of a Dentist And a Woman who must Battle a Mad Scientist in Ancient China");
+        map.put("REDS POCUS","A Lacklusture Yarn of a Sumo Wrestler And a Squirrel who must Redeem a Monkey in Soviet Georgia");
+        map.put("REEF SALUTE","A Action-Packed Saga of a Teacher And a Lumberjack who must Battle a Dentist in A Baloon");
+        map.put("REIGN GENTLEMEN","A Emotional Yarn of a Composer And a Man who must Escape a Butler in The Gulf of Mexico");
+        map.put("REMEMBER DIARY","A Insightful Tale of a Technical Writer And a Waitress who must Conquer a Monkey in Ancient India");
+        map.put("REQUIEM TYCOON","A Unbelieveable Character Study of a Cat And a Database Administrator who must Pursue a Teacher in A Monastery");
+        map.put("RESERVOIR ADAPTATION","A Intrepid Drama of a Teacher And a Moose who must Kill a Car in California");
+        map.put("RESURRECTION SILVERADO","A Epic Yarn of a Robot And a Explorer who must Challenge a Girl in A MySQL Convention");
+        map.put("REUNION WITCHES","A Unbelieveable Documentary of a Database Administrator And a Frisbee who must Redeem a Mad Scientist in A Baloon Factory");
+        map.put("RIDER CADDYSHACK","A Taut Reflection of a Monkey And a Womanizer who must Chase a Moose in Nigeria");
+        map.put("RIDGEMONT SUBMARINE","A Unbelieveable Drama of a Waitress And a Composer who must Sink a Mad Cow in Ancient Japan");
+        map.put("RIGHT CRANES","A Fateful Character Study of a Boat And a Cat who must Find a Database Administrator in A Jet Boat");
+        map.put("RINGS HEARTBREAKERS","A Amazing Yarn of a Sumo Wrestler And a Boat who must Conquer a Waitress in New Orleans");
+        map.put("RIVER OUTLAW","A Thrilling Character Study of a Squirrel And a Lumberjack who must Face a Hunter in A MySQL Convention");
+        map.put("ROAD ROXANNE","A Boring Character Study of a Waitress And a Astronaut who must Fight a Crocodile in Ancient Japan");
+        map.put("ROBBERS JOON","A Thoughtful Story of a Mad Scientist And a Waitress who must Confront a Forensic Psychologist in Soviet Georgia");
+        map.put("ROCK INSTINCT","A Astounding Character Study of a Robot And a Moose who must Overcome a Astronaut in Ancient India");
+        map.put("ROCKETEER MOTHER","A Awe-Inspiring Character Study of a Robot And a Sumo Wrestler who must Discover a Womanizer in A Shark Tank");
+        map.put("ROCKY WAR","A Fast-Paced Display of a Squirrel And a Explorer who must Outgun a Mad Scientist in Nigeria");
+        map.put("ROLLERCOASTER BRINGING","A Beautiful Drama of a Robot And a Lumberjack who must Discover a Technical Writer in A Shark Tank");
+        map.put("ROMAN PUNK","A Thoughtful Panorama of a Mad Cow And a Student who must Battle a Forensic Psychologist in Berlin");
+        map.put("ROOF CHAMPION","A Lacklusture Reflection of a Car And a Explorer who must Find a Monkey in A Baloon");
+        map.put("ROOM ROMAN","A Awe-Inspiring Panorama of a Composer And a Secret Agent who must Sink a Composer in A Shark Tank");
+        map.put("ROOTS REMEMBER","A Brilliant Drama of a Mad Cow And a Hunter who must Escape a Hunter in Berlin");
+        map.put("ROSES TREASURE","A Astounding Panorama of a Monkey And a Secret Agent who must Defeat a Woman in The First Manned Space Station");
+        map.put("ROUGE SQUAD","A Awe-Inspiring Drama of a Astronaut And a Frisbee who must Conquer a Mad Scientist in Australia");
+        map.put("ROXANNE REBEL","A Astounding Story of a Pastry Chef And a Database Administrator who must Fight a Man in The Outback");
+        map.put("RUGRATS SHAKESPEARE","A Touching Saga of a Crocodile And a Crocodile who must Discover a Technical Writer in Nigeria");
+        map.put("RULES HUMAN","A Beautiful Epistle of a Astronaut And a Student who must Confront a Monkey in An Abandoned Fun House");
+        map.put("RUN PACIFIC","A Touching Tale of a Cat And a Pastry Chef who must Conquer a Pastry Chef in A MySQL Convention");
+        map.put("RUNAWAY TENENBAUMS","A Thoughtful Documentary of a Boat And a Man who must Meet a Boat in An Abandoned Fun House");
+        map.put("RUNNER MADIGAN","A Thoughtful Documentary of a Crocodile And a Robot who must Outrace a Womanizer in The Outback");
+        map.put("RUSH GOODFELLAS","A Emotional Display of a Man And a Dentist who must Challenge a Squirrel in Australia");
+        map.put("RUSHMORE MERMAID","A Boring Story of a Woman And a Moose who must Reach a Husband in A Shark Tank");
+        map.put("SABRINA MIDNIGHT","A Emotional Story of a Squirrel And a Crocodile who must Succumb a Husband in The Sahara Desert");
+        map.put("SADDLE ANTITRUST","A Stunning Epistle of a Feminist And a A Shark who must Battle a Woman in An Abandoned Fun House");
+        map.put("SAGEBRUSH CLUELESS","A Insightful Story of a Lumberjack And a Hunter who must Kill a Boy in Ancient Japan");
+        map.put("SAINTS BRIDE","A Fateful Tale of a Technical Writer And a Composer who must Pursue a Explorer in The Gulf of Mexico");
+        map.put("SALUTE APOLLO","A Awe-Inspiring Character Study of a Boy And a Feminist who must Sink a Crocodile in Ancient China");
+        map.put("SAMURAI LION","A Fast-Paced Story of a Pioneer And a Astronaut who must Reach a Boat in A Baloon");
+        map.put("SANTA PARIS","A Emotional Documentary of a Moose And a Car who must Redeem a Mad Cow in A Baloon Factory");
+        map.put("SASSY PACKER","A Fast-Paced Documentary of a Dog And a Teacher who must Find a Moose in A Manhattan Penthouse");
+        map.put("SATISFACTION CONFIDENTIAL","A Lacklusture Yarn of a Dentist And a Butler who must Meet a Secret Agent in Ancient China");
+        map.put("SATURDAY LAMBS","A Thoughtful Reflection of a Mad Scientist And a Moose who must Kill a Husband in A Baloon");
+        map.put("SATURN NAME","A Fateful Epistle of a Butler And a Boy who must Redeem a Teacher in Berlin");
+        map.put("SAVANNAH TOWN","A Awe-Inspiring Tale of a Astronaut And a Database Administrator who must Chase a Secret Agent in The Gulf of Mexico");
+        map.put("SCALAWAG DUCK","A Fateful Reflection of a Car And a Teacher who must Confront a Waitress in A Monastery");
+        map.put("SCARFACE BANG","A Emotional Yarn of a Teacher And a Girl who must Find a Teacher in A Baloon Factory");
+        map.put("SCHOOL JACKET","A Intrepid Yarn of a Monkey And a Boy who must Fight a Composer in A Manhattan Penthouse");
+        map.put("SCISSORHANDS SLUMS","A Awe-Inspiring Drama of a Girl And a Technical Writer who must Meet a Feminist in The Canadian Rockies");
+        map.put("SCORPION APOLLO","A Awe-Inspiring Documentary of a Technical Writer And a Husband who must Meet a Monkey in An Abandoned Fun House");
+        map.put("SEA VIRGIN","A Fast-Paced Documentary of a Technical Writer And a Pastry Chef who must Escape a Moose in A U-Boat");
+        map.put("SEABISCUIT PUNK","A Insightful Saga of a Man And a Forensic Psychologist who must Discover a Mad Cow in A MySQL Convention");
+        map.put("SEARCHERS WAIT","A Fast-Paced Tale of a Car And a Mad Scientist who must Kill a Womanizer in Ancient Japan");
+        map.put("SEATTLE EXPECATIONS","A Insightful Reflection of a Crocodile And a Sumo Wrestler who must Meet a Technical Writer in The Sahara Desert");
+        map.put("SECRET GROUNDHOG","A Astounding Story of a Cat And a Database Administrator who must Build a Technical Writer in New Orleans");
+        map.put("SECRETARY ROUGE","A Action-Packed Panorama of a Mad Cow And a Composer who must Discover a Robot in A Baloon Factory");
+        map.put("SECRETS PARADISE","A Fateful Saga of a Cat And a Frisbee who must Kill a Girl in A Manhattan Penthouse");
+        map.put("SENSE GREEK","A Taut Saga of a Lumberjack And a Pastry Chef who must Escape a Sumo Wrestler in An Abandoned Fun House");
+        map.put("SENSIBILITY REAR","A Emotional Tale of a Robot And a Sumo Wrestler who must Redeem a Pastry Chef in A Baloon Factory");
+        map.put("SEVEN SWARM","A Unbelieveable Character Study of a Dog And a Mad Cow who must Kill a Monkey in Berlin");
+        map.put("SHAKESPEARE SADDLE","A Fast-Paced Panorama of a Lumberjack And a Database Administrator who must Defeat a Madman in A MySQL Convention");
+        map.put("SHANE DARKNESS","A Action-Packed Saga of a Moose And a Lumberjack who must Find a Woman in Berlin");
+        map.put("SHANGHAI TYCOON","A Fast-Paced Character Study of a Crocodile And a Lumberjack who must Build a Husband in An Abandoned Fun House");
+        map.put("SHAWSHANK BUBBLE","A Lacklusture Story of a Moose And a Monkey who must Confront a Butler in An Abandoned Amusement Park");
+        map.put("SHEPHERD MIDSUMMER","A Thoughtful Drama of a Robot And a Womanizer who must Kill a Lumberjack in A Baloon");
+        map.put("SHINING ROSES","A Awe-Inspiring Character Study of a Astronaut And a Forensic Psychologist who must Challenge a Madman in Ancient India");
+        map.put("SHIP WONDERLAND","A Thrilling Saga of a Monkey And a Frisbee who must Escape a Explorer in The Outback");
+        map.put("SHOCK CABIN","A Fateful Tale of a Mad Cow And a Crocodile who must Meet a Husband in New Orleans");
+        map.put("SHOOTIST SUPERFLY","A Fast-Paced Story of a Crocodile And a A Shark who must Sink a Pioneer in Berlin");
+        map.put("SHOW LORD","A Fanciful Saga of a Student And a Girl who must Find a Butler in Ancient Japan");
+        map.put("SHREK LICENSE","A Fateful Yarn of a Secret Agent And a Feminist who must Find a Feminist in A Jet Boat");
+        map.put("SHRUNK DIVINE","A Fateful Character Study of a Waitress And a Technical Writer who must Battle a Hunter in A Baloon");
+        map.put("SIDE ARK","A Stunning Panorama of a Crocodile And a Womanizer who must Meet a Feminist in The Canadian Rockies");
+        map.put("SIEGE MADRE","A Boring Tale of a Frisbee And a Crocodile who must Vanquish a Moose in An Abandoned Mine Shaft");
+        map.put("SIERRA DIVIDE","A Emotional Character Study of a Frisbee And a Mad Scientist who must Build a Madman in California");
+        map.put("SILENCE KANE","A Emotional Drama of a Sumo Wrestler And a Dentist who must Confront a Sumo Wrestler in A Baloon");
+        map.put("SILVERADO GOLDFINGER","A Stunning Epistle of a Sumo Wrestler And a Man who must Challenge a Waitress in Ancient India");
+        map.put("SIMON NORTH","A Thrilling Documentary of a Technical Writer And a A Shark who must Face a Pioneer in A Shark Tank");
+        map.put("SINNERS ATLANTIS","A Epic Display of a Dog And a Boat who must Succumb a Mad Scientist in An Abandoned Mine Shaft");
+        map.put("SISTER FREDDY","A Stunning Saga of a Butler And a Woman who must Pursue a Explorer in Australia");
+        map.put("SKY MIRACLE","A Epic Drama of a Mad Scientist And a Explorer who must Succumb a Waitress in An Abandoned Fun House");
+        map.put("SLACKER LIAISONS","A Fast-Paced Tale of a A Shark And a Student who must Meet a Crocodile in Ancient China");
+        map.put("SLEEPING SUSPECTS","A Stunning Reflection of a Sumo Wrestler And a Explorer who must Sink a Frisbee in A MySQL Convention");
+        map.put("SLEEPLESS MONSOON","A Amazing Saga of a Moose And a Pastry Chef who must Escape a Butler in Australia");
+        map.put("SLEEPY JAPANESE","A Emotional Epistle of a Moose And a Composer who must Fight a Technical Writer in The Outback");
+        map.put("SLEUTH ORIENT","A Fateful Character Study of a Husband And a Dog who must Find a Feminist in Ancient India");
+        map.put("SLING LUKE","A Intrepid Character Study of a Robot And a Monkey who must Reach a Secret Agent in An Abandoned Amusement Park");
+        map.put("SLIPPER FIDELITY","A Taut Reflection of a Secret Agent And a Man who must Redeem a Explorer in A MySQL Convention");
+        map.put("SLUMS DUCK","A Amazing Character Study of a Teacher And a Database Administrator who must Defeat a Waitress in A Jet Boat");
+        map.put("SMILE EARRING","A Intrepid Drama of a Teacher And a Butler who must Build a Pastry Chef in Berlin");
+        map.put("SMOKING BARBARELLA","A Lacklusture Saga of a Mad Cow And a Mad Scientist who must Sink a Cat in A MySQL Convention");
+        map.put("SMOOCHY CONTROL","A Thrilling Documentary of a Husband And a Feminist who must Face a Mad Scientist in Ancient China");
+        map.put("SNATCH SLIPPER","A Insightful Panorama of a Woman And a Feminist who must Defeat a Forensic Psychologist in Berlin");
+        map.put("SNATCHERS MONTEZUMA","A Boring Epistle of a Sumo Wrestler And a Woman who must Escape a Man in The Canadian Rockies");
+        map.put("SNOWMAN ROLLERCOASTER","A Fateful Display of a Lumberjack And a Girl who must Succumb a Mad Cow in A Manhattan Penthouse");
+        map.put("SOLDIERS EVOLUTION","A Lacklusture Panorama of a A Shark And a Pioneer who must Confront a Student in The First Manned Space Station");
+        map.put("SOMETHING DUCK","A Boring Character Study of a Car And a Husband who must Outgun a Frisbee in The First Manned Space Station");
+        map.put("SONG HEDWIG","A Amazing Documentary of a Man And a Husband who must Confront a Squirrel in A MySQL Convention");
+        map.put("SONS INTERVIEW","A Taut Character Study of a Explorer And a Mad Cow who must Battle a Hunter in Ancient China");
+        map.put("SORORITY QUEEN","A Fast-Paced Display of a Squirrel And a Composer who must Fight a Forensic Psychologist in A Jet Boat");
+        map.put("SOUP WISDOM","A Fast-Paced Display of a Robot And a Butler who must Defeat a Butler in A MySQL Convention");
+        map.put("SOUTH WAIT","A Amazing Documentary of a Car And a Robot who must Escape a Lumberjack in An Abandoned Amusement Park");
+        map.put("SPARTACUS CHEAPER","A Thrilling Panorama of a Pastry Chef And a Secret Agent who must Overcome a Student in A Manhattan Penthouse");
+        map.put("SPEAKEASY DATE","A Lacklusture Drama of a Forensic Psychologist And a Car who must Redeem a Man in A Manhattan Penthouse");
+        map.put("SPEED SUIT","A Brilliant Display of a Frisbee And a Mad Scientist who must Succumb a Robot in Ancient China");
+        map.put("SPICE SORORITY","A Fateful Display of a Pioneer And a Hunter who must Defeat a Husband in An Abandoned Mine Shaft");
+        map.put("SPIKING ELEMENT","A Lacklusture Epistle of a Dentist And a Technical Writer who must Find a Dog in A Monastery");
+        map.put("SPIRIT FLINTSTONES","A Brilliant Yarn of a Cat And a Car who must Confront a Explorer in Ancient Japan");
+        map.put("SPIRITED CASUALTIES","A Taut Story of a Waitress And a Man who must Face a Car in A Baloon Factory");
+        map.put("SPLASH GUMP","A Taut Saga of a Crocodile And a Boat who must Conquer a Hunter in A Shark Tank");
+        map.put("SPLENDOR PATTON","A Taut Story of a Dog And a Explorer who must Find a Astronaut in Berlin");
+        map.put("SPOILERS HELLFIGHTERS","A Fanciful Story of a Technical Writer And a Squirrel who must Defeat a Dog in The Gulf of Mexico");
+        map.put("SPY MILE","A Thrilling Documentary of a Feminist And a Feminist who must Confront a Feminist in A Baloon");
+        map.put("SQUAD FISH","A Fast-Paced Display of a Pastry Chef And a Dog who must Kill a Teacher in Berlin");
+        map.put("STAGE WORLD","A Lacklusture Panorama of a Woman And a Frisbee who must Chase a Crocodile in A Jet Boat");
+        map.put("STAGECOACH ARMAGEDDON","A Touching Display of a Pioneer And a Butler who must Chase a Car in California");
+        map.put("STALLION SUNDANCE","A Fast-Paced Tale of a Car And a Dog who must Outgun a A Shark in Australia");
+        map.put("STAMPEDE DISTURBING","A Unbelieveable Tale of a Woman And a Lumberjack who must Fight a Frisbee in A U-Boat");
+        map.put("STAR OPERATION","A Insightful Character Study of a Girl And a Car who must Pursue a Mad Cow in A Shark Tank");
+        map.put("STATE WASTELAND","A Beautiful Display of a Cat And a Pastry Chef who must Outrace a Mad Cow in A Jet Boat");
+        map.put("STEEL SANTA","A Fast-Paced Yarn of a Composer And a Frisbee who must Face a Moose in Nigeria");
+        map.put("STEERS ARMAGEDDON","A Stunning Character Study of a Car And a Girl who must Succumb a Car in A MySQL Convention");
+        map.put("STEPMOM DREAM","A Touching Epistle of a Crocodile And a Teacher who must Build a Forensic Psychologist in A MySQL Convention");
+        map.put("STING PERSONAL","A Fanciful Drama of a Frisbee And a Dog who must Fight a Madman in A Jet Boat");
+        map.put("STOCK GLASS","A Boring Epistle of a Crocodile And a Lumberjack who must Outgun a Moose in Ancient China");
+        map.put("STONE FIRE","A Intrepid Drama of a Astronaut And a Crocodile who must Find a Boat in Soviet Georgia");
+        map.put("STORM HAPPINESS","A Insightful Drama of a Feminist And a A Shark who must Vanquish a Boat in A Shark Tank");
+        map.put("STORY SIDE","A Lacklusture Saga of a Boy And a Cat who must Sink a Dentist in An Abandoned Mine Shaft");
+        map.put("STRAIGHT HOURS","A Boring Panorama of a Secret Agent And a Girl who must Sink a Waitress in The Outback");
+        map.put("STRANGELOVE DESIRE","A Awe-Inspiring Panorama of a Lumberjack And a Waitress who must Defeat a Crocodile in An Abandoned Amusement Park");
+        map.put("STRANGER STRANGERS","A Awe-Inspiring Yarn of a Womanizer And a Explorer who must Fight a Woman in The First Manned Space Station");
+        map.put("STRANGERS GRAFFITI","A Brilliant Character Study of a Secret Agent And a Man who must Find a Cat in The Gulf of Mexico");
+        map.put("STREAK RIDGEMONT","A Astounding Character Study of a Hunter And a Waitress who must Sink a Man in New Orleans");
+        map.put("STREETCAR INTENTIONS","A Insightful Character Study of a Waitress And a Crocodile who must Sink a Waitress in The Gulf of Mexico");
+        map.put("STRICTLY SCARFACE","A Touching Reflection of a Crocodile And a Dog who must Chase a Hunter in An Abandoned Fun House");
+        map.put("SUBMARINE BED","A Amazing Display of a Car And a Monkey who must Fight a Teacher in Soviet Georgia");
+        map.put("SUGAR WONKA","A Touching Story of a Dentist And a Database Administrator who must Conquer a Astronaut in An Abandoned Amusement Park");
+        map.put("SUICIDES SILENCE","A Emotional Character Study of a Car And a Girl who must Face a Composer in A U-Boat");
+        map.put("SUIT WALLS","A Touching Panorama of a Lumberjack And a Frisbee who must Build a Dog in Australia");
+        map.put("SUMMER SCARFACE","A Emotional Panorama of a Lumberjack And a Hunter who must Meet a Girl in A Shark Tank");
+        map.put("SUN CONFESSIONS","A Beautiful Display of a Mad Cow And a Dog who must Redeem a Waitress in An Abandoned Amusement Park");
+        map.put("SUNDANCE INVASION","A Epic Drama of a Lumberjack And a Explorer who must Confront a Hunter in A Baloon Factory");
+        map.put("SUNRISE LEAGUE","A Beautiful Epistle of a Madman And a Butler who must Face a Crocodile in A Manhattan Penthouse");
+        map.put("SUNSET RACER","A Awe-Inspiring Reflection of a Astronaut And a A Shark who must Defeat a Forensic Psychologist in California");
+        map.put("SUPER WYOMING","A Action-Packed Saga of a Pastry Chef And a Explorer who must Discover a A Shark in The Outback");
+        map.put("SUPERFLY TRIP","A Beautiful Saga of a Lumberjack And a Teacher who must Build a Technical Writer in An Abandoned Fun House");
+        map.put("SUSPECTS QUILLS","A Emotional Epistle of a Pioneer And a Crocodile who must Battle a Man in A Manhattan Penthouse");
+        map.put("SWARM GOLD","A Insightful Panorama of a Crocodile And a Boat who must Conquer a Sumo Wrestler in A MySQL Convention");
+        map.put("SWEDEN SHINING","A Taut Documentary of a Car And a Robot who must Conquer a Boy in The Canadian Rockies");
+        map.put("SWEET BROTHERHOOD","A Unbelieveable Epistle of a Sumo Wrestler And a Hunter who must Chase a Forensic Psychologist in A Baloon");
+        map.put("SWEETHEARTS SUSPECTS","A Brilliant Character Study of a Frisbee And a Sumo Wrestler who must Confront a Woman in The Gulf of Mexico");
+        map.put("TADPOLE PARK","A Beautiful Tale of a Frisbee And a Moose who must Vanquish a Dog in An Abandoned Amusement Park");
+        map.put("TALENTED HOMICIDE","A Lacklusture Panorama of a Dentist And a Forensic Psychologist who must Outrace a Pioneer in A U-Boat");
+        map.put("TARZAN VIDEOTAPE","A Fast-Paced Display of a Lumberjack And a Mad Scientist who must Succumb a Sumo Wrestler in The Sahara Desert");
+        map.put("TAXI KICK","A Amazing Epistle of a Girl And a Woman who must Outrace a Waitress in Soviet Georgia");
+        map.put("TEEN APOLLO","A Awe-Inspiring Drama of a Dog And a Man who must Escape a Robot in A Shark Tank");
+        map.put("TELEGRAPH VOYAGE","A Fateful Yarn of a Husband And a Dog who must Battle a Waitress in A Jet Boat");
+        map.put("TELEMARK HEARTBREAKERS","A Action-Packed Panorama of a Technical Writer And a Man who must Build a Forensic Psychologist in A Manhattan Penthouse");
+        map.put("TEMPLE ATTRACTION","A Action-Packed Saga of a Forensic Psychologist And a Woman who must Battle a Womanizer in Soviet Georgia");
+        map.put("TENENBAUMS COMMAND","A Taut Display of a Pioneer And a Man who must Reach a Girl in The Gulf of Mexico");
+        map.put("TEQUILA PAST","A Action-Packed Panorama of a Mad Scientist And a Robot who must Challenge a Student in Nigeria");
+        map.put("TERMINATOR CLUB","A Touching Story of a Crocodile And a Girl who must Sink a Man in The Gulf of Mexico");
+        map.put("TEXAS WATCH","A Awe-Inspiring Yarn of a Student And a Teacher who must Fight a Teacher in An Abandoned Amusement Park");
+        map.put("THEORY MERMAID","A Fateful Yarn of a Composer And a Monkey who must Vanquish a Womanizer in The First Manned Space Station");
+        map.put("THIEF PELICAN","A Touching Documentary of a Madman And a Mad Scientist who must Outrace a Feminist in An Abandoned Mine Shaft");
+        map.put("THIN SAGEBRUSH","A Emotional Drama of a Husband And a Lumberjack who must Build a Cat in Ancient India");
+        map.put("TIES HUNGER","A Insightful Saga of a Astronaut And a Explorer who must Pursue a Mad Scientist in A U-Boat");
+        map.put("TIGHTS DAWN","A Thrilling Epistle of a Boat And a Secret Agent who must Face a Boy in A Baloon");
+        map.put("TIMBERLAND SKY","A Boring Display of a Man And a Dog who must Redeem a Girl in A U-Boat");
+        map.put("TITANIC BOONDOCK","A Brilliant Reflection of a Feminist And a Dog who must Fight a Boy in A Baloon Factory");
+        map.put("TITANS JERK","A Unbelieveable Panorama of a Feminist And a Sumo Wrestler who must Challenge a Technical Writer in Ancient China");
+        map.put("TOMATOES HELLFIGHTERS","A Thoughtful Epistle of a Madman And a Astronaut who must Overcome a Monkey in A Shark Tank");
+        map.put("TOMORROW HUSTLER","A Thoughtful Story of a Moose And a Husband who must Face a Secret Agent in The Sahara Desert");
+        map.put("TOOTSIE PILOT","A Awe-Inspiring Documentary of a Womanizer And a Pastry Chef who must Kill a Lumberjack in Berlin");
+        map.put("TORQUE BOUND","A Emotional Display of a Crocodile And a Husband who must Reach a Man in Ancient Japan");
+        map.put("TOURIST PELICAN","A Boring Story of a Butler And a Astronaut who must Outrace a Pioneer in Australia");
+        map.put("TOWERS HURRICANE","A Fateful Display of a Monkey And a Car who must Sink a Husband in A MySQL Convention");
+        map.put("TOWN ARK","A Awe-Inspiring Documentary of a Moose And a Madman who must Meet a Dog in An Abandoned Mine Shaft");
+        map.put("TRACY CIDER","A Touching Reflection of a Database Administrator And a Madman who must Build a Lumberjack in Nigeria");
+        map.put("TRADING PINOCCHIO","A Emotional Character Study of a Student And a Explorer who must Discover a Frisbee in The First Manned Space Station");
+        map.put("TRAFFIC HOBBIT","A Amazing Epistle of a Squirrel And a Lumberjack who must Succumb a Database Administrator in A U-Boat");
+        map.put("TRAIN BUNCH","A Thrilling Character Study of a Robot And a Squirrel who must Face a Dog in Ancient India");
+        map.put("TRAINSPOTTING STRANGERS","A Fast-Paced Drama of a Pioneer And a Mad Cow who must Challenge a Madman in Ancient Japan");
+        map.put("TRAMP OTHERS","A Brilliant Display of a Composer And a Cat who must Succumb a A Shark in Ancient India");
+        map.put("TRANSLATION SUMMER","A Touching Reflection of a Man And a Monkey who must Pursue a Womanizer in A MySQL Convention");
+        map.put("TRAP GUYS","A Unbelieveable Story of a Boy And a Mad Cow who must Challenge a Database Administrator in The Sahara Desert");
+        map.put("TREASURE COMMAND","A Emotional Saga of a Car And a Madman who must Discover a Pioneer in California");
+        map.put("TREATMENT JEKYLL","A Boring Story of a Teacher And a Student who must Outgun a Cat in An Abandoned Mine Shaft");
+        map.put("TRIP NEWTON","A Fanciful Character Study of a Lumberjack And a Car who must Discover a Cat in An Abandoned Amusement Park");
+        map.put("TROJAN TOMORROW","A Astounding Panorama of a Husband And a Sumo Wrestler who must Pursue a Boat in Ancient India");
+        map.put("TROOPERS METAL","A Fanciful Drama of a Monkey And a Feminist who must Sink a Man in Berlin");
+        map.put("TROUBLE DATE","A Lacklusture Panorama of a Forensic Psychologist And a Woman who must Kill a Explorer in Ancient Japan");
+        map.put("TRUMAN CRAZY","A Thrilling Epistle of a Moose And a Boy who must Meet a Database Administrator in A Monastery");
+        map.put("TURN STAR","A Stunning Tale of a Man And a Monkey who must Chase a Student in New Orleans");
+        map.put("TUXEDO MILE","A Boring Drama of a Man And a Forensic Psychologist who must Face a Frisbee in Ancient India");
+        map.put("TWISTED PIRATES","A Touching Display of a Frisbee And a Boat who must Kill a Girl in A MySQL Convention");
+        map.put("TYCOON GATHERING","A Emotional Display of a Husband And a A Shark who must Succumb a Madman in A Manhattan Penthouse");
+        map.put("UNBREAKABLE KARATE","A Amazing Character Study of a Robot And a Student who must Chase a Robot in Australia");
+        map.put("UNCUT SUICIDES","A Intrepid Yarn of a Explorer And a Pastry Chef who must Pursue a Mad Cow in A U-Boat");
+        map.put("UNDEFEATED DALMATIONS","A Unbelieveable Display of a Crocodile And a Feminist who must Overcome a Moose in An Abandoned Amusement Park");
+        map.put("UNFAITHFUL KILL","A Taut Documentary of a Waitress And a Mad Scientist who must Battle a Technical Writer in New Orleans");
+        map.put("UNFORGIVEN ZOOLANDER","A Taut Epistle of a Monkey And a Sumo Wrestler who must Vanquish a A Shark in A Baloon Factory");
+        map.put("UNITED PILOT","A Fast-Paced Reflection of a Cat And a Mad Cow who must Fight a Car in The Sahara Desert");
+        map.put("UNTOUCHABLES SUNRISE","A Amazing Documentary of a Woman And a Astronaut who must Outrace a Teacher in An Abandoned Fun House");
+        map.put("UPRISING UPTOWN","A Fanciful Reflection of a Boy And a Butler who must Pursue a Woman in Berlin");
+        map.put("UPTOWN YOUNG","A Fateful Documentary of a Dog And a Hunter who must Pursue a Teacher in An Abandoned Amusement Park");
+        map.put("VACATION BOONDOCK","A Fanciful Character Study of a Secret Agent And a Mad Scientist who must Reach a Teacher in Australia");
+        map.put("VALENTINE VANISHING","A Thrilling Display of a Husband And a Butler who must Reach a Pastry Chef in California");
+        map.put("VALLEY PACKER","A Astounding Documentary of a Astronaut And a Boy who must Outrace a Sumo Wrestler in Berlin");
+        map.put("VAMPIRE WHALE","A Epic Story of a Lumberjack And a Monkey who must Confront a Pioneer in A MySQL Convention");
+        map.put("VANILLA DAY","A Fast-Paced Saga of a Girl And a Forensic Psychologist who must Redeem a Girl in Nigeria");
+        map.put("VANISHED GARDEN","A Intrepid Character Study of a Squirrel And a A Shark who must Kill a Lumberjack in California");
+        map.put("VANISHING ROCKY","A Brilliant Reflection of a Man And a Woman who must Conquer a Pioneer in A MySQL Convention");
+        map.put("VARSITY TRIP","A Action-Packed Character Study of a Astronaut And a Explorer who must Reach a Monkey in A MySQL Convention");
+        map.put("VELVET TERMINATOR","A Lacklusture Tale of a Pastry Chef And a Technical Writer who must Confront a Crocodile in An Abandoned Amusement Park");
+        map.put("VERTIGO NORTHWEST","A Unbelieveable Display of a Mad Scientist And a Mad Scientist who must Outgun a Mad Cow in Ancient Japan");
+        map.put("VICTORY ACADEMY","A Insightful Epistle of a Mad Scientist And a Explorer who must Challenge a Cat in The Sahara Desert");
+        map.put("VIDEOTAPE ARSENIC","A Lacklusture Display of a Girl And a Astronaut who must Succumb a Student in Australia");
+        map.put("VIETNAM SMOOCHY","A Lacklusture Display of a Butler And a Man who must Sink a Explorer in Soviet Georgia");
+        map.put("VILLAIN DESPERATE","A Boring Yarn of a Pioneer And a Feminist who must Redeem a Cat in An Abandoned Amusement Park");
+        map.put("VIRGIN DAISY","A Awe-Inspiring Documentary of a Robot And a Mad Scientist who must Reach a Database Administrator in A Shark Tank");
+        map.put("VIRGINIAN PLUTO","A Emotional Panorama of a Dentist And a Crocodile who must Meet a Boy in Berlin");
+        map.put("VIRTUAL SPOILERS","A Fateful Tale of a Database Administrator And a Squirrel who must Discover a Student in Soviet Georgia");
+        map.put("VISION TORQUE","A Thoughtful Documentary of a Dog And a Man who must Sink a Man in A Shark Tank");
+        map.put("VOICE PEACH","A Amazing Panorama of a Pioneer And a Student who must Overcome a Mad Scientist in A Manhattan Penthouse");
+        map.put("VOLCANO TEXAS","A Awe-Inspiring Yarn of a Hunter And a Feminist who must Challenge a Dentist in The Outback");
+        map.put("VOLUME HOUSE","A Boring Tale of a Dog And a Woman who must Meet a Dentist in California");
+        map.put("VOYAGE LEGALLY","A Epic Tale of a Squirrel And a Hunter who must Conquer a Boy in An Abandoned Mine Shaft");
+        map.put("WAGON JAWS","A Intrepid Drama of a Moose And a Boat who must Kill a Explorer in A Manhattan Penthouse");
+        map.put("WAIT CIDER","A Intrepid Epistle of a Woman And a Forensic Psychologist who must Succumb a Astronaut in A Manhattan Penthouse");
+        map.put("WAKE JAWS","A Beautiful Saga of a Feminist And a Composer who must Challenge a Moose in Berlin");
+        map.put("WALLS ARTIST","A Insightful Panorama of a Teacher And a Teacher who must Overcome a Mad Cow in An Abandoned Fun House");
+        map.put("WANDA CHAMBER","A Insightful Drama of a A Shark And a Pioneer who must Find a Womanizer in The Outback");
+        map.put("WAR NOTTING","A Boring Drama of a Teacher And a Sumo Wrestler who must Challenge a Secret Agent in The Canadian Rockies");
+        map.put("WARDROBE PHANTOM","A Action-Packed Display of a Mad Cow And a Astronaut who must Kill a Car in Ancient India");
+        map.put("WARLOCK WEREWOLF","A Astounding Yarn of a Pioneer And a Crocodile who must Defeat a A Shark in The Outback");
+        map.put("WARS PLUTO","A Taut Reflection of a Teacher And a Database Administrator who must Chase a Madman in The Sahara Desert");
+        map.put("WASH HEAVENLY","A Awe-Inspiring Reflection of a Cat And a Pioneer who must Escape a Hunter in Ancient China");
+        map.put("WATCH TRACY","A Fast-Paced Yarn of a Dog And a Frisbee who must Conquer a Hunter in Nigeria");
+        map.put("WATERFRONT DELIVERANCE","A Unbelieveable Documentary of a Dentist And a Technical Writer who must Build a Womanizer in Nigeria");
+        map.put("WATERSHIP FRONTIER","A Emotional Yarn of a Boat And a Crocodile who must Meet a Moose in Soviet Georgia");
+        map.put("WEDDING APOLLO","A Action-Packed Tale of a Student And a Waitress who must Conquer a Lumberjack in An Abandoned Mine Shaft");
+        map.put("WEEKEND PERSONAL","A Fast-Paced Documentary of a Car And a Butler who must Find a Frisbee in A Jet Boat");
+        map.put("WEREWOLF LOLA","A Fanciful Story of a Man And a Sumo Wrestler who must Outrace a Student in A Monastery");
+        map.put("WEST LION","A Intrepid Drama of a Butler And a Lumberjack who must Challenge a Database Administrator in A Manhattan Penthouse");
+        map.put("WESTWARD SEABISCUIT","A Lacklusture Tale of a Butler And a Husband who must Face a Boy in Ancient China");
+        map.put("WHALE BIKINI","A Intrepid Story of a Pastry Chef And a Database Administrator who must Kill a Feminist in A MySQL Convention");
+        map.put("WHISPERER GIANT","A Intrepid Story of a Dentist And a Hunter who must Confront a Monkey in Ancient Japan");
+        map.put("WIFE TURN","A Awe-Inspiring Epistle of a Teacher And a Feminist who must Confront a Pioneer in Ancient Japan");
+        map.put("WILD APOLLO","A Beautiful Story of a Monkey And a Sumo Wrestler who must Conquer a A Shark in A MySQL Convention");
+        map.put("WILLOW TRACY","A Brilliant Panorama of a Boat And a Astronaut who must Challenge a Teacher in A Manhattan Penthouse");
+        map.put("WIND PHANTOM","A Touching Saga of a Madman And a Forensic Psychologist who must Build a Sumo Wrestler in An Abandoned Mine Shaft");
+        map.put("WINDOW SIDE","A Astounding Character Study of a Womanizer And a Hunter who must Escape a Robot in A Monastery");
+        map.put("WISDOM WORKER","A Unbelieveable Saga of a Forensic Psychologist And a Student who must Face a Squirrel in The First Manned Space Station");
+        map.put("WITCHES PANIC","A Awe-Inspiring Drama of a Secret Agent And a Hunter who must Fight a Moose in Nigeria");
+        map.put("WIZARD COLDBLOODED","A Lacklusture Display of a Robot And a Girl who must Defeat a Sumo Wrestler in A MySQL Convention");
+        map.put("WOLVES DESIRE","A Fast-Paced Drama of a Squirrel And a Robot who must Succumb a Technical Writer in A Manhattan Penthouse");
+        map.put("WOMEN DORADO","A Insightful Documentary of a Waitress And a Butler who must Vanquish a Composer in Australia");
+        map.put("WON DARES","A Unbelieveable Documentary of a Teacher And a Monkey who must Defeat a Explorer in A U-Boat");
+        map.put("WONDERFUL DROP","A Boring Panorama of a Woman And a Madman who must Overcome a Butler in A U-Boat");
+        map.put("WONDERLAND CHRISTMAS","A Awe-Inspiring Character Study of a Waitress And a Car who must Pursue a Mad Scientist in The First Manned Space Station");
+        map.put("WONKA SEA","A Brilliant Saga of a Boat And a Mad Scientist who must Meet a Moose in Ancient India");
+        map.put("WORDS HUNTER","A Action-Packed Reflection of a Composer And a Mad Scientist who must Face a Pioneer in A MySQL Convention");
+        map.put("WORKER TARZAN","A Action-Packed Yarn of a Secret Agent And a Technical Writer who must Battle a Sumo Wrestler in The First Manned Space Station");
+        map.put("WORKING MICROCOSMOS","A Stunning Epistle of a Dentist And a Dog who must Kill a Madman in Ancient China");
+        map.put("WORLD LEATHERNECKS","A Unbelieveable Tale of a Pioneer And a Astronaut who must Overcome a Robot in An Abandoned Amusement Park");
+        map.put("WORST BANGER","A Thrilling Drama of a Madman And a Dentist who must Conquer a Boy in The Outback");
+        map.put("WRATH MILE","A Intrepid Reflection of a Technical Writer And a Hunter who must Defeat a Sumo Wrestler in A Monastery");
+        map.put("WRONG BEHAVIOR","A Emotional Saga of a Crocodile And a Sumo Wrestler who must Discover a Mad Cow in New Orleans");
+        map.put("WYOMING STORM","A Awe-Inspiring Panorama of a Robot And a Boat who must Overcome a Feminist in A U-Boat");
+        map.put("YENTL IDAHO","A Amazing Display of a Robot And a Astronaut who must Fight a Womanizer in Berlin");
+        map.put("YOUNG LANGUAGE","A Unbelieveable Yarn of a Boat And a Database Administrator who must Meet a Boy in The First Manned Space Station");
+        map.put("YOUTH KICK","A Touching Drama of a Teacher And a Cat who must Challenge a Technical Writer in A U-Boat");
+        map.put("ZHIVAGO CORE","A Fateful Yarn of a Composer And a Man who must Face a Boy in The Canadian Rockies");
+        map.put("ZOOLANDER FICTION","A Fateful Reflection of a Waitress And a Boat who must Discover a Sumo Wrestler in Ancient China");
+        map.put("ZORRO ARK","A Intrepid Panorama of a Mad Scientist And a Boy who must Redeem a Boy in A Monastery");
+
 
         Random rand = new Random();
         ChromeOptions options = new ChromeOptions();
@@ -787,11 +1010,15 @@ public class ImageScraper {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         ArrayList<String> imgLinks = new ArrayList<>();
 
-        for (String title:titles) {
+        Iterator it = map.entrySet().iterator();
+        while (it.hasNext()){
+            Map.Entry pair = (Map.Entry) it.next();
             WebElement input = driver.findElement(By.xpath("//*[@class='TextInput__Input-sc-1qnfwgf-1 fxymfk PromptConfig__Input-sc-1p3eskz-0 gXZqjV']"));
             input.clear();
-            input.sendKeys(title);
-            WebElement artStyle = driver.findElement(By.xpath("//img[@alt='Baroque']"));
+            String entry = "";
+            entry = pair.getValue().toString().substring(0,50);
+            input.sendKeys(entry);
+            WebElement artStyle = driver.findElement(By.xpath("//img[@alt='Realistic']"));
             artStyle.click();
 
             WebElement createButton = driver.findElement(By.xpath("//*[@class='Button-sc-1fhcnov-2 iMLenh CreateButton__StyledCreateButton-sc-1yr4ch-0 fMNHJW']"));
@@ -803,7 +1030,7 @@ public class ImageScraper {
             imgLinks.add(imgLink);
 
             BufferedImage image = ImageIO.read(new URL(imgLink));
-            File outputFile = new File("images/"+title+".png");
+            File outputFile = new File("images/"+pair.getKey().toString()+".png");
             ImageIO.write(image, "png", outputFile);
 
             WebElement backButton = driver.findElement(By.xpath("//*[@class='Button-sc-1fhcnov-2 kiWTtt IconButton__StyledButton-sc-145zyhb-0 fDstFR BackButton__StyledBackButton-sc-188wvui-0 diaFKG']"));
