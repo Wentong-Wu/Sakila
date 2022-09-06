@@ -95,7 +95,6 @@ public class ImageScraper {
         map.put("BIRCH ANTITRUST","A Fanciful Panorama of a Husband And a Pioneer who must Outgun a Dog in A Baloon");
         map.put("BIRD INDEPENDENCE","A Thrilling Documentary of a Car And a Student who must Sink a Hunter in The Canadian Rockies");
         map.put("BIRDCAGE CASPER","A Fast-Paced Saga of a Frisbee And a Astronaut who must Overcome a Feminist in Ancient India");
-        map.put("BIRDS PERDITION","A Boring Story of a Womanizer And a Pioneer who must Face a Dog in California");
         map.put("BLACKOUT PRIVATE","A Intrepid Yarn of a Pastry Chef And a Mad Scientist who must Challenge a Secret Agent in Ancient Japan");
         map.put("BLADE POLISH","A Thoughtful Character Study of a Frisbee And a Pastry Chef who must Fight a Dentist in The First Manned Space Station");
         map.put("BLANKET BEVERLY","A Emotional Documentary of a Student And a Girl who must Build a Boat in Nigeria");
@@ -156,7 +155,6 @@ public class ImageScraper {
         map.put("CHAPLIN LICENSE","A Boring Drama of a Dog And a Forensic Psychologist who must Outrace a Explorer in Ancient India");
         map.put("CHARADE DUFFEL","A Action-Packed Display of a Man And a Waitress who must Build a Dog in A MySQL Convention");
         map.put("CHARIOTS CONSPIRACY","A Unbelieveable Epistle of a Robot And a Husband who must Chase a Robot in The First Manned Space Station");
-        map.put("CHASING FIGHT","A Astounding Saga of a Technical Writer And a Butler who must Battle a Butler in A Shark Tank");
         map.put("CHEAPER CLYDE","A Emotional Character Study of a Pioneer And a Girl who must Discover a Dog in Ancient Japan");
         map.put("CHICAGO NORTH","A Fateful Yarn of a Mad Cow And a Waitress who must Battle a Student in California");
         map.put("CHICKEN HELLFIGHTERS","A Emotional Drama of a Dog And a Explorer who must Outrace a Technical Writer in Australia");
@@ -201,7 +199,6 @@ public class ImageScraper {
         map.put("CONVERSATION DOWNHILL","A Taut Character Study of a Husband And a Waitress who must Sink a Squirrel in A MySQL Convention");
         map.put("CORE SUIT","A Unbelieveable Tale of a Car And a Explorer who must Confront a Boat in A Manhattan Penthouse");
         map.put("COWBOY DOOM","A Astounding Drama of a Boy And a Lumberjack who must Fight a Butler in A Baloon");
-        map.put("CRAFT OUTFIELD","A Lacklusture Display of a Explorer And a Hunter who must Succumb a Database Administrator in A Baloon Factory");
         map.put("CRANES RESERVOIR","A Fanciful Documentary of a Teacher And a Dog who must Outgun a Forensic Psychologist in A Baloon Factory");
         map.put("CRAZY HOME","A Fanciful Panorama of a Boy And a Woman who must Vanquish a Database Administrator in The Outback");
         map.put("CREATURES SHAKESPEARE","A Emotional Drama of a Womanizer And a Squirrel who must Vanquish a Crocodile in Ancient India");
@@ -233,7 +230,6 @@ public class ImageScraper {
         map.put("DAWN POND","A Thoughtful Documentary of a Dentist And a Forensic Psychologist who must Defeat a Waitress in Berlin");
         map.put("DAY UNFAITHFUL","A Stunning Documentary of a Composer And a Mad Scientist who must Find a Technical Writer in A U-Boat");
         map.put("DAZED PUNK","A Action-Packed Story of a Pioneer And a Technical Writer who must Discover a Forensic Psychologist in An Abandoned Amusement Park");
-        map.put("DECEIVER BETRAYED","A Taut Story of a Moose And a Squirrel who must Build a Husband in Ancient India");
         map.put("DEEP CRUSADE","A Amazing Tale of a Crocodile And a Squirrel who must Discover a Composer in Australia");
         map.put("DEER VIRGINIAN","A Thoughtful Story of a Mad Cow And a Womanizer who must Overcome a Mad Scientist in Soviet Georgia");
         map.put("DELIVERANCE MULHOLLAND","A Astounding Saga of a Monkey And a Moose who must Conquer a Butler in A Shark Tank");
@@ -257,7 +253,6 @@ public class ImageScraper {
         map.put("DOLLS RAGE","A Thrilling Display of a Pioneer And a Frisbee who must Escape a Teacher in The Outback");
         map.put("DONNIE ALLEY","A Awe-Inspiring Tale of a Butler And a Frisbee who must Vanquish a Teacher in Ancient Japan");
         map.put("DOOM DANCING","A Astounding Panorama of a Car And a Mad Scientist who must Battle a Lumberjack in A MySQL Convention");
-        map.put("DOORS PRESIDENT","A Awe-Inspiring Display of a Squirrel And a Woman who must Overcome a Boy in The Gulf of Mexico");
         map.put("DORADO NOTTING","A Action-Packed Tale of a Sumo Wrestler And a A Shark who must Meet a Frisbee in California");
         map.put("DOUBLE WRATH","A Thoughtful Yarn of a Womanizer And a Dog who must Challenge a Madman in The Gulf of Mexico");
         map.put("DOUBTFIRE LABYRINTH","A Intrepid Panorama of a Butler And a Composer who must Meet a Mad Cow in The Sahara Desert");
@@ -398,7 +393,6 @@ public class ImageScraper {
         map.put("GROSSE WONDERFUL","A Epic Drama of a Cat And a Explorer who must Redeem a Moose in Australia");
         map.put("GROUNDHOG UNCUT","A Brilliant Panorama of a Astronaut And a Technical Writer who must Discover a Butler in A Manhattan Penthouse");
         map.put("GUMP DATE","A Intrepid Yarn of a Explorer And a Student who must Kill a Husband in An Abandoned Mine Shaft");
-        map.put("GUN BONNIE","A Boring Display of a Sumo Wrestler And a Husband who must Build a Waitress in The Gulf of Mexico");
         map.put("GUNFIGHT MOON","A Epic Reflection of a Pastry Chef And a Explorer who must Reach a Dentist in The Sahara Desert");
         map.put("GUNFIGHTER MUSSOLINI","A Touching Saga of a Robot And a Boy who must Kill a Man in Ancient Japan");
         map.put("GUYS FALCON","A Boring Story of a Woman And a Feminist who must Redeem a Squirrel in A U-Boat");
@@ -572,7 +566,6 @@ public class ImageScraper {
         map.put("MASKED BUBBLE","A Fanciful Documentary of a Pioneer And a Boat who must Pursue a Pioneer in An Abandoned Mine Shaft");
         map.put("MASSACRE USUAL","A Fateful Reflection of a Waitress And a Crocodile who must Challenge a Forensic Psychologist in California");
         map.put("MASSAGE IMAGE","A Fateful Drama of a Frisbee And a Crocodile who must Vanquish a Dog in The First Manned Space Station");
-        map.put("MATRIX SNOWMAN","A Action-Packed Saga of a Womanizer And a Woman who must Overcome a Student in California");
         map.put("MAUDE MOD","A Beautiful Documentary of a Forensic Psychologist And a Cat who must Reach a Astronaut in Nigeria");
         map.put("MEET CHOCOLATE","A Boring Documentary of a Dentist And a Butler who must Confront a Monkey in A MySQL Convention");
         map.put("MEMENTO ZOOLANDER","A Touching Epistle of a Squirrel And a Explorer who must Redeem a Pastry Chef in The Sahara Desert");
@@ -601,7 +594,6 @@ public class ImageScraper {
         map.put("MONSTER SPARTACUS","A Fast-Paced Story of a Waitress And a Cat who must Fight a Girl in Australia");
         map.put("MONTEREY LABYRINTH","A Awe-Inspiring Drama of a Monkey And a Composer who must Escape a Feminist in A U-Boat");
         map.put("MONTEZUMA COMMAND","A Thrilling Reflection of a Waitress And a Butler who must Battle a Butler in A Jet Boat");
-        map.put("MOON BUNCH","A Beautiful Tale of a Astronaut And a Mad Cow who must Challenge a Cat in A Baloon Factory");
         map.put("MOONSHINE CABIN","A Thoughtful Display of a Astronaut And a Feminist who must Chase a Frisbee in A Jet Boat");
         map.put("MOONWALKER FOOL","A Epic Drama of a Feminist And a Pioneer who must Sink a Composer in New Orleans");
         map.put("MOSQUITO ARMAGEDDON","A Thoughtful Character Study of a Waitress And a Feminist who must Build a Teacher in Ancient Japan");
@@ -717,12 +709,10 @@ public class ImageScraper {
         map.put("RAGE GAMES","A Fast-Paced Saga of a Astronaut And a Secret Agent who must Escape a Hunter in An Abandoned Amusement Park");
         map.put("RAGING AIRPLANE","A Astounding Display of a Secret Agent And a Technical Writer who must Escape a Mad Scientist in A Jet Boat");
         map.put("RAIDERS ANTITRUST","A Amazing Drama of a Teacher And a Feminist who must Meet a Woman in The First Manned Space Station");
-        map.put("RAINBOW SHOCK","A Action-Packed Story of a Hunter And a Boy who must Discover a Lumberjack in Ancient India");
         map.put("RANDOM GO","A Fateful Drama of a Frisbee And a Student who must Confront a Cat in A Shark Tank");
         map.put("RANGE MOONWALKER","A Insightful Documentary of a Hunter And a Dentist who must Confront a Crocodile in A Baloon");
         map.put("REAP UNFAITHFUL","A Thrilling Epistle of a Composer And a Sumo Wrestler who must Challenge a Mad Cow in A MySQL Convention");
         map.put("REAR TRADING","A Awe-Inspiring Reflection of a Forensic Psychologist And a Secret Agent who must Succumb a Pastry Chef in Soviet Georgia");
-        map.put("REBEL AIRPORT","A Intrepid Yarn of a Database Administrator And a Boat who must Outrace a Husband in Ancient India");
         map.put("RECORDS ZORRO","A Amazing Drama of a Mad Scientist And a Composer who must Build a Husband in The Outback");
         map.put("REDEMPTION COMFORTS","A Emotional Documentary of a Dentist And a Woman who must Battle a Mad Scientist in Ancient China");
         map.put("REDS POCUS","A Lacklusture Yarn of a Sumo Wrestler And a Squirrel who must Redeem a Monkey in Soviet Georgia");
@@ -747,7 +737,6 @@ public class ImageScraper {
         map.put("ROMAN PUNK","A Thoughtful Panorama of a Mad Cow And a Student who must Battle a Forensic Psychologist in Berlin");
         map.put("ROOF CHAMPION","A Lacklusture Reflection of a Car And a Explorer who must Find a Monkey in A Baloon");
         map.put("ROOM ROMAN","A Awe-Inspiring Panorama of a Composer And a Secret Agent who must Sink a Composer in A Shark Tank");
-        map.put("ROOTS REMEMBER","A Brilliant Drama of a Mad Cow And a Hunter who must Escape a Hunter in Berlin");
         map.put("ROSES TREASURE","A Astounding Panorama of a Monkey And a Secret Agent who must Defeat a Woman in The First Manned Space Station");
         map.put("ROUGE SQUAD","A Awe-Inspiring Drama of a Astronaut And a Frisbee who must Conquer a Mad Scientist in Australia");
         map.put("ROXANNE REBEL","A Astounding Story of a Pastry Chef And a Database Administrator who must Fight a Man in The Outback");
@@ -888,7 +877,6 @@ public class ImageScraper {
         map.put("TEQUILA PAST","A Action-Packed Panorama of a Mad Scientist And a Robot who must Challenge a Student in Nigeria");
         map.put("TERMINATOR CLUB","A Touching Story of a Crocodile And a Girl who must Sink a Man in The Gulf of Mexico");
         map.put("TEXAS WATCH","A Awe-Inspiring Yarn of a Student And a Teacher who must Fight a Teacher in An Abandoned Amusement Park");
-        map.put("THEORY MERMAID","A Fateful Yarn of a Composer And a Monkey who must Vanquish a Womanizer in The First Manned Space Station");
         map.put("THIEF PELICAN","A Touching Documentary of a Madman And a Mad Scientist who must Outrace a Feminist in An Abandoned Mine Shaft");
         map.put("THIN SAGEBRUSH","A Emotional Drama of a Husband And a Lumberjack who must Build a Cat in Ancient India");
         map.put("TIES HUNGER","A Insightful Saga of a Astronaut And a Explorer who must Pursue a Mad Scientist in A U-Boat");
@@ -1016,7 +1004,13 @@ public class ImageScraper {
             WebElement input = driver.findElement(By.xpath("//*[@class='TextInput__Input-sc-1qnfwgf-1 fxymfk PromptConfig__Input-sc-1p3eskz-0 gXZqjV']"));
             input.clear();
             String entry = "";
-            entry = pair.getValue().toString().substring(0,50);
+            if(pair.getValue().toString().length() > 100)
+            {
+                entry = pair.getValue().toString().substring(0,99);
+            }
+            else {
+                entry = pair.getValue().toString();
+            }
             input.sendKeys(entry);
             WebElement artStyle = driver.findElement(By.xpath("//img[@alt='Realistic']"));
             artStyle.click();
