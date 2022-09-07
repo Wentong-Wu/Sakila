@@ -109,6 +109,10 @@ public class SakilaAppApplication {
 		return pokeFilms.toString();
 	}
 
+	@GetMapping("/GetFilmByCate/{id}")
+	@ResponseBody
+	public Iterable<Film> getFilmByCate(@PathVariable Integer id) { return filmRepository.getCategoryFilm(id);}
+
 	@GetMapping("/GetPokeFilm/{id}")
 	@ResponseBody
 	public Optional<Film> getPokeFilm(@PathVariable Integer id){
