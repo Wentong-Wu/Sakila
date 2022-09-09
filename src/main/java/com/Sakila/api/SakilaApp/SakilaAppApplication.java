@@ -103,15 +103,16 @@ public class SakilaAppApplication {
 			double rental_rate = filmRepository.getFilmRentalRate(FilmIDGenerate.get(i)).get();
 			int length = filmRepository.getFilmLength(FilmIDGenerate.get(i)).get();
 			double replacement_cost = filmRepository.getFilmReplacementCost(FilmIDGenerate.get(i)).get();
-			pokeFilm = new Film(FilmIDGenerate.get(i),title,description,rental_duration,rental_rate,length,replacement_cost);
+			String rating = filmRepository.getFilmRating(FilmIDGenerate.get(i)).get();
+			pokeFilm = new Film(FilmIDGenerate.get(i),title,description,rental_duration,rental_rate,length,replacement_cost,rating);
 			pokeFilms.add(pokeFilm.toJson());
 		}
 		return pokeFilms.toString();
 	}
 
-	@GetMapping("/GetFilmByCate/{id}")
+	@GetMapping("/GetFilmByCate")
 	@ResponseBody
-	public Iterable<Film> getFilmByCate(@PathVariable Integer id) { return filmRepository.getCategoryFilm(id);}
+	public Iterable<Film> getFilmByCate() { return filmRepository.getCategoryFilm();}
 
 	@GetMapping("/GetPokeFilm/{id}")
 	@ResponseBody

@@ -23,10 +23,10 @@ public class Film {
     double rental_rate;
     int length;
     double replacement_cost;
-
+    String rating;
     //Constructor
 
-    public Film(int id, String title, String description, int rental_duration, double rental_rate, int length, double replacement_cost){
+    public Film(int id, String title, String description, int rental_duration, double rental_rate, int length, double replacement_cost, String rating){
         this.film_id = id;
         this.title = title;
         this.description = description;
@@ -34,6 +34,7 @@ public class Film {
         this.rental_rate = rental_rate;
         this.length = length;
         this.replacement_cost = replacement_cost;
+        this.rating = rating;
     }
     public Film(){}
 
@@ -47,6 +48,14 @@ public class Film {
         jsonObject.put("Length",this.length);
         jsonObject.put("Replacement_Cost",this.replacement_cost);
         return jsonObject;
+    }
+
+    public String getRating() {
+        return rating;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
     }
 
     //Methods
