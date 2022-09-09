@@ -6,6 +6,7 @@ import org.json.JSONObject;
 import org.openqa.selenium.json.Json;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "film")
@@ -13,6 +14,14 @@ public class Film {
     @Id
     @Column(name = "film_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @ManyToMany
+    @JoinTable(
+            name = "film_category",
+            joinColumns = @JoinColumn(name = "film_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
+    Set<Category> category;
 
     //Attribute
 
@@ -25,6 +34,14 @@ public class Film {
     double replacement_cost;
     String rating;
     //Constructor
+
+    public Set<Category> getCategory() {
+        return category;
+    }
+
+    public void setCategory(Set<Category> category) {
+        this.category = category;
+    }
 
     public Film(int id, String title, String description, int rental_duration, double rental_rate, int length, double replacement_cost, String rating){
         this.film_id = id;

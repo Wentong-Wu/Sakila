@@ -10,10 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.*;
 
 import javax.swing.text.html.Option;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
 
 @SpringBootApplication
 @RestController
@@ -24,12 +21,13 @@ public class SakilaAppApplication {
 	@Autowired
 	private ActorRepository actorRepository;
 	private FilmRepository filmRepository;
+	private CategoryRepository categoryRepository;
 
 
-
-	public SakilaAppApplication(FilmRepository filmRepository, ActorRepository actorRepository){
+	public SakilaAppApplication(FilmRepository filmRepository, ActorRepository actorRepository, CategoryRepository categoryRepository){
 		this.filmRepository = filmRepository;
 		this.actorRepository = actorRepository;
+		this.categoryRepository = categoryRepository;
 	}
 
 	public static void main(String[] args) {
@@ -83,12 +81,6 @@ public class SakilaAppApplication {
 		return filmRepository.findById(id);
 	}
 
-	@GetMapping("/AiPokeFilms")
-	@ResponseBody
-	public Iterable<Film> getAiPokeFilms(){
-		return filmRepository.findAll();
-	}
-
 	@GetMapping("RandomEnemyPokeFilm")
 	@ResponseBody
 	public String generateEnemy(){
@@ -110,13 +102,16 @@ public class SakilaAppApplication {
 		return pokeFilms.toString();
 	}
 
+	@GetMapping("/allCategory")
+	@ResponseBody
+	public Iterable<Category> getAllCategory(){return categoryRepository.findAll();}
+
+	@GetMapping("/CategoryByFilmID/{id}")
+	@ResponseBody
+	public Optional<Category> getCategoryByFilmID(@PathVariable Integer id){return categoryRepository.findById(id);}
+
 	@GetMapping("/GetFilmByCate")
 	@ResponseBody
 	public Iterable<Film> getFilmByCate() { return filmRepository.getCategoryFilm();}
 
-	@GetMapping("/GetPokeFilm/{id}")
-	@ResponseBody
-	public Optional<Film> getPokeFilm(@PathVariable Integer id){
-		return filmRepository.getAllPokeData(id);
-	}
 }
