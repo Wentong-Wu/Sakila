@@ -71,6 +71,10 @@ public class SakilaAppApplication {
 		return "Updated!!!";
 	}
 
+	@GetMapping("/generateRandom")
+	@ResponseBody
+	public Iterable<Film> getGenerateRandom(){return filmRepository.getRandom6Films();}
+
 	@GetMapping("allFilms")
 	@ResponseBody
 	public Iterable<Film> getAllFilms(){return filmRepository.findAll();}
@@ -79,27 +83,6 @@ public class SakilaAppApplication {
 	@ResponseBody
 	public Optional<Film> getFilmByID(@PathVariable Integer id){
 		return filmRepository.findById(id);
-	}
-
-	@GetMapping("RandomEnemyPokeFilm")
-	@ResponseBody
-	public String generateEnemy(){
-		ArrayList<Integer> FilmIDGenerate = new ArrayList<Integer>();
-		ArrayList<JSONObject> pokeFilms = new ArrayList<JSONObject>();
-		Film pokeFilm = null;
-		for(int i=0;i<6;i++) {
-			FilmIDGenerate.add(rand.nextInt(1, 1000));
-			String title = filmRepository.getFilmTitle(FilmIDGenerate.get(i)).get();
-			String description = filmRepository.getFilmDescription(FilmIDGenerate.get(i)).get();
-			int rental_duration = filmRepository.getFilmRentalDuration(FilmIDGenerate.get(i)).get();
-			double rental_rate = filmRepository.getFilmRentalRate(FilmIDGenerate.get(i)).get();
-			int length = filmRepository.getFilmLength(FilmIDGenerate.get(i)).get();
-			double replacement_cost = filmRepository.getFilmReplacementCost(FilmIDGenerate.get(i)).get();
-			String rating = filmRepository.getFilmRating(FilmIDGenerate.get(i)).get();
-			pokeFilm = new Film(FilmIDGenerate.get(i),title,description,rental_duration,rental_rate,length,replacement_cost,rating);
-			pokeFilms.add(pokeFilm.toJson());
-		}
-		return pokeFilms.toString();
 	}
 
 	@GetMapping("/allCategory")
