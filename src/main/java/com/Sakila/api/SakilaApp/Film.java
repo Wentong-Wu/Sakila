@@ -1,19 +1,25 @@
 package com.Sakila.api.SakilaApp;
 
-import com.fasterxml.jackson.databind.util.JSONPObject;
-import com.google.gson.JsonObject;
 import org.json.JSONObject;
-import org.openqa.selenium.json.Json;
 
 import javax.persistence.*;
 import java.util.Set;
 
+
 @Entity
 @Table(name = "film")
 public class Film {
+
     @Id
+
+
     @Column(name = "film_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+
+    //Attribute
+
+    int film_id;
 
     @ManyToMany
     @JoinTable(
@@ -22,10 +28,6 @@ public class Film {
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
     Set<Category> category;
-
-    //Attribute
-
-    int film_id;
     String title;
     String description;
     int rental_duration;
@@ -35,13 +37,7 @@ public class Film {
     String rating;
     //Constructor
 
-    public Set<Category> getCategory() {
-        return category;
-    }
 
-    public void setCategory(Set<Category> category) {
-        this.category = category;
-    }
 
     public Film(int id, String title, String description, int rental_duration, double rental_rate, int length, double replacement_cost, String rating){
         this.film_id = id;
@@ -65,6 +61,14 @@ public class Film {
         jsonObject.put("Length",this.length);
         jsonObject.put("Replacement_Cost",this.replacement_cost);
         return jsonObject;
+    }
+
+    public Set<Category> getCategory() {
+        return category;
+    }
+
+    public void setCategory(Set<Category> category) {
+        this.category = category;
     }
 
     public String getRating() {
