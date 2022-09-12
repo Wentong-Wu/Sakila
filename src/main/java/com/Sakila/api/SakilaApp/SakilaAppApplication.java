@@ -17,7 +17,7 @@ import java.util.*;
 @RequestMapping("/Home")
 @CrossOrigin
 public class SakilaAppApplication {
-	Random rand = new Random();
+	private Random rand = new Random();
 	@Autowired
 	private ActorRepository actorRepository;
 	private FilmRepository filmRepository;
