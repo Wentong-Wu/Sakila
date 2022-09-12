@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.*;
 
 import javax.swing.text.html.Option;
+import java.security.SecureRandom;
 import java.util.*;
 
 @SpringBootApplication
@@ -17,7 +18,7 @@ import java.util.*;
 @RequestMapping("/Home")
 @CrossOrigin
 public class SakilaAppApplication {
-	private Random rand = new Random();
+	SecureRandom rand = new SecureRandom();
 	@Autowired
 	private ActorRepository actorRepository;
 	private FilmRepository filmRepository;
