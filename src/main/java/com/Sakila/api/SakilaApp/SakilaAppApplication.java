@@ -31,6 +31,7 @@ public class SakilaAppApplication {
 		this.categoryRepository = categoryRepository;
 	}
 
+
 	public static void main(String[] args) {
 		SpringApplication.run(SakilaAppApplication.class, args);
 	}

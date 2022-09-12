@@ -22,17 +22,6 @@ public class ImageScraper {
     public static void main(String[] args) throws InterruptedException, IOException {
 
         String titles[] = {
-                "BUNCH MINDS",
-                "BUTCH PANTHER",
-                "BUTTERFLY CHOCOLAT",
-                "CABIN FLASH",
-                "CADDYSHACK JEDI",
-                "CALENDAR GUNFIGHT",
-                "CALIFORNIA BIRDS",
-                "CAMELOT VACATION",
-                "CAMPUS REMEMBER",
-                "CANDIDATE PERDITION",
-                "CANDLES GRAPES",
                 "CANYON STOCK",
                 "CAPER MOTIONS",
                 "CARIBBEAN LIBERTY",
