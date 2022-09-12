@@ -48,12 +48,12 @@ public class SakilaAppApplication {
 		return actorRepository.findById(id);
 	}
 
-	@PostMapping("/Actor/add")
-	@ResponseBody
-	public String addActor(@RequestBody Actor actor){
-		actorRepository.save(actor);
-		return "Actor has been added!";
-	}
+//	@PostMapping("/Actor/add")
+//	@ResponseBody
+//	public String addActor(@RequestBody Actor actor){
+//		actorRepository.save(actor);
+//		return "Actor has been added!";
+//	}
 
 	@DeleteMapping("/Actor/delete/{id}")
 	@ResponseBody
