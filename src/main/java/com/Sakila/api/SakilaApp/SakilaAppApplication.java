@@ -62,15 +62,15 @@ public class SakilaAppApplication {
 		return "actor ID "+id+" has been deleted";
 	}
 
-	@PostMapping("/Actor/update/{id}")
-	@ResponseBody
-	public String updateActor(@PathVariable Integer id, @RequestParam String first_name, @RequestParam String last_name){
-		Actor actor = actorRepository.findById(id).get();
-		actor.first_name = first_name;
-		actor.last_name = last_name;
-		actorRepository.save(actor);
-		return "Updated!!!";
-	}
+//	@PostMapping("/Actor/update/{id}")
+//	@ResponseBody
+//	public String updateActor(@PathVariable Integer id, @RequestParam String first_name, @RequestParam String last_name){
+//		Actor actor = actorRepository.findById(id).get();
+//		actor.first_name = first_name;
+//		actor.last_name = last_name;
+//		actorRepository.save(actor);
+//		return "Updated!!!";
+//	}
 
 	@GetMapping("/generateRandom")
 	@ResponseBody
