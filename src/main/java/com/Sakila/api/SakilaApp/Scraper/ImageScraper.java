@@ -13,6 +13,7 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.security.SecureRandom;
 import java.time.Duration;
 import java.util.*;
 
@@ -976,7 +977,7 @@ public class ImageScraper {
         map.put("ZORRO ARK","A Intrepid Panorama of a Mad Scientist And a Boy who must Redeem a Boy in A Monastery");
 
 
-        Random rand = new Random();
+        SecureRandom rand = new SecureRandom();
         ChromeOptions options = new ChromeOptions();
         ChromeDriver driver = new ChromeDriver(options);
         driver.get("https://app.wombo.art/");
