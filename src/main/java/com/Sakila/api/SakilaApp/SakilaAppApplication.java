@@ -16,7 +16,7 @@ import java.util.*;
 @SpringBootApplication
 @RestController
 @RequestMapping("/Home")
-@CrossOrigin
+@CrossOrigin("*")
 public class SakilaAppApplication {
 	SecureRandom rand = new SecureRandom();
 	@Autowired
@@ -72,6 +72,16 @@ public class SakilaAppApplication {
 //		actorRepository.save(actor);
 //		return "Updated!!!";
 //	}
+
+	@PostMapping("/Film/update")
+	@ResponseBody
+	public String updateFilm(@RequestBody Object Request){
+//		Film film = filmRepository.findById(id).get();
+//		film.title = name;
+//		filmRepository.save(film);
+		System.out.println(Request.getClass().getName());
+		return "UPDATED";
+	}
 
 	@GetMapping("/generateRandom")
 	@ResponseBody
