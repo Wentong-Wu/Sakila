@@ -75,13 +75,14 @@ public class SakilaAppApplication {
 
 	@PostMapping("/Film/update")
 	@ResponseBody
-	public String updateFilm(@RequestBody Object Request){
-//		Film film = filmRepository.findById(id).get();
-//		film.title = name;
-//		filmRepository.save(film);
-		System.out.println(Request.getClass().getName());
+	public String updateFilm(@RequestBody Film Request){
+		Film film = filmRepository.findById(Request.film_id).get();
+		film.title = Request.title;
+		filmRepository.save(film);
+		System.out.println(Request.film_id +","+ Request.title);
 		return "UPDATED";
 	}
+
 
 	@GetMapping("/generateRandom")
 	@ResponseBody

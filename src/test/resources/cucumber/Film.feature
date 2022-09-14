@@ -1,12 +1,12 @@
-Feature: Display all films on load
+Feature: Display films on load
   Scenario Outline: Verifying the films generated
     Given The application is running
     When the "<page>" page is open
     And the api connects
-    Then display list of all films
+    Then display list of films
     Examples:
       | page |
-      | Film |
-      | Fight |
       | Home |
+      | Fight |
+      | Film |
 

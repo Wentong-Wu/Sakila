@@ -1,7 +1,5 @@
 package com.Sakila.api.SakilaApp;
 
-import org.json.JSONObject;
-
 import javax.persistence.*;
 import java.util.Set;
 
@@ -29,6 +27,7 @@ public class Film {
     )
     Set<Category> category;
     String title;
+
     String description;
     int rental_duration;
     double rental_rate;
@@ -50,18 +49,6 @@ public class Film {
         this.rating = rating;
     }
     public Film(){}
-
-    public JSONObject toJson(){
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("ID",this.film_id);
-        jsonObject.put("Description", this.description);
-        jsonObject.put("Name",this.title);
-        jsonObject.put("Rental_Duration",this.rental_duration);
-        jsonObject.put("Rental_Rate",this.rental_rate);
-        jsonObject.put("Length",this.length);
-        jsonObject.put("Replacement_Cost",this.replacement_cost);
-        return jsonObject;
-    }
 
     public Set<Category> getCategory() {
         return category;
