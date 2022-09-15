@@ -124,5 +124,18 @@ public class Testing {
         Iterable<Category> Actual = sakilaAppApplication.getAllCategory();
         Assertions.assertEquals(Expected, Actual, "Error");
     }
-
+    @Test
+    void TestGetCategory(){
+        Category category = new Category(10,"Home");
+        Assertions.assertEquals(10,category.getCategory_id(),"Test 'getCategory_id' failed");
+        Assertions.assertEquals("Home",category.getName(),"Test 'getName' failed");
+    }
+    @Test
+    void TestSetCategory(){
+        Category category = new Category();
+        category.setCategory_id(20);
+        category.setName("LOL");
+        Assertions.assertEquals(20,category.getCategory_id(),"Test 'setCategory_id' failed");
+        Assertions.assertEquals("LOL",category.getName(),"Test 'setName' failed");
+    }
 }
