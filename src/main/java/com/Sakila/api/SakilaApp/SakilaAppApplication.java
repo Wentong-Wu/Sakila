@@ -16,7 +16,7 @@ import java.util.*;
 @SpringBootApplication
 @RestController
 @RequestMapping("/Home")
-@CrossOrigin("*")
+@CrossOrigin("*") //Sensitive
 public class SakilaAppApplication {
 	SecureRandom rand = new SecureRandom();
 	@Autowired
