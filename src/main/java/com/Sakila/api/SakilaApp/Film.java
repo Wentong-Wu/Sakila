@@ -36,8 +36,6 @@ public class Film {
     String rating;
     //Constructor
 
-
-
     public Film(int id, String title, String description, int rental_duration, double rental_rate, int length, double replacement_cost, String rating){
         this.film_id = id;
         this.title = title;
@@ -48,11 +46,6 @@ public class Film {
         this.replacement_cost = replacement_cost;
         this.rating = rating;
     }
-    public Film(int id, String title){
-        this.film_id = id;
-        this.title = title;
-    }
-
     public Film(){}
 
     public Set<Category> getCategory() {
