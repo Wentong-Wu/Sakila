@@ -48,6 +48,11 @@ public class Film {
         this.replacement_cost = replacement_cost;
         this.rating = rating;
     }
+    public Film(int id, String title){
+        this.film_id = id;
+        this.title = title;
+    }
+
     public Film(){}
 
     public Set<Category> getCategory() {

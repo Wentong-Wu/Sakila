@@ -7,7 +7,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 
 import java.lang.reflect.Array;
@@ -64,6 +69,7 @@ public class Testing {
     @Test
     void DeleteFilmById(){
         Film testFilm = new Film(10,"WOW","POG",1,20.06,32,12.45,"wo");
+        sakilaAppApplication.addFilm(testFilm);
         sakilaAppApplication.deleteFilm(10);
         verify(filmRepository).deleteById(testFilm.getFilm_id());
         //Test to see if the function is being called. Does not test the data to see if it is actually deleted.
@@ -123,6 +129,19 @@ public class Testing {
         Iterable<Category> Expected = categoryIterable;
         Iterable<Category> Actual = sakilaAppApplication.getAllCategory();
         Assertions.assertEquals(Expected, Actual, "Error");
+    }
+    @Test
+    void TestGetFilmByCategory(){
+        List<Film> filmList = new ArrayList<>();
+        Film testFilm = new Film(10,"WOW","POG",1,20.06,32,12.45,"wo");
+        Film testFilm2 = new Film(11,"WOW","POG",1,20.06,32,12.45,"wo");
+        filmList.add(testFilm);
+        filmList.add(testFilm2);
+        Iterable<Film> filmIterable = filmList;
+        when(filmRepository.getCategoryFilm()).thenReturn(filmIterable);
+        Iterable<Film> Expected = filmIterable;
+        Iterable<Film> Actual = filmRepository.getCategoryFilm();
+        Assertions.assertEquals(Expected,Actual,"Test 'getFilmByCate' Failed");
     }
     @Test
     void TestGetCategory(){
