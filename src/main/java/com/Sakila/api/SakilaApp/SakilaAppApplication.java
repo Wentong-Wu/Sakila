@@ -76,12 +76,13 @@ public class SakilaAppApplication {
 	@PostMapping("/Film/update")
 	@ResponseBody
 	public String updateFilm(@RequestBody Film Request){
-		if(filmRepository.findById(Request.film_id).isPresent()) {
-			Film film = filmRepository.findById(Request.film_id).get();
-			film.title = Request.title;
-			filmRepository.save(film);
-			System.out.println(Request.film_id + "," + Request.title);
+		if(filmRepository.findById(Request.film_id).isEmpty()) {
+			throw new NoSuchElementException();
 		}
+		Film film = filmRepository.findById(Request.film_id).get();
+		film.title = Request.title;
+		filmRepository.save(film);
+		System.out.println(Request.film_id + "," + Request.title);
 		return "UPDATED";
 	}
 
