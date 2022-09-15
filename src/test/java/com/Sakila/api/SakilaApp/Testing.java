@@ -16,10 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.util.*;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -77,6 +74,13 @@ public class Testing {
     @Test
     void TestGettersFilmID(){
         Film testFilm = new Film(103,"WOW","POG",1,20.06,32,12.45,"wo");
+
+        Set<Category> categories = new HashSet<>();
+        Category category = new Category(10,"Home");
+        categories.add(new Category(10,"Home"));
+        categories.add(new Category(11,"Gone"));
+        testFilm.setCategory(categories);
+
         Assertions.assertEquals(103,testFilm.getFilm_id(),"Test 'getFilm_id' failed");
         Assertions.assertEquals("WOW",testFilm.getTitle(),"Test 'getTitle' failed");
         Assertions.assertEquals("POG",testFilm.getDescription(),"Test 'getDescription' failed");
@@ -85,6 +89,8 @@ public class Testing {
         Assertions.assertEquals(32,testFilm.getLength(),"Test 'getLength' failed");
         Assertions.assertEquals(12.45,testFilm.getReplacement_cost(),"Test 'getReplacement_cost' failed");
         Assertions.assertEquals("wo",testFilm.getRating(),"Test 'getRating' failed");
+        Assertions.assertEquals(categories,testFilm.getCategory(),"Test 'getCategory' failed");
+        Assertions.assertEquals(category,categories.contains(category),"Test 'setCategory' failed");
     }
     @Test
     void TestSetterFilmID(){
