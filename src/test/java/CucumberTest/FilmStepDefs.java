@@ -33,16 +33,13 @@ public class FilmStepDefs {
     @Mock
     FilmRepository filmRepository;
     @Mock
-    ActorRepository actorRepository;
-    @Mock
     CategoryRepository categoryRepository;
 
     @BeforeEach
     void setup(){
         filmRepository = mock(FilmRepository.class);
         categoryRepository = mock(CategoryRepository.class);
-        actorRepository = mock(ActorRepository.class);
-        sakilaAppApplication = new SakilaAppApplication(filmRepository,actorRepository,categoryRepository);
+        sakilaAppApplication = new SakilaAppApplication(filmRepository,categoryRepository);
     }
     @Given("The application is running")
     public void the_application_is_running() {
