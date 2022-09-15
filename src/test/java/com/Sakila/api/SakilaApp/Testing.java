@@ -77,7 +77,7 @@ public class Testing {
 
         Set<Category> categories = new HashSet<>();
         Category category = new Category(10,"Home");
-        categories.add(new Category(10,"Home"));
+        categories.add(category);
         categories.add(new Category(11,"Gone"));
         testFilm.setCategory(categories);
 
@@ -90,7 +90,7 @@ public class Testing {
         Assertions.assertEquals(12.45,testFilm.getReplacement_cost(),"Test 'getReplacement_cost' failed");
         Assertions.assertEquals("wo",testFilm.getRating(),"Test 'getRating' failed");
         Assertions.assertEquals(categories,testFilm.getCategory(),"Test 'getCategory' failed");
-        Assertions.assertEquals(category,categories.contains(category),"Test 'setCategory' failed");
+        Assertions.assertEquals(true,testFilm.getCategory().contains(category),"Test 'setCategory' failed");
     }
     @Test
     void TestSetterFilmID(){
