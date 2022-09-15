@@ -22,13 +22,11 @@ public class Testing {
     @Mock
     FilmRepository filmRepository;
     @Mock
-    ActorRepository actorRepository;
-    @Mock
     CategoryRepository categoryRepository;
 
     @BeforeEach
     void setup(){
-        sakilaAppApplication = new SakilaAppApplication(filmRepository,actorRepository,categoryRepository);
+        sakilaAppApplication = new SakilaAppApplication(filmRepository,categoryRepository);
     }
     @Test
     void TestAllFilms(){

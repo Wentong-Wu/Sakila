@@ -20,14 +20,12 @@ import java.util.*;
 public class SakilaAppApplication {
 	SecureRandom rand = new SecureRandom();
 	@Autowired
-	private ActorRepository actorRepository;
 	private FilmRepository filmRepository;
 	private CategoryRepository categoryRepository;
 
 
-	public SakilaAppApplication(FilmRepository filmRepository, ActorRepository actorRepository, CategoryRepository categoryRepository){
+	public SakilaAppApplication(FilmRepository filmRepository, CategoryRepository categoryRepository){
 		this.filmRepository = filmRepository;
-		this.actorRepository = actorRepository;
 		this.categoryRepository = categoryRepository;
 	}
 
@@ -36,45 +34,18 @@ public class SakilaAppApplication {
 		SpringApplication.run(SakilaAppApplication.class, args);
 	}
 
-	@GetMapping("/allActors")
+	@PostMapping("/Film/add")
 	@ResponseBody
-	public
-	Iterable<Actor> getAllActors(){
-		return actorRepository.findAll();
+	public String addActor(@RequestBody Film film){
+		filmRepository.save(film);
+		return "Film has been added!";
 	}
 
-	@GetMapping("/Actor/{id}")
+	@DeleteMapping("/Film/delete/{id}")
 	@ResponseBody
-	public Optional<Actor> getActorByID(@PathVariable Integer id){
-		return actorRepository.findById(id);
-	}
-
-	@PostMapping("/Actor/add")
-	@ResponseBody
-	public String addActor(@RequestBody Actor actor){
-		actorRepository.save(actor);
-		return "Actor has been added!";
-	}
-
-	@DeleteMapping("/Actor/delete/{id}")
-	@ResponseBody
-	public String deleteActor(@PathVariable Integer id){
-		actorRepository.deleteById(id);
+	public String deleteFilm(@PathVariable Integer id){
+		filmRepository.deleteById(id);
 		return "actor ID "+id+" has been deleted";
-	}
-
-	@PostMapping("/Actor/update/{id}")
-	@ResponseBody
-	public String updateActor(@PathVariable Integer id, @RequestParam String first_name, @RequestParam String last_name){
-		Optional<Actor> optional = actorRepository.findById(id);
-		if(optional.isEmpty()){
-			throw new NoSuchElementException();
-		}
-		Actor actor = optional.get();
-		actor.first_name = first_name;
-		actor.last_name = last_name;
-		actorRepository.save(actor);
-		return "Updated!!!";
 	}
 
 	@PostMapping("/Film/update")
