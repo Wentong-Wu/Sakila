@@ -49,12 +49,12 @@ public class SakilaAppApplication {
 		return actorRepository.findById(id);
 	}
 
-//	@PostMapping("/Actor/add")
-//	@ResponseBody
-//	public String addActor(@RequestBody Actor actor){
-//		actorRepository.save(actor);
-//		return "Actor has been added!";
-//	}
+	@PostMapping("/Actor/add")
+	@ResponseBody
+	public String addActor(@RequestBody Actor actor){
+		actorRepository.save(actor);
+		return "Actor has been added!";
+	}
 
 	@DeleteMapping("/Actor/delete/{id}")
 	@ResponseBody
@@ -63,15 +63,15 @@ public class SakilaAppApplication {
 		return "actor ID "+id+" has been deleted";
 	}
 
-//	@PostMapping("/Actor/update/{id}")
-//	@ResponseBody
-//	public String updateActor(@PathVariable Integer id, @RequestParam String first_name, @RequestParam String last_name){
-//		Actor actor = actorRepository.findById(id).get();
-//		actor.first_name = first_name;
-//		actor.last_name = last_name;
-//		actorRepository.save(actor);
-//		return "Updated!!!";
-//	}
+	@PostMapping("/Actor/update/{id}")
+	@ResponseBody
+	public String updateActor(@PathVariable Integer id, @RequestParam String first_name, @RequestParam String last_name){
+		Actor actor = actorRepository.findById(id).get();
+		actor.first_name = first_name;
+		actor.last_name = last_name;
+		actorRepository.save(actor);
+		return "Updated!!!";
+	}
 
 	@PostMapping("/Film/update")
 	@ResponseBody
