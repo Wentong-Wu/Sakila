@@ -66,7 +66,11 @@ public class SakilaAppApplication {
 	@PostMapping("/Actor/update/{id}")
 	@ResponseBody
 	public String updateActor(@PathVariable Integer id, @RequestParam String first_name, @RequestParam String last_name){
-		Actor actor = actorRepository.findById(id).get();
+		Optional<Actor> optional = actorRepository.findById(id);
+		if(optional.isEmpty()){
+			throw new NoSuchElementException();
+		}
+		Actor actor = optional.get();
 		actor.first_name = first_name;
 		actor.last_name = last_name;
 		actorRepository.save(actor);
@@ -76,10 +80,11 @@ public class SakilaAppApplication {
 	@PostMapping("/Film/update")
 	@ResponseBody
 	public String updateFilm(@RequestBody Film Request){
-		if(filmRepository.findById(Request.film_id).isEmpty()) {
+		Optional<Film> optional = filmRepository.findById(Request.film_id);
+		if(optional.isEmpty()) {
 			throw new NoSuchElementException();
 		}
-		Film film = filmRepository.findById(Request.film_id).get();
+		Film film = optional.get();
 		film.title = Request.title;
 		filmRepository.save(film);
 		System.out.println(Request.film_id + "," + Request.title);
