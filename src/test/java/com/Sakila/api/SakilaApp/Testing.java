@@ -140,7 +140,7 @@ public class Testing {
         Iterable<Film> filmIterable = filmList;
         when(filmRepository.getCategoryFilm()).thenReturn(filmIterable);
         Iterable<Film> Expected = filmIterable;
-        Iterable<Film> Actual = filmRepository.getCategoryFilm();
+        Iterable<Film> Actual = sakilaAppApplication.getFilmByCate();
         Assertions.assertEquals(Expected,Actual,"Test 'getFilmByCate' Failed");
     }
     @Test
