@@ -1,5 +1,6 @@
 package com.Sakila.api.SakilaApp;
 
+import com.google.common.collect.Iterables;
 import org.checkerframework.checker.units.qual.C;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,6 +10,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +42,21 @@ public class Testing {
         Iterable<Film> Expected = filmIterable;
         Iterable<Film> Actual = sakilaAppApplication.getAllFilms();
         Assertions.assertEquals(Expected, Actual, "Error");
+    }
+    @Test
+    void TestGenerate6Film(){
+        List<Film> filmList = new ArrayList<>();
+        for (int i = 0; i < 6; i++){
+            filmList.add(new Film());
+        }
+        Iterable<Film> filmIterable = filmList;
+        when(filmRepository.getRandom6Films()).thenReturn(filmIterable);
+        Iterable<Film> Expected = filmIterable;
+        int ExpectedSize = Iterables.size(filmIterable);
+        Iterable<Film> Actual = sakilaAppApplication.getGenerateRandom();
+        int ActualSize = Iterables.size(sakilaAppApplication.getGenerateRandom());
+        Assertions.assertEquals(Expected,Actual,"Error");
+        Assertions.assertEquals(ExpectedSize,ActualSize,"Does not have 6 films");
     }
     @Test
     void TestAllCategory(){

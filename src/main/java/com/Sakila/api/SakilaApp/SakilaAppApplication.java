@@ -36,7 +36,7 @@ public class SakilaAppApplication {
 
 	@PostMapping("/Film/add")
 	@ResponseBody
-	public String addActor(@RequestBody Film film){
+	public String addFilm(@RequestBody Film film){
 		filmRepository.save(film);
 		return "Film has been added!";
 	}
