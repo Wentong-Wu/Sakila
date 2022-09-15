@@ -14,6 +14,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -57,6 +58,13 @@ public class Testing {
         int ActualSize = Iterables.size(sakilaAppApplication.getGenerateRandom());
         Assertions.assertEquals(Expected,Actual,"Error");
         Assertions.assertEquals(ExpectedSize,ActualSize,"Does not have 6 films");
+    }
+    @Test
+    void DeleteFilmById(){
+        Film testFilm = new Film(10,"WOW","POG",1,20.06,32,12.45,"wo");
+        sakilaAppApplication.deleteFilm(10);
+        verify(filmRepository).deleteById(testFilm.getFilm_id());
+        //Test to see if the function is being called. Does not test the data to see if it is actually deleted.
     }
     @Test
     void TestAllCategory(){
