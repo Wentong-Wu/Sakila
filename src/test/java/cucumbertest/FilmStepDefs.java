@@ -1,6 +1,8 @@
-package CucumberTest;
+package cucumbertest;
 
-import com.Sakila.api.SakilaApp.*;
+import com.sakila.api.sakilaapp.CategoryRepository;
+import com.sakila.api.sakilaapp.FilmRepository;
+import com.sakila.api.sakilaapp.SakilaAppApplication;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -17,12 +19,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.List;
 
 import static java.time.temporal.ChronoUnit.SECONDS;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public class FilmStepDefs {
 

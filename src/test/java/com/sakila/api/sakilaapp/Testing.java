@@ -1,21 +1,14 @@
-package com.Sakila.api.SakilaApp;
+package com.sakila.api.sakilaapp;
 
 import com.google.common.collect.Iterables;
-import org.checkerframework.checker.units.qual.C;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 import static org.mockito.Mockito.verify;

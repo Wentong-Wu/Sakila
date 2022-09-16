@@ -1,4 +1,4 @@
-package com.Sakila.api.SakilaApp;
+package com.sakila.api.sakilaapp;
 
 import org.springframework.data.repository.CrudRepository;
 

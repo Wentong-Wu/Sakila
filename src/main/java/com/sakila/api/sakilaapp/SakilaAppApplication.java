@@ -1,15 +1,10 @@
-package com.Sakila.api.SakilaApp;
+package com.sakila.api.sakilaapp;
 
-import com.google.gson.JsonObject;
-import org.json.JSONObject;
-import org.openqa.selenium.json.Json;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.*;
 
-import javax.swing.text.html.Option;
 import java.security.SecureRandom;
 import java.util.*;
 

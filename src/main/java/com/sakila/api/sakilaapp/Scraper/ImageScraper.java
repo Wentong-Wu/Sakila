@@ -1,4 +1,4 @@
-package com.Sakila.api.SakilaApp.Scraper;
+package com.sakila.api.sakilaapp.Scraper;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
