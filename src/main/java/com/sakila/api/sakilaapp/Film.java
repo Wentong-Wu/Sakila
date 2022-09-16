@@ -7,18 +7,11 @@ import java.util.Set;
 @Entity
 @Table(name = "film")
 public class Film {
-
     @Id
-
-
     @Column(name = "film_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
-
     //Attribute
-
     int film_id;
-
     @ManyToMany
     @JoinTable(
             name = "film_category",

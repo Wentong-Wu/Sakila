@@ -17,32 +17,25 @@ public class SakilaAppApplication {
 	@Autowired
 	private FilmRepository filmRepository;
 	private CategoryRepository categoryRepository;
-
-
 	public SakilaAppApplication(FilmRepository filmRepository, CategoryRepository categoryRepository){
 		this.filmRepository = filmRepository;
 		this.categoryRepository = categoryRepository;
 	}
-
-
 	public static void main(String[] args) {
 		SpringApplication.run(SakilaAppApplication.class, args);
 	}
-
 	@PostMapping("/Film/add")
 	@ResponseBody
 	public String addFilm(@RequestBody Film film){
 		filmRepository.save(film);
 		return "Film has been added!";
 	}
-
 	@DeleteMapping("/Film/delete/{id}")
 	@ResponseBody
 	public String deleteFilm(@PathVariable Integer id){
 		filmRepository.deleteById(id);
 		return "actor ID "+id+" has been deleted";
 	}
-
 	@PostMapping("/Film/update")
 	@ResponseBody
 	public String updateFilm(@RequestBody Film Request){
@@ -56,8 +49,6 @@ public class SakilaAppApplication {
 		System.out.println(Request.film_id + "," + Request.title);
 		return "UPDATED";
 	}
-
-
 	@GetMapping("/generateRandom")
 	@ResponseBody
 	public Iterable<Film> getGenerateRandom(){return filmRepository.getRandom6Films();}
